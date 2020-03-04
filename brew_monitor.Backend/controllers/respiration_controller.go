@@ -11,7 +11,7 @@ func GetRecentRespirationData() repository.Respiration {
 	return respirationData
 }
 //Method with receiver argument
-func (r Respiration) PostRespiration() {
+func PostRespiration(r repository.Respiration) {
 	repository.PostRespiration(r)
 }
 
