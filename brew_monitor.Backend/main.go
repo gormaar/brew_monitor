@@ -55,7 +55,7 @@ func createBrew(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&brew)
 	brew.Id = strconv.Itoa(rand.Intn(10000000)) //Mock ID - not safes
 	brews = append(brews, brew)
-	json.NewEncoder(w).Encode(brew)
+	_ = json.NewEncoder(w).Encode(brew)
 
 }
 
@@ -96,16 +96,10 @@ func main() {
 	//Mock Data - @todo - implement DB
 	brews = append(brews, Brew{Id: "1", Name: "SuperSonic", Type: "India Pale Ale", Ingredients: &Ingredients {Yeast: "California Yeast", Hops: "Golden Hops", Barley: "Regular"}})
 	brews = append(brews, Brew{Id: "2", Name: "Ægir Apa", Type: "American Pale Ale", Ingredients: &Ingredients {Yeast: "California Yeast", Hops: "Caramount", Barley: "Bayer"}})
-
-	//Route Handlers / Endpoints
-	router.HandleFunc("/api/brews/{id}", getBrew).Methods("GET")
-	router.HandleFunc("/api/brews", createBrew).Methods("POST")
-	router.HandleFunc("/api/brews/{id}", updateBrew).Methods("PUT")
-	router.HandleFunc("/api/brews/{id}", deleteBrew).Methods("DELETE")
-	log.Fatal(http.ListenAndServe(":8000", router))
-	*/
-
+*/
 	router.HandleFunc("/api/respiration", controller.GetRecentRespirationData).Methods("GET")
-	//router.HandleFunc("api/")
+	router.HandleFunc("/api/respiration", controller.PostRespiration).Methods("POST")
+	router.HandleFunc("api/respiration", controller.PutRespiration).Methods("PUT")
+	router.HandleFunc("api/respiration", controller.DeleteRespiration).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":8000", router))
 }

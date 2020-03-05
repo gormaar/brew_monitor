@@ -11,18 +11,34 @@ type Respiration repository.Respiration
 func GetRecentRespirationData(w http.ResponseWriter, r *http.Request) {
 	respiration := repository.GetRespiration()
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(respiration)
+	_= json.NewEncoder(w).Encode(respiration)
 
 }
 //Method with receiver argument
-func PostRespiration(r repository.Respiration) {
-	repository.PostRespiration(r)
+func PostRespiration(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var respiration repository.Respiration
+	_ =  json.NewDecoder(r.Body).Decode(&respiration)
+
+	repository.PostRespiration(respiration)
+	_ = json.NewEncoder(w).Encode(respiration)
+
 }
 
-func DeleteRespiration(resId uint) {
-	repository.DeleteRespiration(resId)
+func DeleteRespiration(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var respiration repository.Respiration
+	_ =  json.NewDecoder(r.Body).Decode(&respiration)
+
+	repository.DeleteRespiration(respiration.ResId)
+	_ = json.NewEncoder(w).Encode(respiration)
 }
 
-func PutRespiration(resId uint) {
-	repository.PutRespiration(resId)
+func PutRespiration(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	var respiration repository.Respiration
+	_ =  json.NewDecoder(r.Body).Decode(&respiration)
+
+	repository.PutRespiration(respiration)
+	_ = json.NewEncoder(w).Encode(respiration)
 }

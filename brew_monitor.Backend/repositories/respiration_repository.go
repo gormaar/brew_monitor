@@ -30,6 +30,6 @@ func DeleteRespiration(resId uint) {
 
 }
 
-func PutRespiration(resId uint) {
+func PutRespiration(r Respiration) {
 
 }
