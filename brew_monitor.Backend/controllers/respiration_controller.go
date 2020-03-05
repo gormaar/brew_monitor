@@ -2,13 +2,17 @@ package controllers
 
 import (
 	repository "../repositories"
+	"encoding/json"
+	"net/http"
 )
 
 type Respiration repository.Respiration
 
-func GetRecentRespirationData() repository.Respiration {
-	respirationData := repository.GetRespiration()
-	return respirationData
+func GetRecentRespirationData(w http.ResponseWriter, r *http.Request) {
+	respiration := repository.GetRespiration()
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(respiration)
+
 }
 //Method with receiver argument
 func PostRespiration(r repository.Respiration) {

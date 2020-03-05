@@ -1,6 +1,8 @@
 package repositories
 
-import "time"
+import (
+	"time"
+)
 
 type Brew struct {
 	BrewId			uint		`json:"id"`
@@ -15,11 +17,12 @@ type Respiration struct {
 	BrewId		uint			`json:"brewId"`
 }
 
-func GetRespiration() Respiration {
+func GetRespiration() Respiration{
 	return Respiration{ResId: 001, Bubbles: 100, Time: 1, BrewId: 001}
+
 }
 
-func (r Respiration) PostRespiration() {
+func PostRespiration(r Respiration) {
 
 }
 

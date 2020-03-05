@@ -1,6 +1,7 @@
 package main
 
 import (
+	controller "./controllers"
 	"encoding/json"
 	"github.com/gorilla/mux"
 	"log"
@@ -91,17 +92,20 @@ func deleteBrew(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	router := mux.NewRouter()
-
+	/*
 	//Mock Data - @todo - implement DB
 	brews = append(brews, Brew{Id: "1", Name: "SuperSonic", Type: "India Pale Ale", Ingredients: &Ingredients {Yeast: "California Yeast", Hops: "Golden Hops", Barley: "Regular"}})
 	brews = append(brews, Brew{Id: "2", Name: "Ægir Apa", Type: "American Pale Ale", Ingredients: &Ingredients {Yeast: "California Yeast", Hops: "Caramount", Barley: "Bayer"}})
 
 	//Route Handlers / Endpoints
-	router.HandleFunc("/api/brews", getBrews).Methods("GET")
 	router.HandleFunc("/api/brews/{id}", getBrew).Methods("GET")
 	router.HandleFunc("/api/brews", createBrew).Methods("POST")
 	router.HandleFunc("/api/brews/{id}", updateBrew).Methods("PUT")
 	router.HandleFunc("/api/brews/{id}", deleteBrew).Methods("DELETE")
 	log.Fatal(http.ListenAndServe(":8000", router))
+	*/
 
+	router.HandleFunc("/api/respiration", controller.GetRecentRespirationData).Methods("GET")
+	//router.HandleFunc("api/")
+	log.Fatal(http.ListenAndServe(":8000", router))
 }
