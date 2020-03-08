@@ -1,17 +1,15 @@
 package controllers
 
 import (
-repository "../repositories"
-"encoding/json"
-"log"
-"net/http"
-"../models"
+	repository "../repositories"
+	"encoding/json"
+	"log"
+	"net/http"
+	"../models"
 )
 
-type Temperature models.Temperature
-
 func GetRecentTemperatureData(w http.ResponseWriter, r *http.Request) {
-	temp := repository.GetRespiration()
+	temp := repository.GetTemperature()
 	w.Header().Set("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(temp)
 	if err != nil {
@@ -28,12 +26,11 @@ func GetHourlyTemperatureData(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func PostTemperature(w http.ResponseWriter, r *http.Request) {
+func CreateTemperature(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var temp repository.Respiration
+	var temp models.Temperature
 	err :=  json.NewDecoder(r.Body).Decode(&temp)
-
-	repository.PostRespiration(temp)
+	repository.CreateTemperature(temp)
 	err = json.NewEncoder(w).Encode(temp)
 	if err != nil {
 		log.Fatal(err)
@@ -42,10 +39,10 @@ func PostTemperature(w http.ResponseWriter, r *http.Request) {
 
 func DeleteTemperature(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var temp Temperature
+	var temp models.Temperature
 	err :=  json.NewDecoder(r.Body).Decode(&temp)
 
-	repository.DeleteRespiration(temp.TempId)
+	repository.DeleteTemperature(temp.TempId)
 	err = json.NewEncoder(w).Encode(temp)
 	if err != nil {
 		log.Fatal(err)
@@ -54,10 +51,9 @@ func DeleteTemperature(w http.ResponseWriter, r *http.Request) {
 
 func PutTemperature(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var temp Temperature
+	var temp models.Temperature
 	err :=  json.NewDecoder(r.Body).Decode(&temp)
-
-	//repository.PutTemperature(temp)
+	repository.PutTemperature(temp)
 	err = json.NewEncoder(w).Encode(temp)
 	if err != nil {
 		log.Fatal(err)

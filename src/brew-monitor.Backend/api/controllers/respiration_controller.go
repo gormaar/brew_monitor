@@ -8,8 +8,6 @@ import (
 	repository "../repositories"
 )
 
-type Respiration models.Respiration
-
 func GetRecentRespirationData(w http.ResponseWriter, r *http.Request) {
 	respiration := repository.GetRespiration()
 	w.Header().Set("Content-Type", "application/json")
@@ -28,12 +26,12 @@ func GetHourlyRespirationData(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func PostRespiration(w http.ResponseWriter, r *http.Request) {
+func CreateRespiration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var respiration repository.Respiration
+	var respiration models.Respiration
 	err :=  json.NewDecoder(r.Body).Decode(&respiration)
 
-	repository.PostRespiration(respiration)
+	repository.CreateRespiration(respiration)
 	err = json.NewEncoder(w).Encode(respiration)
 	if err != nil {
 		log.Fatal(err)
@@ -42,7 +40,7 @@ func PostRespiration(w http.ResponseWriter, r *http.Request) {
 
 func DeleteRespiration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var respiration repository.Respiration
+	var respiration models.Respiration
 	err :=  json.NewDecoder(r.Body).Decode(&respiration)
 
 	repository.DeleteRespiration(respiration.ResId)
@@ -54,7 +52,7 @@ func DeleteRespiration(w http.ResponseWriter, r *http.Request) {
 
 func PutRespiration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var respiration repository.Respiration
+	var respiration models.Respiration
 	err :=  json.NewDecoder(r.Body).Decode(&respiration)
 
 	repository.PutRespiration(respiration)
