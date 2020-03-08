@@ -98,6 +98,7 @@ func main() {
 	brews = append(brews, Brew{Id: "2", Name: "Ægir Apa", Type: "American Pale Ale", Ingredients: &Ingredients {Yeast: "California Yeast", Hops: "Caramount", Barley: "Bayer"}})
 */
 	router.HandleFunc("/api/respiration", controller.GetRecentRespirationData).Methods("GET")
+	router.HandleFunc("/api/hourlyRespiration", controller.GetHourlyRespirationData).Methods("GET")
 	router.HandleFunc("/api/respiration", controller.PostRespiration).Methods("POST")
 	router.HandleFunc("api/respiration", controller.PutRespiration).Methods("PUT")
 	router.HandleFunc("api/respiration", controller.DeleteRespiration).Methods("DELETE")

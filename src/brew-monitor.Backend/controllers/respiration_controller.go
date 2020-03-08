@@ -1,44 +1,65 @@
 package controllers
 
 import (
-	repository "../repositories"
+	"../models"
 	"encoding/json"
+	"log"
 	"net/http"
+	repository "../repositories"
 )
 
-type Respiration repository.Respiration
+type Respiration models.Respiration
 
 func GetRecentRespirationData(w http.ResponseWriter, r *http.Request) {
 	respiration := repository.GetRespiration()
 	w.Header().Set("Content-Type", "application/json")
-	_= json.NewEncoder(w).Encode(respiration)
-
+	err := json.NewEncoder(w).Encode(respiration)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
-//Method with receiver argument
+
+func GetHourlyRespirationData(w http.ResponseWriter, r *http.Request) {
+	hourlyRespiration := repository.GetHourlyRespiration()
+	w.Header().Set("Content-Type", "application/json")
+	err := json.NewEncoder(w).Encode(hourlyRespiration)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
 func PostRespiration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var respiration repository.Respiration
-	_ =  json.NewDecoder(r.Body).Decode(&respiration)
+	err :=  json.NewDecoder(r.Body).Decode(&respiration)
 
 	repository.PostRespiration(respiration)
-	_ = json.NewEncoder(w).Encode(respiration)
-
+	err = json.NewEncoder(w).Encode(respiration)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func DeleteRespiration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var respiration repository.Respiration
-	_ =  json.NewDecoder(r.Body).Decode(&respiration)
+	err :=  json.NewDecoder(r.Body).Decode(&respiration)
 
 	repository.DeleteRespiration(respiration.ResId)
-	_ = json.NewEncoder(w).Encode(respiration)
+	err = json.NewEncoder(w).Encode(respiration)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func PutRespiration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	var respiration repository.Respiration
-	_ =  json.NewDecoder(r.Body).Decode(&respiration)
+	err :=  json.NewDecoder(r.Body).Decode(&respiration)
 
 	repository.PutRespiration(respiration)
-	_ = json.NewEncoder(w).Encode(respiration)
+	err = json.NewEncoder(w).Encode(respiration)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
