@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"../models"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -28,7 +27,7 @@ func GetHourlyRespirationData(w http.ResponseWriter, r *http.Request) {
 
 func CreateRespiration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var respiration models.Respiration
+	var respiration repository.Respiration
 	err :=  json.NewDecoder(r.Body).Decode(&respiration)
 
 	repository.CreateRespiration(respiration)
@@ -40,7 +39,7 @@ func CreateRespiration(w http.ResponseWriter, r *http.Request) {
 
 func DeleteRespiration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var respiration models.Respiration
+	var respiration repository.Respiration
 	err :=  json.NewDecoder(r.Body).Decode(&respiration)
 
 	repository.DeleteRespiration(respiration.ResId)
@@ -52,7 +51,7 @@ func DeleteRespiration(w http.ResponseWriter, r *http.Request) {
 
 func PutRespiration(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var respiration models.Respiration
+	var respiration repository.Respiration
 	err :=  json.NewDecoder(r.Body).Decode(&respiration)
 
 	repository.PutRespiration(respiration)

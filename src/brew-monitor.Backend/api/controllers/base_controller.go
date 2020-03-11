@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/jinzhu/gorm"
 	"log"
 	"net/http"
 )

@@ -1,19 +1,26 @@
 package repositories
 
 import (
-"../models"
+	"time"
 )
 
-func GetRespiration() models.Respiration{
-	return models.Respiration{ResId: 001, Bubbles: 100, Time: 1, BrewId: 001}
+type Respiration struct {
+	ResId		uint			`json:"id"`
+	Bubbles 	uint 			`json:"bubbles"`
+	Time 		time.Duration	`json:"time"`
+	BrewId		uint			`json:"brewId"`
+}
+
+func GetRespiration() Respiration{
+	return Respiration{ResId: 001, Bubbles: 100, Time: 1, BrewId: 001}
 
 }
 
-func GetHourlyRespiration() models.Respiration{
-	return models.Respiration{}
+func GetHourlyRespiration() Respiration{
+	return Respiration{}
 }
 
-func CreateRespiration(r models.Respiration) {
+func CreateRespiration(r Respiration) {
 
 }
 
@@ -21,6 +28,6 @@ func DeleteRespiration(resId uint) {
 
 }
 
-func PutRespiration(r models.Respiration) {
+func PutRespiration(r Respiration) {
 
 }

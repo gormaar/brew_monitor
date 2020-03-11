@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"../models"
 )
 
 func GetRecentTemperatureData(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +27,7 @@ func GetHourlyTemperatureData(w http.ResponseWriter, r *http.Request) {
 
 func CreateTemperature(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var temp models.Temperature
+	var temp repository.Temperature
 	err :=  json.NewDecoder(r.Body).Decode(&temp)
 	repository.CreateTemperature(temp)
 	err = json.NewEncoder(w).Encode(temp)
@@ -39,7 +38,7 @@ func CreateTemperature(w http.ResponseWriter, r *http.Request) {
 
 func DeleteTemperature(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var temp models.Temperature
+	var temp repository.Temperature
 	err :=  json.NewDecoder(r.Body).Decode(&temp)
 
 	repository.DeleteTemperature(temp.TempId)
@@ -51,7 +50,7 @@ func DeleteTemperature(w http.ResponseWriter, r *http.Request) {
 
 func PutTemperature(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var temp models.Temperature
+	var temp repository.Temperature
 	err :=  json.NewDecoder(r.Body).Decode(&temp)
 	repository.PutTemperature(temp)
 	err = json.NewEncoder(w).Encode(temp)

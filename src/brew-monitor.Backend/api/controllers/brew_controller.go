@@ -5,7 +5,6 @@ repository "../repositories"
 "encoding/json"
 "log"
 "net/http"
-"../models"
 )
 
 func GetSingleBrew(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +27,7 @@ func GetAllBrews(w http.ResponseWriter, r *http.Request) {
 
 func CreateBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var brew models.Brew
+	var brew repository.Brew
 	err :=  json.NewDecoder(r.Body).Decode(&brew)
 	repository.CreateBrew(brew)
 	err = json.NewEncoder(w).Encode(brew)
@@ -39,7 +38,7 @@ func CreateBrew(w http.ResponseWriter, r *http.Request) {
 
 func DeleteBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var brew models.Brew
+	var brew repository.Brew
 	err :=  json.NewDecoder(r.Body).Decode(&brew)
 
 	repository.DeleteBrew(brew.BrewId)
@@ -51,7 +50,7 @@ func DeleteBrew(w http.ResponseWriter, r *http.Request) {
 
 func PutBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	var brew models.Brew
+	var brew repository.Brew
 	err :=  json.NewDecoder(r.Body).Decode(&brew)
 	repository.PutBrew(brew)
 	err = json.NewEncoder(w).Encode(brew)

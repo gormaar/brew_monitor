@@ -1,18 +1,20 @@
 package repositories
 
-import (
-	"../models"
-)
-
-func GetSingleBrew() models.Brew{
-	return models.Brew{BrewId: 001, BrewName: "Ægir IPA", BrewType: "IPA"}
+type Brew struct {
+	BrewId			uint		`json:"id"`
+	BrewName		string		`json:"brewName"`
+	BrewType		string		`json:"brewType"`
 }
 
-func GetAllBrews() models.Brew{
-	return models.Brew{}
+func GetSingleBrew() Brew{
+	return Brew{BrewId: 001, BrewName: "Ægir IPA", BrewType: "IPA"}
 }
 
-func CreateBrew(b models.Brew) {
+func GetAllBrews() Brew{
+	return Brew{}
+}
+
+func CreateBrew(b Brew) {
 
 }
 
@@ -20,6 +22,6 @@ func DeleteBrew(brewId uint) {
 
 }
 
-func PutBrew(b models.Brew) {
+func PutBrew(b Brew) {
 
 }
