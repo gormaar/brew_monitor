@@ -1,62 +1,77 @@
 package controllers
 
 import (
-
-repository "../repositories"
-"encoding/json"
-"log"
-"net/http"
-
+	repository "../repositories"
+	response "../responses"
+	"github.com/gorilla/mux"
+	"net/http"
+	"strconv"
 )
 
-func GetSingleBrew(w http.ResponseWriter, r *http.Request) {
-	brew := repository.GetSingleBrew()
-	w.Header().Set("Content-Type", "application/json")
-	err := json.NewEncoder(w).Encode(brew)
+func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
-		log.Fatal(err)
+		response.ERROR(w, http.StatusBadRequest, err)
+		return
 	}
+	brew := repository.Brew{}
+	foundBrew, err := brew.GetSingleBrew(server.DB, uint(brewId))
+	if err != nil {
+		response.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	response.JSON(w, http.StatusOK, foundBrew)
 }
 
-func GetAllBrews(w http.ResponseWriter, r *http.Request) {
-	brews := repository.GetAllBrews()
-	w.Header().Set("Content-Type", "application/json")
-	err := json.NewEncoder(w).Encode(brews)
+func (server *Server) GetAllBrews(w http.ResponseWriter, r *http.Request) {
+	brewModel := repository.Brew{}
+	brews, err := brewModel.GetAllBrews(server.DB)
 	if err != nil {
-		log.Fatal(err)
+		response.ERROR(w, http.StatusInternalServerError, err)
+		return
 	}
+	response.JSON(w, http.StatusOK, brews)
 }
 
-func CreateBrew(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	var brew repository.Brew
-	err :=  json.NewDecoder(r.Body).Decode(&brew)
-	repository.CreateBrew(brew)
-	err = json.NewEncoder(w).Encode(brew)
+func (server *Server) CreateBrew(w http.ResponseWriter, r *http.Request) {
+	brewModel := repository.Brew{}
+	brew, err := brewModel.CreateBrew(server.DB)
 	if err != nil {
-		log.Fatal(err)
+		response.ERROR(w, http.StatusInternalServerError, err)
+		return
 	}
+	response.JSON(w, http.StatusOK, brew)
 }
 
-func DeleteBrew(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	var brew repository.Brew
-	err :=  json.NewDecoder(r.Body).Decode(&brew)
-
-	repository.DeleteBrew(brew.BrewId)
-	err = json.NewEncoder(w).Encode(brew)
+func (server *Server) DeleteBrew(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
-		log.Fatal(err)
+		response.ERROR(w, http.StatusBadRequest, err)
+		return
 	}
+	brewModel := repository.Brew{}
+	brew, err := brewModel.DeleteBrew(server.DB, uint(brewId))
+	if err != nil {
+		response.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	response.JSON(w, http.StatusOK, brew)
 }
 
-func PutBrew(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	var brew repository.Brew
-	err :=  json.NewDecoder(r.Body).Decode(&brew)
-	repository.PutBrew(brew)
-	err = json.NewEncoder(w).Encode(brew)
+func (server *Server) PutBrew(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
-		log.Fatal(err)
+		response.ERROR(w, http.StatusBadRequest, err)
+		return
 	}
+	brewModel := repository.Brew{}
+	brew, err := brewModel.PutBrew(server.DB, uint(brewId))
+	if err != nil {
+		response.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+	response.JSON(w, http.StatusOK, brew)
 }

@@ -32,5 +32,5 @@ func (server *Server) Initialize(Dbdriver, DbUser, DbPassword, DbPort, DbHost, D
 }
 
 func (server *Server) Run() {
-	log.Fatal(http.ListenAndServe(":8000", server.Router))
+	log.Fatal(http.ListenAndServe(":8080", server.Router))
 }
