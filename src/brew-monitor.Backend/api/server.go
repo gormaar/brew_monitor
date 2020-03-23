@@ -3,6 +3,7 @@ package api
 import (
 	"./controllers"
 	"fmt"
+	_ "github.com/jinzhu/gorm/dialects/mssql"
 	"github.com/joho/godotenv"
 	"log"
 	"os"
