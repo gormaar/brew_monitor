@@ -49,9 +49,9 @@ func (r *Respiration) GetAllRespirations(db *gorm.DB, brewId uint) (*[]Respirati
 	return &respirations, nil
 }
 
-func (r *Respiration) CreateRespiration(db *gorm.DB, brewId uint) (*Respiration, error) {
+func (r *Respiration) CreateRespiration(db *gorm.DB) (*Respiration, error) {
 	var err error
-	err = db.Debug().Model(&Respiration{}).Where("brew_id = ?", brewId).Create(&r).Error
+	err = db.Debug().Model(&Respiration{}).Create(&r).Error
 	if err != nil {
 		return &Respiration{}, err
 	}

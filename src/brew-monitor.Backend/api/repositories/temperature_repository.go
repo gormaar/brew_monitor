@@ -23,7 +23,7 @@ func (t *Temperature) GetTemperature(db *gorm.DB, brewId uint) (*Temperature, er
 
 }
 
-func (t *Respiration) GetAllTemperatures(db *gorm.DB, brewId uint) (*[]Temperature, error){
+func (t *Temperature) GetAllTemperatures(db *gorm.DB, brewId uint) (*[]Temperature, error){
 	var err error
 	temps := []Temperature{}
 	err = db.Debug().Model(&Temperature{}).Find(&t).Error

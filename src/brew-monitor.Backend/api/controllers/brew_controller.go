@@ -9,6 +9,7 @@ import (
 )
 
 func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
@@ -25,6 +26,7 @@ func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) GetAllBrews(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	brewModel := repository.Brew{}
 	brews, err := brewModel.GetAllBrews(server.DB)
 	if err != nil {
@@ -35,6 +37,7 @@ func (server *Server) GetAllBrews(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) CreateBrew(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	brewModel := repository.Brew{}
 	brew, err := brewModel.CreateBrew(server.DB)
 	if err != nil {
@@ -45,6 +48,7 @@ func (server *Server) CreateBrew(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) DeleteBrew(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
@@ -61,6 +65,7 @@ func (server *Server) DeleteBrew(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) PutBrew(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
