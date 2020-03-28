@@ -10,12 +10,12 @@ type Temperature struct {
 	TempId			uint		`gorm:"primary_key; not null; auto_increment; "json:"temp_id"`
 	TempValue		int			`json:"temp_value"`
 	TempTimestamp	time.Time	`gorm: "default: current_timestamp" json:"temp_timestamp"`
-	BrewId			uint		`json:"brewid"`
+	BrewId			uint		`json:"brew_id"`
 }
 
-func (t *Temperature) GetTemperature(db *gorm.DB, brewId uint) (*Temperature, error){
+func (t *Temperature) GetRecentTemperature(db *gorm.DB, brewId uint) (*Temperature, error){
 	var err error
-	err = db.Debug().Model(&Temperature{}).Where("brew_id = ?", brewId).Take(&t).Error
+	err = db.Debug().Model(&Temperature{}).Table("temperature").Where("brew_id = ?", brewId).Last(&t).Error
 	if err != nil {
 		return &Temperature{}, err
 	}
@@ -26,7 +26,7 @@ func (t *Temperature) GetTemperature(db *gorm.DB, brewId uint) (*Temperature, er
 func (t *Temperature) GetAllTemperatures(db *gorm.DB, brewId uint) (*[]Temperature, error){
 	var err error
 	temps := []Temperature{}
-	err = db.Debug().Model(&Temperature{}).Find(&t).Error
+	err = db.Debug().Model(&Temperature{}).Table("temperature").Where("brew_id = ?", brewId).Find(&temps).Error
 	if err != nil {
 		return &[]Temperature{}, err
 	}
@@ -35,7 +35,7 @@ func (t *Temperature) GetAllTemperatures(db *gorm.DB, brewId uint) (*[]Temperatu
 
 func (t *Temperature) CreateTemperature(db *gorm.DB, brewId uint) (*Temperature, error) {
 	var err error
-	err = db.Debug().Model(&Temperature{}).Where("brew_id = ?", brewId).Create(&t).Error
+	err = db.Debug().Model(&Temperature{}).Table("temperature").Where("brew_id = ?", brewId).Create(&t).Error
 	if err != nil {
 		return &Temperature{}, err
 	}
@@ -43,7 +43,7 @@ func (t *Temperature) CreateTemperature(db *gorm.DB, brewId uint) (*Temperature,
 }
 
 func (t *Temperature) DeleteTemperature(db *gorm.DB, tempId uint) (int64, error) {
-	db = db.Debug().Model(&Temperature{}).Where("temp_id = ?", tempId).Take(&Temperature{}).Delete(&Temperature{})
+	db = db.Debug().Model(&Temperature{}).Table("temperature").Where("temp_id = ?", tempId).Take(&Temperature{}).Delete(&Temperature{})
 	if db.Error != nil {
 		if gorm.IsRecordNotFoundError(db.Error) {
 			return 0, errors.New("Temperature not found")
@@ -55,7 +55,7 @@ func (t *Temperature) DeleteTemperature(db *gorm.DB, tempId uint) (int64, error)
 
 func (t *Temperature) PutTemperature(db *gorm.DB, tempid uint) (*Temperature, error) {
 	var err error
-	err = db.Debug().Model(&Temperature{}).Where("temp_id = ?", tempid).Update(Temperature{TempValue: t.TempValue}).Error
+	err = db.Debug().Model(&Temperature{}).Table("temperature").Where("temp_id = ?", tempid).Update(Temperature{TempValue: t.TempValue}).Error
 	if err != nil {
 		return &Temperature{}, err
 	}

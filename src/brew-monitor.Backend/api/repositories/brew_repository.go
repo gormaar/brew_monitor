@@ -7,7 +7,7 @@ import (
 )
 
 type Brew struct {
-	BrewId			uint		`gorm:"primary_key; not_null; auto_increment" json:"brew_id"`
+	BrewId			uint		`gorm:"primary_key; not_null; auto_increment;" json:"brew_id"`
 	BrewName		string		`json:"brew_name"`
 	BrewType		string		`json:"brew_type"`
 	CreationTime	time.Time	`gorm: "default: current_timestamp" json:"creation_timestamp"`

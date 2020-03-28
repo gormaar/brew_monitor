@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func (server *Server) GetTemperatureData(w http.ResponseWriter, r *http.Request) {
+func (server *Server) GetRecentTemperatureData(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10 ,32)
@@ -17,7 +17,7 @@ func (server *Server) GetTemperatureData(w http.ResponseWriter, r *http.Request)
 		return
 	}
 	tempModel := repository.Temperature{}
-	temp,err := tempModel.GetTemperature(server.DB, uint(brewId))
+	temp,err := tempModel.GetRecentTemperature(server.DB, uint(brewId))
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return

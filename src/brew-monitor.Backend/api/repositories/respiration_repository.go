@@ -7,7 +7,7 @@ import (
 )
 
 type Respiration struct {
-	RespId			uint		`gorm:"primary_key; not null; auto_increment" json:"resp_id"`
+	RespId			uint		`gorm:"primary_key; not null; auto_increment; "json:"resp_id"`
 	RespValue5 		int 		`json:"resp_value_5"`
 	RespValue60 	int			`json:"resp_value_60"`
 	RespTimestamp	time.Time	`gorm:"default: current_timestamp"json:"resp_timestamp"`
@@ -16,7 +16,7 @@ type Respiration struct {
 
 func (r *Respiration) GetRecentRespiration(db *gorm.DB, brewId uint) (*Respiration, error){
 	var err error
-	err = db.Debug().Model(&Respiration{}).Table("respiration").Where("brew_id = ?", brewId).Last(&r).Error
+	err = db.Debug().Model(&Respiration{}).Table("respiration").Where("brew_id = ?", brewId).Find(&r).Error
 	if err != nil{
 		return &Respiration{}, err
 	}
