@@ -18,13 +18,13 @@ type Server struct {
 func (server *Server) Initialize(DbDriver, DbUser, DbPassword, DbPort, DbHost, DbName string) {
 
 	var err error
-	DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
-	server.DB, err = gorm.Open(DbDriver, DBURL)
+	DbUrl := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
+	server.DB, err = gorm.Open(DbDriver, DbUrl)
 	if err != nil {
-		fmt.Printf("Cannot connect to %s database", DbDriver)
-		log.Fatal("Error:", err)
+		fmt.Printf("Cannot connect to database: %s \n", DbName)
+		log.Fatal("Error: ", err)
 	} else {
-		fmt.Printf("Successfully connected to %s database", DbDriver)
+		fmt.Printf("Successfully connected to database: %s \n", DbName)
 	}
 	server.DB.Debug().AutoMigrate(&repository.Brew{}, &repository.Respiration{}, &repository.Temperature{})
 	server.Router = mux.NewRouter()

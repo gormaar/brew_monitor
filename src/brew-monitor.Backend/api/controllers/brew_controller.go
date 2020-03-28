@@ -11,18 +11,19 @@ import (
 func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
+
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
 		response.ERROR(w, http.StatusBadRequest, err)
 		return
 	}
-	brew := repository.Brew{}
-	foundBrew, err := brew.GetSingleBrew(server.DB, uint(brewId))
+	brewModel := repository.Brew{}
+	brew, err := brewModel.GetSingleBrew(server.DB, uint(brewId))
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
-	response.JSON(w, http.StatusOK, foundBrew)
+	response.JSON(w, http.StatusOK, brew)
 }
 
 func (server *Server) GetAllBrews(w http.ResponseWriter, r *http.Request) {
