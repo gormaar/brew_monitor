@@ -11,8 +11,8 @@ import (
 )
 
 type Server struct {
-	DB *gorm.DB
-	Router   *mux.Router
+	DB 		*gorm.DB
+	Router  *mux.Router
 }
 
 func (server *Server) Initialize(DbDriver, DbUser, DbPassword, DbPort, DbHost, DbName string) {
@@ -26,7 +26,7 @@ func (server *Server) Initialize(DbDriver, DbUser, DbPassword, DbPort, DbHost, D
 	} else {
 		fmt.Printf("Successfully connected to database: %s \n", DbName)
 	}
-	server.DB.Debug().AutoMigrate(&repository.Brew{}, &repository.Respiration{}, &repository.Temperature{})
+	server.DB.Debug().AutoMigrate(&repository.Brew{}, &repository.Temperature{}, &repository.Respiration{})
 	server.Router = mux.NewRouter()
 	server.initializeRoutes()
 }
