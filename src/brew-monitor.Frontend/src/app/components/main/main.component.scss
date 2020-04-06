@@ -1,30 +1,41 @@
 .main {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
+  height: 100%;
   justify-content: center;
 
   .statistics__header {
     width: 50%;
+    height: calc(var(--grid) * 4);
     margin-bottom: calc(var(--grid) * 8);
     margin-top: calc(var(--grid) * 2);
     font-size: 28px;
-    justify-self: center;
-
-    h3 {
-      text-align: center;
-    }
+    text-align: center;
   }
 
   .brew__header {
     width: 50%;
+    height: calc(var(--grid) * 4);
     margin-bottom: calc(var(--grid) * 8);
     margin-top: calc(var(--grid) * 2);
     font-size: 28px;
-    justify-self: center;
+    text-align: center;
+  }
 
-    h3 {
-      text-align: center;
-    }
+  .main__body {
+    width: 100%;
+    height: 100%;
+  }
+
+  .deactivated {
+    color: rgba(128, 128, 128, 0.692);
+    width: 50%;
+    height: calc(var(--grid) * 4);
+    margin-bottom: calc(var(--grid) * 8);
+    margin-top: calc(var(--grid) * 2);
+    font-size: 28px;
+    text-align: center;
   }
 }

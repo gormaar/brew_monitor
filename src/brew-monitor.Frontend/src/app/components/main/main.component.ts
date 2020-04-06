@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  selector: "app-main",
+  templateUrl: "./main.component.html",
+  styleUrls: ["./main.component.scss"],
 })
 export class MainComponent implements OnInit {
+  pageToggle: boolean;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    this.pageToggle = true;
   }
 
+  ngOnInit(): void {}
+
+  renderStatistics() {
+    this.pageToggle = true;
+  }
+
+  renderBrews() {
+    this.pageToggle = false;
+  }
 }
