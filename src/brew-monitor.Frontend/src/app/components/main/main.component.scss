@@ -1,4 +1,30 @@
-main {
-  display: inline-block;
-  margin: 0 auto;
+.main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+
+  .statistics__header {
+    width: 50%;
+    margin-bottom: calc(var(--grid) * 8);
+    margin-top: calc(var(--grid) * 2);
+    font-size: 28px;
+    justify-self: center;
+
+    h3 {
+      text-align: center;
+    }
+  }
+
+  .brew__header {
+    width: 50%;
+    margin-bottom: calc(var(--grid) * 8);
+    margin-top: calc(var(--grid) * 2);
+    font-size: 28px;
+    justify-self: center;
+
+    h3 {
+      text-align: center;
+    }
+  }
 }
