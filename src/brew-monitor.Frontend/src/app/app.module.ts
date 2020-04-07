@@ -8,6 +8,8 @@ import { BrewListComponent } from './components/brew-list/brew-list.component';
 import { MainComponent } from './components/main/main.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { BrewComponent } from './components/brew/brew.component';
+import { RespirationComponent } from './components/respiration/respiration.component';
+import { TemperatureComponent } from './components/temperature/temperature.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { BrewComponent } from './components/brew/brew.component';
     BrewListComponent,
     MainComponent,
     StatisticsComponent,
-    BrewComponent
+    BrewComponent,
+    RespirationComponent,
+    TemperatureComponent
   ],
   imports: [
     BrowserModule,

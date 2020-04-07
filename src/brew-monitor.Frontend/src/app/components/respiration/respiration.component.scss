@@ -1,0 +1,45 @@
+.respiration {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: calc(var(--grid) * 60);
+
+  .respiration__header {
+    width: 100%;
+    font-size: 25px;
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: calc(var(--grid) * 3);
+  }
+
+  .respiration__chart {
+    width: calc(var(--grid) * 100);
+    height: 100%;
+  }
+
+  .respiration__blinker-container {
+    display: inline-block;
+    width: auto;
+    flex-grow: 1;
+
+    .respiration__blinker {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-color: rgb(122, 210, 245);
+      margin: 0 auto;
+      margin-top: calc(var(--grid) * 4);
+    }
+
+    .respiration__blinker--blink {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background-color: rgb(157, 221, 247);
+      margin: 0 auto;
+      margin-top: calc(var(--grid) * 4);
+    }
+  }
+}
