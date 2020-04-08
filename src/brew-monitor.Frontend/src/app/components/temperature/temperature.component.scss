@@ -1,0 +1,26 @@
+.temperature {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: calc(var(--grid) * 60);
+
+  .temperature__header {
+    width: 100%;
+    font-size: 25px;
+    display: inline-block;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: calc(var(--grid) * 3);
+  }
+
+  .temperature__short-term {
+    width: calc(var(--grid) * 100);
+    height: 100%;
+  }
+
+  .termperature__long-term {
+    width: auto;
+    height: 100%;
+  }
+}

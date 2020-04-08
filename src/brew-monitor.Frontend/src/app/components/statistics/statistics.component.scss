@@ -1,9 +1,14 @@
 .statistics {
   display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
 
   .statistics__respiration {
+    width: 100%;
+  }
+
+  .statistics__temperature {
     width: 100%;
   }
 }

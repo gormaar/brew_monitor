@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   width: 100%;
   height: calc(var(--grid) * 60);
+  margin-bottom: calc(var(--grid) * 3);
 
   .respiration__header {
     width: 100%;
