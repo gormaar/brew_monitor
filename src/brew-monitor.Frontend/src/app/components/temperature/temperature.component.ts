@@ -28,7 +28,7 @@ export class TemperatureComponent implements OnInit {
     this.yatraList = data.map((item) => item.yatra);
     this.expediaList = data.map((item) => item.expedia);
 
-    this.chart = new Chart("short-term", {
+    this.chart = new Chart("temp-short", {
       type: "bar",
       data: {
         labels: this.nights,
@@ -43,7 +43,7 @@ export class TemperatureComponent implements OnInit {
       },
     });
 
-    this.chart2 = new Chart("long-term", {
+    this.chart2 = new Chart("temp-long", {
       type: "line",
       data: {
         labels: this.nights,

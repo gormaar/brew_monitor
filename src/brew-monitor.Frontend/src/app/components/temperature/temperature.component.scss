@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   width: 100%;
   height: calc(var(--grid) * 60);
+  margin-bottom: calc(var(--grid) * 8);
 
   .temperature__header {
     width: 100%;
@@ -11,16 +12,26 @@
     display: inline-block;
     margin: 0 auto;
     text-align: center;
-    margin-bottom: calc(var(--grid) * 3);
+    margin-bottom: calc(var(--grid) * 6);
   }
 
   .temperature__short-term {
-    width: calc(var(--grid) * 100);
+    width: 50%;
     height: 100%;
+
+    h5 {
+      text-align: center;
+      font-size: 18px;
+    }
   }
 
   .termperature__long-term {
-    width: auto;
+    width: 50%;
     height: 100%;
+
+    h5 {
+      text-align: center;
+      font-size: 18px;
+    }
   }
 }

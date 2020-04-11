@@ -8,6 +8,7 @@ import { Chart } from "chart.js";
 })
 export class RespirationComponent implements OnInit {
   chart: Chart;
+  chart2: Chart;
   nights: string[];
   yatraList: number[];
   expediaList: number[];
@@ -27,7 +28,22 @@ export class RespirationComponent implements OnInit {
     this.yatraList = data.map((item) => item.yatra);
     this.expediaList = data.map((item) => item.expedia);
 
-    this.chart = new Chart("canvas", {
+    this.chart = new Chart("resp-short", {
+      type: "line",
+      data: {
+        labels: this.nights,
+        datasets: [
+          {
+            data: this.yatraList,
+          },
+          {
+            data: this.expediaList,
+          },
+        ],
+      },
+    });
+
+    this.chart2 = new Chart("resp-long", {
       type: "line",
       data: {
         labels: this.nights,
