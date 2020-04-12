@@ -10,6 +10,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { BrewComponent } from './components/brew/brew.component';
 import { RespirationComponent } from './components/respiration/respiration.component';
 import { TemperatureComponent } from './components/temperature/temperature.component';
+import { BrewListItemComponent } from './components/brew-list-item/brew-list-item.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TemperatureComponent } from './components/temperature/temperature.compo
     StatisticsComponent,
     BrewComponent,
     RespirationComponent,
-    TemperatureComponent
+    TemperatureComponent,
+    BrewListItemComponent
   ],
   imports: [
     BrowserModule,

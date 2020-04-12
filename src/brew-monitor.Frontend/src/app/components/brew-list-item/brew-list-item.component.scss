@@ -1,0 +1,23 @@
+.brew-list-item {
+  display: flex;
+  flex-direction: column;
+  border: solid black 1px;
+  height: calc(var(--grid) * 24);
+
+  .brew-list__brew-name {
+    display: inline-block;
+    margin: calc(var(--grid) * 1) auto;
+    margin-bottom: calc(var(--grid) * 3);
+    width: 100%;
+    text-align: center;
+  }
+
+  .brew-list-item__content {
+    margin-left: calc(var(--grid) * 2);
+
+    h5 {
+      font-size: 16px;
+      margin-bottom: calc(var(--grid) * 2);
+    }
+  }
+}

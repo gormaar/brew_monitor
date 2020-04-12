@@ -11,15 +11,4 @@
     margin-bottom: calc(var(--grid) * 8);
     margin-top: calc(var(--grid) * 2);
   }
-
-  .brew-list__body {
-    display: flex;
-    border: solid black 1px;
-    height: calc(var(--grid) * 10);
-
-    .brew-list__brew-name {
-      display: inline-block;
-      margin: 0 auto;
-    }
-  }
 }

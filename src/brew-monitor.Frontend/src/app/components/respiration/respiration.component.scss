@@ -4,6 +4,7 @@
   flex-wrap: wrap;
   width: 100%;
   height: calc(var(--grid) * 80);
+  margin: 0 calc(var(--grid) * 3);
 
   .respiration__header {
     width: 100%;
@@ -11,7 +12,6 @@
     flex-direction: row;
     margin: 0 auto;
     text-align: center;
-    margin-bottom: calc(var(--grid) * 4);
 
     h4 {
       display: inline-block;
@@ -28,24 +28,24 @@
     justify-content: flex-end;
 
     .respiration__blinker {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background-color: tomato;
       align-self: flex-end;
-      margin-right: calc(var(--grid) * 5);
+      margin-right: calc(var(--grid) * 9);
     }
 
     .respiration__blinker--blink {
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background-color: rgb(247, 139, 120);
     }
   }
 
   .respiration__short-term {
-    width: 50%;
+    width: 48%;
     height: 100%;
 
     h5 {
@@ -55,7 +55,7 @@
   }
 
   .respiration__long-term {
-    width: 50%;
+    width: 48%;
     height: 100%;
 
     h5 {
