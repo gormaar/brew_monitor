@@ -1,0 +1,61 @@
+.respiration {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: calc(var(--grid) * 80);
+  margin: 0 calc(var(--grid) * 3);
+
+  .respiration__header {
+    width: 100%;
+    text-align: center;
+
+    h4 {
+      font-size: 25px;
+      margin-bottom: calc(var(--grid) * 4);
+    }
+  }
+
+  .respiration__blinker-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    .respiration__blinker {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: tomato;
+      align-self: flex-end;
+      margin-right: calc(var(--grid) * 9);
+    }
+
+    .respiration__blinker--blink {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgb(247, 139, 120);
+    }
+  }
+
+  .respiration__short-term {
+    width: 48%;
+    height: 100%;
+    position: static;
+
+    h5 {
+      text-align: center;
+      font-size: 18px;
+    }
+  }
+
+  .respiration__long-term {
+    width: 48%;
+    height: 100%;
+
+    h5 {
+      text-align: center;
+      font-size: 18px;
+    }
+  }
+}
