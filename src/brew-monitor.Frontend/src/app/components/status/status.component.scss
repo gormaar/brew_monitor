@@ -1,0 +1,22 @@
+.status {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 calc(var(--grid) * 3);
+
+  .status__header {
+    text-align: center;
+
+    h4 {
+      font-size: 25px;
+      margin-bottom: calc(var(--grid) * 13);
+    }
+  }
+
+  .status__fermentation {
+    width: 50%;
+    display: inline-block;
+    margin: 0 auto;
+    margin-bottom: calc(var(--grid) * 15);
+  }
+}

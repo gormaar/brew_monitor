@@ -4,6 +4,7 @@
   width: calc(var(--grid) * 50);
   height: 100%;
   border: solid black 1px;
+  overflow: auto;
 
   .brew-list__header {
     font-size: 28px;

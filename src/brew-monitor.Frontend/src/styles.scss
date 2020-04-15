@@ -6,6 +6,7 @@ body {
   padding: 0px;
   font-family: "Source Sans Pro", sans-serif;
   background-color: var(--color-secondary);
+  overflow: hidden;
 }
 
 h1,
@@ -22,3 +23,5 @@ h6 {
   --color-secondary: white;
   --grid: 8px;
 }
+
+@import "@angular/material/prebuilt-themes/indigo-pink.css";

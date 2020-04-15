@@ -8,17 +8,11 @@
 
   .respiration__header {
     width: 100%;
-    font-size: 25px;
-    flex-direction: row;
-    margin: 0 auto;
     text-align: center;
 
     h4 {
-      display: inline-block;
       font-size: 25px;
-      text-align: center;
-      margin: 0 auto;
-      margin-bottom: calc(var(--grid) * 6);
+      margin-bottom: calc(var(--grid) * 4);
     }
   }
 
@@ -47,6 +41,7 @@
   .respiration__short-term {
     width: 48%;
     height: 100%;
+    position: static;
 
     h5 {
       text-align: center;
