@@ -1,7 +1,8 @@
 .brew-list-item {
   display: flex;
   flex-direction: column;
-  border: solid black 1px;
+  border-top: solid black 1px;
+  border-bottom: solid black 1px;
   height: calc(var(--grid) * 28);
 
   .brew-list__brew-name {

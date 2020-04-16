@@ -13,7 +13,7 @@ import { RespirationComponent } from "./components/respiration/respiration.compo
 import { TemperatureComponent } from "./components/temperature/temperature.component";
 import { BrewListItemComponent } from "./components/brew-list-item/brew-list-item.component";
 import { StatusComponent } from "./components/status/status.component";
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -28,7 +28,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     BrewListItemComponent,
     StatusComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatProgressBarModule, NoopAnimationsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatProgressBarModule,
+    NoopAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
