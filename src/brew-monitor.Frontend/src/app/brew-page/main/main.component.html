@@ -1,0 +1,20 @@
+<div class="main">
+  <h3
+    (click)="renderStatistics()"
+    [ngClass]="{ statistics__header: pageToggle, deactivated: !pageToggle }"
+  >
+    Statistics
+  </h3>
+  <h3
+    (click)="renderBrews()"
+    [ngClass]="{ brew__header: !pageToggle, deactivated: pageToggle }"
+  >
+    Brew
+  </h3>
+  <div *ngIf="pageToggle" class="main__body">
+    <brew-page-statistics></brew-page-statistics>
+  </div>
+  <div *ngIf="!pageToggle" class="main__body">
+    <brew-page-brew></brew-page-brew>
+  </div>
+</div>
