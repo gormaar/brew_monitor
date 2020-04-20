@@ -1,6 +1,6 @@
 <div class="brew-list">
   <h3 class="brew-list__header">Brew-List</h3>
-  <brew-list-item></brew-list-item>
+  <brew-list-item *ngFor="let brew of brews"></brew-list-item>
   <div class="brew-list__button">
     <button>Create new brew</button>
   </div>
