@@ -2,7 +2,8 @@
   <span
     (click)="selectBrew(brew)"
     [ngClass]="{ 'brew-list-item--active': brew.selected === true }"
-    ><h3 class="brew-list__brew-name">{{ brew.name }}</h3>
+  >
+    <h3 class="brew-list__brew-name">{{ brew.name }}</h3>
     <div class="brew-list-item__content">
       <a [routerLink]="['/brews/:id']"></a>
       <h5>Brew-type: {{ brew.type }}</h5>
@@ -10,6 +11,6 @@
       <h5>Fermentation days left:</h5>
       <h5>Bottled days left:</h5>
       <h5>Last active:</h5>
-    </div></span
-  >
+    </div>
+  </span>
 </div>

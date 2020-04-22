@@ -51,6 +51,6 @@ export class BrewService {
         selected: false,
       },
     ];
-    return brews;
+    return brews.reverse();
   }
 }
