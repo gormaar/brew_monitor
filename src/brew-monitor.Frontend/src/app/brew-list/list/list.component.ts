@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { IBrewModel } from "../../shared/services/brew/brew.service";
 import { CommonService } from "src/app/shared/services/common/common.service";
 
@@ -9,6 +9,7 @@ import { CommonService } from "src/app/shared/services/common/common.service";
 })
 export class ListComponent implements OnInit {
   brews: IBrewModel[];
+
   constructor(private commonService: CommonService) {
     this.brews = this.commonService.getBrews();
   }
@@ -16,6 +17,6 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {}
 
   selectBrew(brew: IBrewModel) {
-    this.commonService.selectBrew(brew);
+    this.commonService.setSelectedBrew(brew);
   }
 }

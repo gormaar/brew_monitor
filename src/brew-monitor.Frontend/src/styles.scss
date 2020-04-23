@@ -23,3 +23,19 @@ h6 {
   --color-secondary: white;
   --grid: 8px;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e2e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a1a1a1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #b5b5b6;
+}

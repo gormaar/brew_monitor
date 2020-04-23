@@ -4,7 +4,6 @@
     <brew-list-item
       *ngFor="let brew of brews"
       [brew]="brew"
-      [selected]=""
       (click)="selectBrew(brew)"
     ></brew-list-item>
   </div>

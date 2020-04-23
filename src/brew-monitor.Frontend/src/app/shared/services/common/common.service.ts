@@ -6,6 +6,7 @@ import { IBrewModel, BrewService } from "../brew/brew.service";
 })
 export class CommonService {
   selectedBrew: IBrewModel;
+
   brews: IBrewModel[];
   constructor(private brewService: BrewService) {
     this.brews = this.brewService.getBrews();
@@ -16,7 +17,7 @@ export class CommonService {
     return this.brews;
   }
 
-  selectBrew(brew: IBrewModel): void {
+  setSelectedBrew(brew: IBrewModel) {
     this.selectedBrew = brew;
   }
 }
