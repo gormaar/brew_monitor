@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
+import { DetailsService } from "../../shared/services/details/details.service";
 
 @Component({
   selector: "brew-page-status",
@@ -8,10 +9,14 @@ import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 })
 export class StatusComponent implements OnInit {
   @Input() activeBrew: IBrewModel;
+  status: number;
 
-  constructor() {}
+  constructor(private _detailsService: DetailsService) {}
 
   ngOnInit(): void {}
 
-  getBrewStatus() {}
+  getBrewStatus() {
+    let details = this._detailsService.getBrewDetails(this.activeBrew.id);
+    //let fermentationDays = Date.now - details.brewDate;
+  }
 }

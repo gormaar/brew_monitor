@@ -18,14 +18,14 @@ export class BrewService {
   brews: IBrewModel[];
   activeBrewStream: Observable<IBrewModel>;
 
-  constructor(private http: HttpClient) {
+  constructor(private _http: HttpClient) {
     this.brews = this.getBrews();
     this.activeBrew = new BehaviorSubject<IBrewModel>(this.brews[0]);
     this.activeBrewStream = this.activeBrew.asObservable();
   }
 
   getBrew(id: number): Observable<IBrewModel> {
-    return this.http.get<IBrewModel>("");
+    return this._http.get<IBrewModel>("");
   }
 
   getBrews(): IBrewModel[] {
