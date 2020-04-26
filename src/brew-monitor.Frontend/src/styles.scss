@@ -19,9 +19,23 @@ h6 {
 }
 
 :root {
-  --color-primary: hotpink(224, 224, 231);
+  --color-primary: hotpink;
   --color-secondary: white;
   --grid: 8px;
 }
 
-@import "@angular/material/prebuilt-themes/indigo-pink.css";
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #e2e0e0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a1a1a1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #b5b5b6;
+}
