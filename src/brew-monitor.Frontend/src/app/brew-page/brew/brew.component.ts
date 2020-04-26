@@ -7,7 +7,7 @@ import { IBrewModel } from "src/app/shared/services/brew/brew.service";
   styleUrls: ["./brew.component.scss"],
 })
 export class BrewComponent implements OnInit {
-  @Input() brew: IBrewModel;
+  @Input() activeBrew: IBrewModel;
 
   constructor() {}
 

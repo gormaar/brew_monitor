@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Chart } from "chart.js";
+import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 
 @Component({
   selector: "brew-page-temperature",
@@ -7,6 +8,7 @@ import { Chart } from "chart.js";
   styleUrls: ["./temperature.component.scss"],
 })
 export class TemperatureComponent implements OnInit {
+  @Input() activeBrew: IBrewModel;
   chart: Chart;
   chart2: Chart;
   nights: string[];

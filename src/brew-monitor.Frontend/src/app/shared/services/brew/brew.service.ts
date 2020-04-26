@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { Observable, BehaviorSubject } from "rxjs";
 
 export interface IBrewModel {
   id: number;
@@ -14,7 +14,15 @@ export interface IBrewModel {
   providedIn: "root",
 })
 export class BrewService {
-  constructor(private http: HttpClient) {}
+  activeBrew: BehaviorSubject<IBrewModel>;
+  brews: IBrewModel[];
+  activeBrewStream: Observable<IBrewModel>;
+
+  constructor(private http: HttpClient) {
+    this.brews = this.getBrews();
+    this.activeBrew = new BehaviorSubject<IBrewModel>(this.brews[0]);
+    this.activeBrewStream = this.activeBrew.asObservable();
+  }
 
   getBrew(id: number): Observable<IBrewModel> {
     return this.http.get<IBrewModel>("");
@@ -52,5 +60,9 @@ export class BrewService {
       },
     ];
     return brews.reverse();
+  }
+
+  setBrew(brew: IBrewModel) {
+    this.activeBrew.next(brew);
   }
 }

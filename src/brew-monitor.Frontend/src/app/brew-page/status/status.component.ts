@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 
 @Component({
   selector: "brew-page-status",
@@ -6,7 +7,11 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./status.component.scss"],
 })
 export class StatusComponent implements OnInit {
+  @Input() activeBrew: IBrewModel;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  getBrewStatus() {}
 }

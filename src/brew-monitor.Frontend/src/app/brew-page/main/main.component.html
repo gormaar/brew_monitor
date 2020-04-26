@@ -12,9 +12,9 @@
     Brew
   </h3>
   <div *ngIf="pageToggle" class="main__body">
-    <brew-page-statistics></brew-page-statistics>
+    <brew-page-statistics [activeBrew]="activeBrew"></brew-page-statistics>
   </div>
   <div *ngIf="!pageToggle" class="main__body">
-    <brew-page-brew></brew-page-brew>
+    <brew-page-brew [activeBrew]="activeBrew"></brew-page-brew>
   </div>
 </div>

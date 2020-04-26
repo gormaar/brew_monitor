@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
+import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 
 @Component({
   selector: "brew-page-statistics",
@@ -6,6 +7,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./statistics.component.scss"],
 })
 export class StatisticsComponent implements OnInit {
+  @Input() activeBrew: IBrewModel;
+
   constructor() {}
 
   ngOnInit() {}
