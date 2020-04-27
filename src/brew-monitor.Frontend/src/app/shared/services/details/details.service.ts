@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { IBrewModel, BrewService } from "../../services/brew/brew.service";
 import { Observable } from "rxjs";
 
 export interface IDetailsModel {
@@ -16,8 +15,12 @@ export class DetailsService {
 
   constructor(private _http: HttpClient) {}
 
-  getBrewDetails(brew: number): Observable<IDetailsModel> {
-    let brewDetails = this._http.get<IDetailsModel>("");
-    return brewDetails;
+  getBrewDetails(brew: number): IDetailsModel {
+    //return this._http.get<IDetailsModel>("");
+    let details: IDetailsModel = {
+      brewDate: new Date("2020,3,25"),
+      fermentationDays: 14,
+    };
+    return details;
   }
 }
