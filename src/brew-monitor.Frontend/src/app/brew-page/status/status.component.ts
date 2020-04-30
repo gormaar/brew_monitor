@@ -14,21 +14,14 @@ export class StatusComponent implements OnInit {
   constructor(private _detailsService: DetailsService) {}
 
   ngOnInit(): void {
-    this.status = this.getBrewStatus();
+    this.status = this.calculateFermentationProgress();
   }
 
-  getBrewStatus(): number {
+  calculateFermentationProgress(): number {
     let brewDetails = this._detailsService.getBrewDetails(this.activeBrew.id);
-    console.log(
-      "brewDetails:",
-      brewDetails.brewDate,
-      brewDetails.fermentationDays
+    let diff = Math.floor(
+      (+Date.now() - +brewDetails.brewDate) / (1000 * 60 * 60 * 24)
     );
-    let dateDiff = Date.now().valueOf() - brewDetails.brewDate.valueOf();
-    let amount = brewDetails.fermentationDays - dateDiff;
-    console.log("DateDiff:", dateDiff, "amount:", amount);
-    let sum = (amount / brewDetails.fermentationDays) * 100;
-    console.log(sum);
-    return sum;
+    return (diff * 100) / brewDetails.fermentationDays;
   }
 }

@@ -1,9 +1,10 @@
+@import "../list-item/list-item.component.scss";
+
 .brew-list {
   display: flex;
   flex-direction: column;
   width: calc(var(--grid) * 50);
   height: 100%;
-  border: solid black 1px;
   overflow: auto;
   position: relative;
 
@@ -12,19 +13,20 @@
     text-align: center;
     padding-bottom: calc(var(--grid) * 5);
     padding-top: calc(var(--grid) * 2);
-    border-bottom: 1px solid black;
     margin-bottom: 0;
     position: sticky;
     top: 0;
     width: 100%;
     display: inline-block;
     background-color: var(--color-secondary);
+    border-bottom: solid black 1px;
+    z-index: 1;
   }
 
   .brew-list__button {
     width: 100%;
     position: sticky;
-    bottom: 1px;
+    bottom: 0px;
 
     button {
       position: sticky;

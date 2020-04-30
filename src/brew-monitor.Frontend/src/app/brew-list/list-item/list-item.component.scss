@@ -1,10 +1,10 @@
 .brew-list-item {
   display: flex;
   flex-direction: column;
-  //border-top: solid black 1px;
-  //border-bottom: solid black 1px;
+  border-top: solid black 1px;
   height: calc(var(--grid) * 28);
-  border: 1px solid black;
+  color: gray;
+  cursor: pointer;
 
   .brew-list__brew-name {
     display: inline-block;
@@ -26,6 +26,7 @@
 
   .brew-list-item--active {
     @extend .brew-list-item;
-    border: 1px solid rgb(104, 236, 104);
+    color: black;
+    border-top: none;
   }
 }
