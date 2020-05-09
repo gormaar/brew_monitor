@@ -1,8 +1,5 @@
 <div class="brew-list-item">
-  <span
-    (click)="selectBrew(brew)"
-    [ngClass]="{ 'brew-list-item--active': brew.selected === true }"
-  >
+  <span [ngClass]="{ 'brew-list-item--active': brew.name === activeBrew.name }">
     <h3 class="brew-list__brew-name">{{ brew.name }}</h3>
     <div class="brew-list-item__content">
       <a [routerLink]="['/brews/:id']"></a>

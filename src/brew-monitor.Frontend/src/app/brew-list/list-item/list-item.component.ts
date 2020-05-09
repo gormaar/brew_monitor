@@ -1,5 +1,9 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { IBrewModel } from "src/app/shared/services/brew/brew.service";
+import {
+  IBrewModel,
+  BrewService,
+} from "src/app/shared/services/brew/brew.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "brew-list-item",
@@ -8,13 +12,14 @@ import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 })
 export class ListItemComponent implements OnInit {
   @Input() brew: IBrewModel;
-  activeItem: boolean;
+  subscription: Subscription;
+  activeBrew: IBrewModel;
 
-  constructor() {}
+  constructor(private _brewService: BrewService) {}
 
-  ngOnInit(): void {}
-
-  selectBrew(brew: IBrewModel): void {
-    brew.selected = !brew.selected;
+  ngOnInit(): void {
+    this.subscription = this._brewService.activeBrewStream.subscribe(
+      (active) => (this.activeBrew = active)
+    );
   }
 }
