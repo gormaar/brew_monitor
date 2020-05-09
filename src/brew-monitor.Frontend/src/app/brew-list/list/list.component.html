@@ -5,6 +5,7 @@
       *ngFor="let brew of brews"
       [brew]="brew"
       (click)="selectBrew(brew)"
+      [ngClass]="{ 'brew-list-item--active': brew.activeBrew }"
     ></brew-list-item>
   </div>
   <div class="brew-list__button">

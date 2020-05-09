@@ -4,11 +4,11 @@ import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 import { AirlockService } from "src/app/shared/services/airlock/airlock.service";
 
 @Component({
-  selector: "brew-page-respiration",
-  templateUrl: "./respiration.component.html",
-  styleUrls: ["./respiration.component.scss"],
+  selector: "brew-page-airlock",
+  templateUrl: "./airlock.component.html",
+  styleUrls: ["./airlock.component.scss"],
 })
-export class RespirationComponent implements OnInit {
+export class AirlockComponent implements OnInit {
   @Input() activeBrew: IBrewModel;
   chart: Chart;
   chart2: Chart;

@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
-import { Timestamp } from "rxjs";
+import { Subscription } from "rxjs";
+import { BrewService, IBrewModel } from "../brew/brew.service";
+import { HttpClient } from "@angular/common/http";
 
 export interface IAirLockModel {
   id: number;
   value: number;
   hourValue: number;
-  timestamp: Timestamp<number>;
+  timestamp: Date;
   brewId: number;
 }
 
@@ -13,5 +15,23 @@ export interface IAirLockModel {
   providedIn: "root",
 })
 export class AirlockService {
-  constructor() {}
+  activeBrew: IBrewModel;
+  subcription: Subscription;
+
+  constructor(private _http: HttpClient, private _brewService: BrewService) {
+    this.subcription = this._brewService.activeBrewStream.subscribe(
+      (active) => (this.activeBrew = active)
+    );
+  }
+
+  getRespiration(): IAirLockModel {
+    let airlock: IAirLockModel = {
+      id: 1,
+      value: 120,
+      hourValue: 1200,
+      timestamp: new Date(Date.now()),
+      brewId: 3,
+    };
+    return airlock;
+  }
 }
