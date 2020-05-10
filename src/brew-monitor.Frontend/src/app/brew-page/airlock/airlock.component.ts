@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Chart } from "chart.js";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
-import { AirlockService } from "src/app/shared/services/airlock/airlock.service";
+import {
+  AirlockService,
+  IAirLockModel,
+} from "src/app/shared/services/airlock/airlock.service";
 
 @Component({
   selector: "brew-page-airlock",
@@ -10,52 +13,78 @@ import { AirlockService } from "src/app/shared/services/airlock/airlock.service"
 })
 export class AirlockComponent implements OnInit {
   @Input() activeBrew: IBrewModel;
-  chart: Chart;
-  chart2: Chart;
-  nights: string[];
-  yatraList: number[];
-  expediaList: number[];
+  shortTerm: Chart;
+  longTerm: Chart;
+  longTermList: number[];
+  shortTermList: number[];
 
   constructor(private _airlockService: AirlockService) {}
 
   ngOnInit(): void {
-    const data = [
-      { nights: 1, yatra: 2728, expedia: 4282 },
-      { nights: 2, yatra: 6886, expedia: 10243 },
-      { nights: 3, yatra: 10808, expedia: 16850 },
-      { nights: 4, yatra: 13361, expedia: 27111 },
-      { nights: 5, yatra: 18751, expedia: 27111 },
-      { nights: 6, yatra: 20440, expedia: 30658 },
-    ];
-    this.nights = data.map((item) => item.nights.toString());
-    this.yatraList = data.map((item) => item.yatra);
-    this.expediaList = data.map((item) => item.expedia);
-
-    this.chart = new Chart("resp-short", {
+    let data = this._airlockService.getRespiration(this.activeBrew.id);
+    this.shortTermList = data.map((item) => item.value);
+    this.longTermList = data.map((item) => item.hourValue);
+    this.shortTerm = new Chart("airlock-short", {
       type: "line",
+      options: {
+        scales: {
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Time",
+              },
+            },
+          ],
+          xAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Frequency",
+              },
+            },
+          ],
+        },
+      },
       data: {
-        labels: this.nights,
+        labels: this.shortTermList,
         datasets: [
           {
-            data: this.yatraList,
-          },
-          {
-            data: this.expediaList,
+            label: "Short term",
+            data: this.shortTermList,
           },
         ],
       },
     });
 
-    this.chart2 = new Chart("resp-long", {
+    this.longTerm = new Chart("airlock-long", {
       type: "line",
+      options: {
+        scales: {
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Time",
+              },
+            },
+          ],
+          xAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Frequency",
+              },
+            },
+          ],
+        },
+      },
       data: {
-        labels: this.nights,
+        labels: this.longTermList,
         datasets: [
           {
-            data: this.yatraList,
-          },
-          {
-            data: this.expediaList,
+            label: "Long term",
+            data: this.longTermList,
           },
         ],
       },
