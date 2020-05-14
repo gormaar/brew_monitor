@@ -3,7 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  height: calc(var(--grid) * 80);
+  height: calc(var(--grid) * 70);
   margin: 0 calc(var(--grid) * 3);
 
   .airlock__header {
@@ -27,7 +27,7 @@
       border-radius: 50%;
       background-color: tomato;
       align-self: flex-end;
-      margin-right: calc(var(--grid) * 9);
+      margin-right: calc(var(--grid) * 11);
     }
 
     .airlock__blinker--blink {

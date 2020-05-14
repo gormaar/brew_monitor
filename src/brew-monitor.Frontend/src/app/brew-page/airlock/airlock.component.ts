@@ -1,10 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Chart } from "chart.js";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
-import {
-  AirlockService,
-  IAirLockModel,
-} from "src/app/shared/services/airlock/airlock.service";
+import { AirlockService } from "src/app/shared/services/airlock/airlock.service";
 
 @Component({
   selector: "brew-page-airlock",
@@ -32,7 +29,7 @@ export class AirlockComponent implements OnInit {
             {
               scaleLabel: {
                 display: true,
-                labelString: "Time",
+                labelString: "Frequency",
               },
             },
           ],
@@ -40,7 +37,7 @@ export class AirlockComponent implements OnInit {
             {
               scaleLabel: {
                 display: true,
-                labelString: "Frequency",
+                labelString: "Time",
               },
             },
           ],
@@ -65,7 +62,7 @@ export class AirlockComponent implements OnInit {
             {
               scaleLabel: {
                 display: true,
-                labelString: "Time",
+                labelString: "Frequency",
               },
             },
           ],
@@ -73,7 +70,7 @@ export class AirlockComponent implements OnInit {
             {
               scaleLabel: {
                 display: true,
-                labelString: "Frequency",
+                labelString: "Time",
               },
             },
           ],

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Chart } from "chart.js";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
+import { TemperatureService } from "src/app/shared/services/temperature/temperature.service";
 
 @Component({
   selector: "brew-page-temperature",
@@ -9,52 +10,86 @@ import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 })
 export class TemperatureComponent implements OnInit {
   @Input() activeBrew: IBrewModel;
-  chart: Chart;
-  chart2: Chart;
-  nights: string[];
-  yatraList: number[];
-  expediaList: number[];
+  shortTerm: Chart;
+  longTerm: Chart;
+  longTermList: number[];
+  shortTermList: number[];
 
-  constructor() {}
+  constructor(private _tempService: TemperatureService) {}
 
   ngOnInit(): void {
-    const data = [
-      { nights: 1, yatra: 2728, expedia: 4282 },
-      { nights: 2, yatra: 6886, expedia: 10243 },
-      { nights: 3, yatra: 10808, expedia: 16850 },
-      { nights: 4, yatra: 13361, expedia: 27111 },
-      { nights: 5, yatra: 18751, expedia: 27111 },
-      { nights: 6, yatra: 20440, expedia: 30658 },
-    ];
-    this.nights = data.map((item) => item.nights.toString());
-    this.yatraList = data.map((item) => item.yatra);
-    this.expediaList = data.map((item) => item.expedia);
+    this.shortTermList = this._tempService
+      .getTemperature(this.activeBrew.id)
+      .map((item) => item.value);
+    this.longTermList = this._tempService
+      .getTemperature(this.activeBrew.id)
+      .map((item) => item.value);
 
-    this.chart = new Chart("temp-short", {
+    this.shortTerm = new Chart("temp-short", {
       type: "bar",
+      options: {
+        scales: {
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Temperature",
+              },
+            },
+          ],
+          xAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Time",
+              },
+            },
+          ],
+        },
+      },
       data: {
-        labels: this.nights,
+        labels: this.shortTermList,
         datasets: [
           {
-            data: this.yatraList,
-          },
-          {
-            data: this.expediaList,
+            label: "Short term",
+            data: this.shortTermList,
           },
         ],
       },
     });
 
-    this.chart2 = new Chart("temp-long", {
+    this.longTerm = new Chart("temp-long", {
       type: "line",
+      options: {
+        scales: {
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Temperature",
+              },
+            },
+          ],
+          xAxes: [
+            {
+              type: "time",
+              time: {
+                unit: "hour",
+              },
+              scaleLabel: {
+                display: true,
+                labelString: "Time",
+              },
+            },
+          ],
+        },
+      },
       data: {
-        labels: this.nights,
+        labels: this.longTermList,
         datasets: [
           {
-            data: this.yatraList,
-          },
-          {
-            data: this.expediaList,
+            label: "Long term",
+            data: this.longTermList,
           },
         ],
       },

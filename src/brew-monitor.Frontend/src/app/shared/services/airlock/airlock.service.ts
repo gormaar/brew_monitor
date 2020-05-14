@@ -51,6 +51,13 @@ export class AirlockService {
         timestamp: new Date(Date.now()),
         brewId: 3,
       },
+      {
+        id: 4,
+        value: 166,
+        hourValue: 1248,
+        timestamp: new Date(Date.now()),
+        brewId: 3,
+      },
     ];
 
     return data;
