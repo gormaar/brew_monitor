@@ -27,6 +27,10 @@ export class AirlockComponent implements OnInit {
         scales: {
           yAxes: [
             {
+              ticks: {
+                suggestedMin: 0,
+                suggestedMax: 1500,
+              },
               scaleLabel: {
                 display: true,
                 labelString: "Frequency",
@@ -61,6 +65,10 @@ export class AirlockComponent implements OnInit {
         scales: {
           yAxes: [
             {
+              ticks: {
+                suggestedMin: 0,
+                suggestedMax: 1500,
+              },
               scaleLabel: {
                 display: true,
                 labelString: "Frequency",

@@ -2,7 +2,11 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Chart } from "chart.js";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 import { TemperatureService } from "src/app/shared/services/temperature/temperature.service";
-import { ThrowStmt } from "@angular/compiler";
+
+export interface IChartDataModel {
+  values: number[];
+  time: Date[];
+}
 
 @Component({
   selector: "brew-page-temperature",
@@ -13,24 +17,22 @@ export class TemperatureComponent implements OnInit {
   @Input() activeBrew: IBrewModel;
   shortTermChart: Chart;
   longTermChart: Chart;
-  longTermValues: number[];
-  shortTermValues: number[];
-  longTermTime: Date[];
-  shortTermTime: Date[];
+  longTermData: IChartDataModel;
+  shortTermData: IChartDataModel;
 
   constructor(private _tempService: TemperatureService) {}
 
   ngOnInit(): void {
-    this.shortTermValues = this._tempService
+    this.shortTermData.values = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.value);
-    this.longTermValues = this._tempService
+    this.longTermData.values = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.value);
-    this.longTermTime = this._tempService
+    this.longTermData.time = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.timestamp);
-    this.shortTermTime = this._tempService
+    this.shortTermData.time = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.timestamp);
 
@@ -41,8 +43,8 @@ export class TemperatureComponent implements OnInit {
           yAxes: [
             {
               ticks: {
-                suggestedMax: 10,
-                suggestedMin: 40,
+                suggestedMin: 0,
+                suggestedMax: 40,
               },
               scaleLabel: {
                 display: true,
@@ -50,6 +52,7 @@ export class TemperatureComponent implements OnInit {
               },
             },
           ],
+
           xAxes: [
             {
               type: "time",
@@ -82,6 +85,10 @@ export class TemperatureComponent implements OnInit {
         scales: {
           yAxes: [
             {
+              ticks: {
+                suggestedMin: 0,
+                suggestedMax: 40,
+              },
               scaleLabel: {
                 display: true,
                 labelString: "Temperature",
