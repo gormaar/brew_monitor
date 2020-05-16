@@ -41,14 +41,14 @@ export class AirlockService {
         id: 2,
         value: 155,
         hourValue: 1178,
-        timestamp: new Date("16.05.2020:"),
+        timestamp: new Date("17.05.2020:"),
         brewId: 3,
       },
       {
         id: 3,
         value: 142,
         hourValue: 1198,
-        timestamp: new Date("16.05.2020"),
+        timestamp: new Date("18.05.2020"),
         brewId: 3,
       },
       {
@@ -61,5 +61,16 @@ export class AirlockService {
     ];
 
     return data;
+  }
+
+  getRecentAirlockActivity() {
+    let airlockData = {
+      id: 4,
+      value: 166,
+      hourValue: 1248,
+      timestamp: new Date("16.05.2020"),
+      brewId: 3,
+    };
+    return airlockData;
   }
 }

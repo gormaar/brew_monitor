@@ -102,4 +102,8 @@ export class AirlockComponent implements OnInit {
       },
     });
   }
+
+  airlockBlinker() {
+    let airlockData = this._airlockService.getRecentAirlockActivity();
+  }
 }
