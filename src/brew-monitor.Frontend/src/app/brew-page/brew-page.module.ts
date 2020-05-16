@@ -4,7 +4,7 @@ import { CommonModule } from "@angular/common";
 import { MainComponent } from "./main/main.component";
 import { StatisticsComponent } from "./statistics/statistics.component";
 import { BrewComponent } from "./brew/brew.component";
-import { RespirationComponent } from "./respiration/respiration.component";
+import { AirlockComponent } from "./airlock/airlock.component";
 import { TemperatureComponent } from "./temperature/temperature.component";
 import { StatusComponent } from "./status/status.component";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -15,7 +15,7 @@ import { SharedModule } from "../shared/shared.module";
     MainComponent,
     StatisticsComponent,
     BrewComponent,
-    RespirationComponent,
+    AirlockComponent,
     TemperatureComponent,
     StatusComponent,
   ],

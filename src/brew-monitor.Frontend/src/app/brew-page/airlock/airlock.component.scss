@@ -1,12 +1,12 @@
-.respiration {
+.airlock {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  height: calc(var(--grid) * 80);
+  height: calc(var(--grid) * 70);
   margin: 0 calc(var(--grid) * 3);
 
-  .respiration__header {
+  .airlock__header {
     width: 100%;
     text-align: center;
 
@@ -16,21 +16,21 @@
     }
   }
 
-  .respiration__blinker-container {
+  .airlock__blinker-container {
     width: 100%;
     display: flex;
     justify-content: flex-end;
 
-    .respiration__blinker {
+    .airlock__blinker {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       background-color: tomato;
       align-self: flex-end;
-      margin-right: calc(var(--grid) * 9);
+      margin-right: calc(var(--grid) * 11);
     }
 
-    .respiration__blinker--blink {
+    .airlock__blinker--blink {
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -38,7 +38,7 @@
     }
   }
 
-  .respiration__short-term {
+  .airlock__short-term {
     width: 48%;
     height: 100%;
     position: static;
@@ -49,7 +49,7 @@
     }
   }
 
-  .respiration__long-term {
+  .airlock__long-term {
     width: 48%;
     height: 100%;
 
