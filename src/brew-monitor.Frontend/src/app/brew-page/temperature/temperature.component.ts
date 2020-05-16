@@ -3,11 +3,6 @@ import { Chart } from "chart.js";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 import { TemperatureService } from "src/app/shared/services/temperature/temperature.service";
 
-export interface IChartDataModel {
-  values: number[];
-  time: Date[];
-}
-
 @Component({
   selector: "brew-page-temperature",
   templateUrl: "./temperature.component.html",
@@ -17,22 +12,24 @@ export class TemperatureComponent implements OnInit {
   @Input() activeBrew: IBrewModel;
   shortTermChart: Chart;
   longTermChart: Chart;
-  longTermData: IChartDataModel;
-  shortTermData: IChartDataModel;
+  longTermData: number[];
+  shortTermData: number[];
+  longTermTime: Date[];
+  shortTermTime: Date[];
 
   constructor(private _tempService: TemperatureService) {}
 
   ngOnInit(): void {
-    this.shortTermData.values = this._tempService
+    this.shortTermData = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.value);
-    this.longTermData.values = this._tempService
+    this.longTermData = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.value);
-    this.longTermData.time = this._tempService
+    this.longTermTime = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.timestamp);
-    this.shortTermData.time = this._tempService
+    this.shortTermTime = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.timestamp);
 
