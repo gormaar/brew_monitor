@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { Chart } from "chart.js";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 import { TemperatureService } from "src/app/shared/services/temperature/temperature.service";
+import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "brew-page-temperature",
@@ -10,60 +11,39 @@ import { TemperatureService } from "src/app/shared/services/temperature/temperat
 })
 export class TemperatureComponent implements OnInit {
   @Input() activeBrew: IBrewModel;
-  shortTerm: Chart;
-  longTerm: Chart;
-  longTermList: number[];
-  shortTermList: number[];
+  shortTermChart: Chart;
+  longTermChart: Chart;
+  longTermValues: number[];
+  shortTermValues: number[];
+  longTermTime: Date[];
+  shortTermTime: Date[];
 
   constructor(private _tempService: TemperatureService) {}
 
   ngOnInit(): void {
-    this.shortTermList = this._tempService
+    this.shortTermValues = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.value);
-    this.longTermList = this._tempService
+    this.longTermValues = this._tempService
       .getTemperature(this.activeBrew.id)
       .map((item) => item.value);
+    this.longTermTime = this._tempService
+      .getTemperature(this.activeBrew.id)
+      .map((item) => item.timestamp);
+    this.shortTermTime = this._tempService
+      .getTemperature(this.activeBrew.id)
+      .map((item) => item.timestamp);
 
-    this.shortTerm = new Chart("temp-short", {
-      type: "bar",
-      options: {
-        scales: {
-          yAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "Temperature",
-              },
-            },
-          ],
-          xAxes: [
-            {
-              scaleLabel: {
-                display: true,
-                labelString: "Time",
-              },
-            },
-          ],
-        },
-      },
-      data: {
-        labels: this.shortTermList,
-        datasets: [
-          {
-            label: "Short term",
-            data: this.shortTermList,
-          },
-        ],
-      },
-    });
-
-    this.longTerm = new Chart("temp-long", {
+    this.shortTermChart = new Chart("temp-short", {
       type: "line",
       options: {
         scales: {
           yAxes: [
             {
+              ticks: {
+                suggestedMax: 10,
+                suggestedMin: 40,
+              },
               scaleLabel: {
                 display: true,
                 labelString: "Temperature",
@@ -85,11 +65,50 @@ export class TemperatureComponent implements OnInit {
         },
       },
       data: {
-        labels: this.longTermList,
+        labels: [1, 2, 3, 4, 5],
+        datasets: [
+          {
+            label: "Short term",
+            data: [22, 22, 22, 23, 22],
+            backgroundColor: "rgb(240, 190, 114)",
+          },
+        ],
+      },
+    });
+
+    this.longTermChart = new Chart("temp-long", {
+      type: "line",
+      options: {
+        scales: {
+          yAxes: [
+            {
+              scaleLabel: {
+                display: true,
+                labelString: "Temperature",
+              },
+            },
+          ],
+          xAxes: [
+            {
+              type: "time",
+              time: {
+                unit: "day",
+              },
+              scaleLabel: {
+                display: true,
+                labelString: "Time",
+              },
+            },
+          ],
+        },
+      },
+      data: {
+        labels: [1, 2, 3, 4, 5],
         datasets: [
           {
             label: "Long term",
-            data: this.longTermList,
+            data: [20, 22, 24, 21, 22],
+            backgroundColor: "rgb(240, 190, 114)",
           },
         ],
       },

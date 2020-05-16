@@ -32,19 +32,19 @@ export class TemperatureService {
       {
         id: 1,
         value: 22,
-        timestamp: new Date(Date.now()),
+        timestamp: new Date("16.05.2020"),
         brewId: 3,
       },
       {
         id: 2,
         value: 23,
-        timestamp: new Date(Date.now()),
+        timestamp: new Date("17.05.2020"),
         brewId: 3,
       },
       {
         id: 3,
         value: 22,
-        timestamp: new Date(Date.now()),
+        timestamp: new Date("18.05.2020"),
         brewId: 3,
       },
     ];
