@@ -12,15 +12,20 @@ export class AirlockComponent implements OnInit {
   @Input() activeBrew: IBrewModel;
   shortTerm: Chart;
   longTerm: Chart;
-  longTermList: number[];
-  shortTermList: number[];
+  longTermData: number[];
+  shortTermData: number[];
+  longTermTime: Date[];
+  shortTermTime: Date[];
 
   constructor(private _airlockService: AirlockService) {}
 
   ngOnInit(): void {
     let data = this._airlockService.getRespiration(this.activeBrew.id);
-    this.shortTermList = data.map((item) => item.value);
-    this.longTermList = data.map((item) => item.hourValue);
+    this.shortTermData = data.map((item) => item.value);
+    this.longTermData = data.map((item) => item.hourValue);
+    this.longTermTime = data.map((item) => item.timestamp);
+    this.shortTermTime = data.map((item) => item.timestamp);
+
     this.shortTerm = new Chart("airlock-short", {
       type: "line",
       options: {
@@ -48,11 +53,11 @@ export class AirlockComponent implements OnInit {
         },
       },
       data: {
-        labels: this.shortTermList,
+        labels: this.shortTermTime,
         datasets: [
           {
             label: "Short term",
-            data: this.shortTermList,
+            data: this.shortTermData,
             backgroundColor: "rgb(240, 190, 114)",
           },
         ],
@@ -86,11 +91,11 @@ export class AirlockComponent implements OnInit {
         },
       },
       data: {
-        labels: this.longTermList,
+        labels: this.longTermTime,
         datasets: [
           {
             label: "Long term",
-            data: this.longTermList,
+            data: this.longTermData,
             backgroundColor: "rgb(240, 190, 114)",
           },
         ],

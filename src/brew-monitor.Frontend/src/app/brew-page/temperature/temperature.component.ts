@@ -52,10 +52,6 @@ export class TemperatureComponent implements OnInit {
 
           xAxes: [
             {
-              type: "time",
-              time: {
-                unit: "hour",
-              },
               scaleLabel: {
                 display: true,
                 labelString: "Time",
@@ -65,7 +61,7 @@ export class TemperatureComponent implements OnInit {
         },
       },
       data: {
-        labels: [1, 2, 3, 4, 5],
+        labels: this.shortTermTime,
         datasets: [
           {
             label: "Short term",
@@ -94,10 +90,6 @@ export class TemperatureComponent implements OnInit {
           ],
           xAxes: [
             {
-              type: "time",
-              time: {
-                unit: "day",
-              },
               scaleLabel: {
                 display: true,
                 labelString: "Time",
@@ -107,7 +99,7 @@ export class TemperatureComponent implements OnInit {
         },
       },
       data: {
-        labels: [1, 2, 3, 4, 5],
+        labels: this.longTermTime,
         datasets: [
           {
             label: "Long term",
