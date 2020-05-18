@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Chart } from "chart.js";
+import { Chart, ChartOptions } from "chart.js";
+import * as ChartAnnotation from "chartjs-plugin-annotation";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 import { AirlockService } from "src/app/shared/services/airlock/airlock.service";
 
@@ -17,6 +18,7 @@ export class AirlockComponent implements OnInit {
   longTermTime: Date[];
   shortTermTime: Date[];
   airlockActive: boolean;
+  threshold: number;
 
   constructor(private _airlockService: AirlockService) {}
 
@@ -27,10 +29,30 @@ export class AirlockComponent implements OnInit {
     this.longTermData = data.map((item) => item.hourValue);
     this.longTermTime = data.map((item) => item.timestamp);
     this.shortTermTime = data.map((item) => item.timestamp);
+    this.getShortTermChart();
+    this.getLongTermChart();
+  }
 
+  getShortTermChart() {
     this.shortTerm = new Chart("airlock-short", {
       type: "line",
+      plugins: [ChartAnnotation],
       options: {
+        annotation: {
+          annotations: [
+            {
+              label: "Threshold",
+              type: "box",
+              mode: "horizontal",
+              xScaleID: "x-axis-0",
+              yScaleID: "y-axis-0",
+              value: 350,
+              borderWidth: 1,
+              backgroundColor: "rgba(200,60,60,0.25)",
+              borderColor: "rgba(200,60,60,0.25)",
+            },
+          ],
+        },
         scales: {
           yAxes: [
             {
@@ -53,7 +75,7 @@ export class AirlockComponent implements OnInit {
             },
           ],
         },
-      },
+      } as ChartOptions,
       data: {
         labels: this.shortTermTime,
         datasets: [
@@ -65,10 +87,28 @@ export class AirlockComponent implements OnInit {
         ],
       },
     });
+  }
 
+  getLongTermChart() {
     this.longTerm = new Chart("airlock-long", {
       type: "line",
+      plugins: [ChartAnnotation],
       options: {
+        annotation: {
+          annotations: [
+            {
+              label: "Threshold",
+              type: "box",
+              mode: "horizontal",
+              xScaleID: "x-axis-0",
+              yScaleID: "y-axis-0",
+              value: 350,
+              borderWidth: 1,
+              backgroundColor: "rgba(200,60,60,0.25)",
+              borderColor: "rgba(200,60,60,0.25)",
+            },
+          ],
+        },
         scales: {
           yAxes: [
             {
@@ -91,7 +131,7 @@ export class AirlockComponent implements OnInit {
             },
           ],
         },
-      },
+      } as ChartOptions,
       data: {
         labels: this.longTermTime,
         datasets: [
