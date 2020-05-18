@@ -25,16 +25,16 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: tomato;
+      background-color: rgb(248, 146, 129);
       align-self: flex-end;
       margin-right: calc(var(--grid) * 13);
     }
 
-    .airlock__blinker--blink {
+    .airlock__blinker--active {
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background-color: rgb(247, 139, 120);
+      background-color: tomato;
     }
   }
 
