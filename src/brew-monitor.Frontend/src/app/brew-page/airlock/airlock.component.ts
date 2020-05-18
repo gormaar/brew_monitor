@@ -103,7 +103,9 @@ export class AirlockComponent implements OnInit {
     });
   }
 
-  airlockBlinker() {
+  getSimulatedAirlockFrequency() {
     let airlockData = this._airlockService.getRecentAirlockActivity();
+    let frequency = airlockData.value;
+    for (let i = 0; i < airlockData.value; i++) {}
   }
 }
