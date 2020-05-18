@@ -1,13 +1,7 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  SystemJsNgModuleLoader,
-} from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Chart } from "chart.js";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 import { AirlockService } from "src/app/shared/services/airlock/airlock.service";
-import { timer } from "rxjs";
 
 @Component({
   selector: "brew-page-airlock",
@@ -111,16 +105,19 @@ export class AirlockComponent implements OnInit {
     });
   }
 
-  getSimulatedAirlockFrequency() {
+  sleep(milliseconds: number) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
+
+  async getSimulatedAirlockFrequency() {
     let airlockData = this._airlockService.getRecentAirlockActivity();
     let frequencyTimeout = 60 / airlockData.value;
     for (let i = 0; i <= airlockData.value; i++) {
-      console.log("i:", i);
-      setTimeout(() => {
-        this.airlockActive = true;
-      }, frequencyTimeout * 1000);
+      this.airlockActive = true;
+      await this.sleep(1000);
       this.airlockActive = false;
+      await this.sleep(frequencyTimeout * 1000);
     }
-    // this.getSimulatedAirlockFrequency();
+    this.getSimulatedAirlockFrequency();
   }
 }
