@@ -41,15 +41,16 @@ export class AirlockComponent implements OnInit {
         annotation: {
           annotations: [
             {
-              label: "Threshold",
-              type: "box",
+              label: {
+                enabled: false,
+                content: "Threshold",
+              },
+              type: "line",
               mode: "horizontal",
-              xScaleID: "x-axis-0",
-              yScaleID: "y-axis-0",
+              scaleID: "y-axis-0",
               value: 350,
-              borderWidth: 1,
-              backgroundColor: "rgba(200,60,60,0.25)",
-              borderColor: "rgba(200,60,60,0.25)",
+              borderWidth: 3,
+              borderColor: "tomato",
             },
           ],
         },
@@ -97,15 +98,17 @@ export class AirlockComponent implements OnInit {
         annotation: {
           annotations: [
             {
-              label: "Threshold",
-              type: "box",
+              label: {
+                enabled: false,
+                content: "Threshold",
+                position: "top",
+              },
+              type: "line",
               mode: "horizontal",
-              xScaleID: "x-axis-0",
-              yScaleID: "y-axis-0",
-              value: 350,
-              borderWidth: 1,
-              backgroundColor: "rgba(200,60,60,0.25)",
-              borderColor: "rgba(200,60,60,0.25)",
+              scaleID: "y-axis-0",
+              value: 1300,
+              borderWidth: 3,
+              borderColor: "tomato",
             },
           ],
         },
