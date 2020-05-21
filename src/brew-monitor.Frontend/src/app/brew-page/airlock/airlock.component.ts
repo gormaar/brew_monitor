@@ -83,7 +83,7 @@ export class AirlockComponent implements OnInit {
           {
             label: "Short term",
             data: this.shortTermData,
-            backgroundColor: "#8fd6f0a4",
+            backgroundColor: "rgb(240, 190, 114)",
           },
         ],
       },
@@ -141,7 +141,7 @@ export class AirlockComponent implements OnInit {
           {
             label: "Long term",
             data: this.longTermData,
-            backgroundColor: "#8fd6f0a4",
+            backgroundColor: "rgb(240, 190, 114)",
           },
         ],
       },
