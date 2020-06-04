@@ -10,6 +10,7 @@ import { Subscription } from "rxjs";
 export class AppComponent implements OnInit {
   displayForm: boolean;
   subscription: Subscription;
+  bool: boolean;
 
   constructor(private _brewService: BrewService) {}
   title = "brew-monitor";
