@@ -10,7 +10,7 @@ import { BrewService } from "../shared/services/brew/brew.service";
 @NgModule({
   declarations: [ListComponent, ListItemComponent, BrewFormComponent],
   imports: [CommonModule, AppRoutingModule, SharedModule],
-  exports: [ListComponent],
+  exports: [ListComponent, BrewFormComponent],
   providers: [BrewService],
 })
 export class BrewListModule {}
