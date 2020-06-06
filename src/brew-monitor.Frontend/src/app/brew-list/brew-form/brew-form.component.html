@@ -1,9 +1,12 @@
 <div class="container">
   <h1 class="header">Create brew</h1>
   <button class="x-button">X</button>
-  <div>
+  <div class="form-container">
     <div class="details">
       <h3>Brew details</h3>
+      <form>
+        <input *ngFor="let inputTag of brewInputs" />
+      </form>
     </div>
     <div class="ingredients">
       <h3>Ingredients</h3>
