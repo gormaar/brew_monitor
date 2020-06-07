@@ -47,6 +47,10 @@
         border-bottom: 1px solid gray;
         padding-bottom: calc(var(--grid) * 3);
       }
+
+      input {
+        margin: 0 auto;
+      }
     }
 
     .ingredients {
@@ -60,6 +64,10 @@
         text-align: center;
         border-bottom: 1px solid gray;
         padding-bottom: calc(var(--grid) * 3);
+      }
+
+      input {
+        margin: 0 auto;
       }
     }
   }

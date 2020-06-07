@@ -5,11 +5,16 @@
     <div class="details">
       <h3>Brew details</h3>
       <form>
-        <input *ngFor="let inputTag of brewInputs" />
+        <label *ngFor="let detail of inputTags.details">{{ detail }}</label>
+        <input *ngFor="let detail of inputTags.details" />
       </form>
     </div>
     <div class="ingredients">
       <h3>Ingredients</h3>
+      <label *ngFor="let ingredient of inputTags.ingredients">{{
+        ingredient
+      }}</label>
+      <input *ngFor="let ingredient of inputTags.ingredients" />
     </div>
   </div>
 </div>
