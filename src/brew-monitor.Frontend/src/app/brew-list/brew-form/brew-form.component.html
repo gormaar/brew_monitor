@@ -4,17 +4,24 @@
   <div class="form-container">
     <div class="details">
       <h3>Brew details</h3>
-      <form>
-        <label *ngFor="let detail of inputTags.details">{{ detail }}</label>
-        <input *ngFor="let detail of inputTags.details" />
-      </form>
+      <div *ngFor="let detail of inputTags.details" class="detailsForm">
+        <div>
+          <label>{{ detail }}</label>
+          <input />
+        </div>
+      </div>
     </div>
     <div class="ingredients">
       <h3>Ingredients</h3>
-      <label *ngFor="let ingredient of inputTags.ingredients">{{
-        ingredient
-      }}</label>
-      <input *ngFor="let ingredient of inputTags.ingredients" />
+      <div
+        *ngFor="let ingredient of inputTags.ingredients"
+        class="ingredientsForm"
+      >
+        <label>{{ ingredient }}</label>
+        <input />
+        <button>Add {{ ingredient }}</button>
+      </div>
     </div>
+    <button>Create</button>
   </div>
 </div>

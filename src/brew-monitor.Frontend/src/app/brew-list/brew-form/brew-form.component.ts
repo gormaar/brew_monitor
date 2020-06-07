@@ -24,6 +24,8 @@ export class BrewFormComponent implements OnInit {
         "Brew name",
         "Brew type",
         "Brew date",
+        "Mashing temperature",
+        "Mashing duration",
         "Original Gravity",
         "Specific Gravity",
         "Final Gravity",
@@ -36,7 +38,7 @@ export class BrewFormComponent implements OnInit {
         "Fermentation end-date",
         "Bottled days",
       ],
-      ingredients: ["Water", "Barley", "Hops", "Extra"],
+      ingredients: ["Barley", "Hops", "Extra", "Water"],
     };
   }
 }
