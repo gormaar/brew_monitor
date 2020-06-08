@@ -38,6 +38,11 @@
       border: 0.3px solid rgb(85, 85, 85);
       outline: none;
       border-radius: 0 0 0 5px;
+
+      .material-icons {
+        color: white;
+        padding-top: 2px;
+      }
     }
 
     .header__x-button:hover {
@@ -53,12 +58,12 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: calc(100%);
     justify-content: center;
 
     .details {
       width: 100%;
-      height: 80%;
+      height: 100%;
       flex-grow: 1;
 
       h3 {

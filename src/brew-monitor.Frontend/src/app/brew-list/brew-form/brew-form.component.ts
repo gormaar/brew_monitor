@@ -1,12 +1,11 @@
 import { Component, OnInit } from "@angular/core";
+import { BrewService } from "src/app/shared/services/brew/brew.service";
 
 interface IInputTags {
   details: String[];
   fermentation: String[];
   ingredients: String[];
 }
-
-const a = {};
 
 @Component({
   selector: "brew-form",
@@ -16,7 +15,7 @@ const a = {};
 export class BrewFormComponent implements OnInit {
   inputTags: IInputTags;
 
-  constructor() {}
+  constructor(private _brewService: BrewService) {}
 
   ngOnInit(): void {
     this.inputTags = {
@@ -40,5 +39,9 @@ export class BrewFormComponent implements OnInit {
       ],
       ingredients: ["Barley", "Hops", "Yeast", "Extra", "Water"],
     };
+  }
+
+  closeForm() {
+    this._brewService.toggleForm();
   }
 }
