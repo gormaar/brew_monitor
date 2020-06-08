@@ -1,10 +1,12 @@
 <div class="container">
-  <h1 class="header">Create brew</h1>
-  <button class="x-button">X</button>
+  <div class="header">
+    <h1>Create brew</h1>
+    <button class="header__x-button">X</button>
+  </div>
   <div class="form-container">
     <div class="details">
       <h3>Brew details</h3>
-      <div *ngFor="let detail of inputTags.details" class="detailsForm">
+      <div *ngFor="let detail of inputTags.details" class="details__form">
         <div>
           <label>{{ detail }}</label>
           <input />
@@ -15,7 +17,7 @@
       <h3>Ingredients</h3>
       <div
         *ngFor="let ingredient of inputTags.ingredients"
-        class="ingredientsForm"
+        class="ingredients__form"
       >
         <div>
           <label>{{ ingredient }}</label>
