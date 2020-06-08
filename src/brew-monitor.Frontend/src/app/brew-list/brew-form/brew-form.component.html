@@ -17,11 +17,17 @@
         *ngFor="let ingredient of inputTags.ingredients"
         class="ingredientsForm"
       >
-        <label>{{ ingredient }}</label>
-        <input />
-        <button>Add {{ ingredient }}</button>
+        <div>
+          <label>{{ ingredient }}</label>
+          <input placeholder="{{ ingredient }} type" />
+          <input placeholder="Amount" />
+          <button>Add {{ ingredient }}</button>
+          <ng-content>
+            <!--<label *ngFor=""></label>-->
+          </ng-content>
+        </div>
       </div>
     </div>
-    <button>Create</button>
+    <button class="create-button">Create</button>
   </div>
 </div>

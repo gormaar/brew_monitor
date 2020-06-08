@@ -38,7 +38,7 @@ export class BrewFormComponent implements OnInit {
         "Fermentation end-date",
         "Bottled days",
       ],
-      ingredients: ["Barley", "Hops", "Extra", "Water"],
+      ingredients: ["Barley", "Hops", "Yeast", "Extra", "Water"],
     };
   }
 }
