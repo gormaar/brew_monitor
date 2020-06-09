@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { BrewService } from "src/app/shared/services/brew/brew.service";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 interface IInputTags {
   details: String[];
@@ -14,10 +15,20 @@ interface IInputTags {
 })
 export class BrewFormComponent implements OnInit {
   inputTags: IInputTags;
+  brewForm: FormGroup;
 
-  constructor(private _brewService: BrewService) {}
+  constructor(
+    private _brewService: BrewService,
+    private _formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.brewForm = this._formBuilder.group({
+      brewName: "",
+      brewType: "",
+      brewDate: "",
+      mashingTemp: "",
+    });
     this.inputTags = {
       details: [
         "Brew name",
@@ -25,17 +36,18 @@ export class BrewFormComponent implements OnInit {
         "Brew date",
         "Mashing temperature",
         "Mashing duration",
-        "Original Gravity",
-        "Specific Gravity",
-        "Final Gravity",
-        "Fermentation temperature",
-        "Fermentation temperature threshold",
+
         "Total amount",
       ],
       fermentation: [
         "Fermentation start-date",
         "Fermentation end-date",
         "Bottled days",
+        "Original Gravity",
+        "Specific Gravity",
+        "Final Gravity",
+        "Fermentation temperature",
+        "Fermentation temperature threshold",
       ],
       ingredients: ["Barley", "Hops", "Yeast", "Extra", "Water"],
     };

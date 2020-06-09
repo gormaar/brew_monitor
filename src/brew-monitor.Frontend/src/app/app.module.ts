@@ -7,6 +7,7 @@ import { BrewPageModule } from "./brew-page/brew-page.module";
 import { AppComponent } from "./app.component";
 import { SharedModule } from "./shared/shared.module";
 import { MatIconModule } from "@angular/material/icon";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,6 +18,7 @@ import { MatIconModule } from "@angular/material/icon";
     AppRoutingModule,
     SharedModule,
     MatIconModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
