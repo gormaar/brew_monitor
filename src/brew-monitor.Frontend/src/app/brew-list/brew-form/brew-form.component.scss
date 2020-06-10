@@ -7,7 +7,6 @@
   background-color: white;
   border: 1px solid gray;
   border-radius: 3px;
-  overflow: auto;
 
   .header {
     display: flex;
@@ -54,17 +53,16 @@
   }
 
   .form-container {
-    display: flex;
-    flex-direction: column;
     width: 100%;
-    height: 100%;
-    justify-content: center;
-    //overflow: auto;
+    height: calc(100% - calc(var(--grid) * 10));
+    overflow: auto;
 
     .details {
       width: 100%;
-      height: 600px;
-      display: inline-block;
+      height: 40%;
+      flex-direction: row;
+      border-bottom: 1px solid gray;
+      padding-bottom: calc(var(--grid) * 5);
 
       h3 {
         text-align: center;
@@ -72,34 +70,6 @@
       }
 
       .details__form {
-        display: inline-block;
-        width: 50%;
-
-        div {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-
-          label {
-            display: inline-block;
-            width: 300px;
-          }
-        }
-      }
-    }
-
-    .fermentation-details {
-      width: 100%;
-      height: 100%;
-
-      h3 {
-        text-align: center;
-        padding: calc(var(--grid) * 4) 0;
-        border-top: 1px solid gray;
-        margin-top: calc(var(--grid) * 5);
-      }
-
-      .fermentation__form {
         display: inline-block;
         width: 50%;
         margin-top: calc(var(--grid) * 4);
@@ -117,15 +87,20 @@
       }
     }
 
+    .fermentation {
+      @extend .details;
+      height: 50%;
+    }
+
     .ingredients {
       width: 100%;
-      height: 50%;
+      height: 40%;
+      display: inline-block;
+      padding-bottom: calc(var(--grid) * 5);
 
       h3 {
         text-align: center;
-        border-top: 1px solid gray;
         padding: calc(var(--grid) * 4) 0;
-        margin-top: calc(var(--grid) * 5);
       }
 
       .ingredients__form {
@@ -146,23 +121,29 @@
       }
     }
 
-    .create-button {
-      background-color: rgb(166, 240, 166);
-      border: none;
-      outline: none;
-      height: calc(var(--grid) * 6);
-      width: calc(var(--grid) * 35);
-      margin: calc(var(--grid) * 6) 0 auto auto;
-      font-size: 18px;
-    }
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
 
-    .create-button:hover {
-      background-color: rgb(183, 243, 183);
-    }
+      .create-button {
+        background-color: rgb(166, 240, 166);
+        border: none;
+        outline: none;
+        height: calc(var(--grid) * 6);
+        width: calc(var(--grid) * 35);
+        margin: calc(var(--grid) * 6) 0 auto auto;
+        font-size: 18px;
+        margin-bottom: 2px;
+      }
 
-    .create-button:active {
-      position: relative;
-      top: 1px;
+      .create-button:hover {
+        background-color: rgb(183, 243, 183);
+      }
+
+      .create-button:active {
+        position: relative;
+        top: 1px;
+      }
     }
   }
 }

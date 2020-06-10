@@ -15,12 +15,9 @@
         </div>
       </div>
     </div>
-    <div class="fermentation-details">
+    <div class="fermentation">
       <h3>Fermentation</h3>
-      <div
-        *ngFor="let detail of inputTags.fermentation"
-        class="fermentation__form"
-      >
+      <div *ngFor="let detail of inputTags.fermentation" class="details__form">
         <div>
           <label>{{ detail }}</label>
           <input />
@@ -44,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div>
+    <div class="button-container">
       <button class="create-button">Save</button>
     </div>
   </div>
