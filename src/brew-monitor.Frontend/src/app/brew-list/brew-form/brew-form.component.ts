@@ -28,26 +28,28 @@ export class BrewFormComponent implements OnInit {
       brewType: "",
       brewDate: "",
       mashingTemp: "",
+      mashingDuration: "",
+      totalAmount: "",
     });
+
     this.inputTags = {
       details: [
         "Brew name",
-        "Brew type",
-        "Brew date",
         "Mashing temperature",
+        "Brew date",
         "Mashing duration",
-
+        "Brew type",
         "Total amount",
       ],
       fermentation: [
         "Fermentation start-date",
-        "Fermentation end-date",
-        "Bottled days",
         "Original Gravity",
+        "Fermentation end-date",
         "Specific Gravity",
-        "Final Gravity",
         "Fermentation temperature",
+        "Final Gravity",
         "Fermentation temperature threshold",
+        "Bottled days",
       ],
       ingredients: ["Barley", "Hops", "Yeast", "Extra", "Water"],
     };
