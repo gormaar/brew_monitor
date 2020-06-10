@@ -1,20 +1,25 @@
 <div class="container">
   <div class="header">
     <h1>Create brew</h1>
-    <button class="header__x-button" (click)="closeForm()">
+    <button mat-button class="header__x-button" (click)="closeForm()">
       <i class="material-icons" colo>clear</i>
     </button>
   </div>
   <div class="form-container">
+    <!--<form [formGroup="brewForm" ]>-->
     <div class="details">
       <h3>Brew details</h3>
       <div *ngFor="let detail of inputTags.details" class="details__form">
         <div>
-          <label>{{ detail }}</label>
-          <mat-form-field>
-            <input matInput placeholder="{{ detail }}" />
-          </mat-form-field>
-          <input />
+          <form [formGroup]="brewForm">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="{{ detail }}"
+                formControlName="{{ detail }}"
+              />
+            </mat-form-field>
+          </form>
         </div>
       </div>
     </div>
@@ -22,8 +27,13 @@
       <h3>Fermentation</h3>
       <div *ngFor="let detail of inputTags.fermentation" class="details__form">
         <div>
-          <label>{{ detail }}</label>
-          <input />
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="{{ detail }}"
+              formControlName="{{ detail }}"
+            /> </mat-form-field
+          >>
         </div>
       </div>
     </div>
@@ -45,7 +55,8 @@
       </div>
     </div>
     <div class="button-container">
-      <button matButton class="create-button">Save</button>
+      <button mat-button class="create-button">Save</button>
     </div>
+    <!--</form>-->
   </div>
 </div>
