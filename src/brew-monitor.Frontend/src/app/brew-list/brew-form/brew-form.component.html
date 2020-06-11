@@ -17,6 +17,7 @@
                 matInput
                 placeholder="{{ detail }}"
                 formControlName="{{ detail }}"
+                class="details__input"
               />
             </mat-form-field>
           </form>
@@ -32,8 +33,8 @@
               matInput
               placeholder="{{ detail }}"
               formControlName="{{ detail }}"
-            /> </mat-form-field
-          >>
+            />
+          </mat-form-field>
         </div>
       </div>
     </div>
@@ -44,10 +45,25 @@
         class="ingredients__form"
       >
         <div>
-          <label>{{ ingredient }}</label>
-          <input placeholder="{{ ingredient }} type" />
-          <input placeholder="Amount" />
-          <button>Add {{ ingredient }}</button>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="{{ ingredient }}"
+              formControlName="{{ ingredient }}"
+              class="ingredients__input"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="{{ ingredient }}"
+              formControlName="amount"
+              class="ingredients__input"
+            />
+          </mat-form-field>
+          <button mat-raised-button color="primary">
+            Add {{ ingredient }}
+          </button>
           <ng-content>
             <!--<label *ngFor=""></label>-->
           </ng-content>
@@ -55,7 +71,9 @@
       </div>
     </div>
     <div class="button-container">
-      <button mat-button class="create-button">Save</button>
+      <button mat-button class="create-button">
+        Save
+      </button>
     </div>
     <!--</form>-->
   </div>

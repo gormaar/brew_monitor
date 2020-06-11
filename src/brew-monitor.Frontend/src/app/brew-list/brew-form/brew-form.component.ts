@@ -30,6 +30,7 @@ export class BrewFormComponent implements OnInit {
       mashingTemp: "",
       mashingDuration: "",
       totalAmount: "",
+      amount: "",
     });
 
     this.inputTags = {

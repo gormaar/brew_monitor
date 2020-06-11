@@ -1,4 +1,4 @@
-@import "~material-design-icons/iconfont/material-icons.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 html,
 body {
@@ -43,5 +43,20 @@ h6 {
   background-color: #b5b5b6;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

@@ -79,9 +79,12 @@
           flex-direction: row;
           justify-content: center;
 
-          label {
-            display: inline-block;
+          .details__mat-form {
             width: 300px;
+
+            .details__input {
+              width: 200px;
+            }
           }
         }
       }
@@ -113,9 +116,12 @@
           flex-direction: row;
           justify-content: center;
 
-          label {
-            display: inline-block;
-            width: 100px;
+          .ingredients__input {
+            width: calc(var(--grid) * 5);
+          }
+
+          button {
+            height: calc(var(--grid) * 5);
           }
         }
       }

@@ -8,6 +8,7 @@ import { BrewFormComponent } from "./brew-form/brew-form.component";
 import { BrewService } from "../shared/services/brew/brew.service";
 import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserModule } from "@angular/platform-browser";
 
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
@@ -26,6 +27,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatFormFieldModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    BrowserModule,
   ],
   exports: [ListComponent, BrewFormComponent],
   providers: [BrewService],
