@@ -6,7 +6,6 @@
     </button>
   </div>
   <div class="form-container">
-    <!--<form [formGroup="brewForm" ]>-->
     <div class="details">
       <h3>Brew details</h3>
       <div *ngFor="let detail of inputTags.details" class="details__form">
@@ -61,6 +60,7 @@
               class="ingredients__input"
             />
           </mat-form-field>
+
           <button mat-raised-button color="primary">
             Add {{ ingredient }}
           </button>
@@ -75,6 +75,5 @@
         Save
       </button>
     </div>
-    <!--</form>-->
   </div>
 </div>
