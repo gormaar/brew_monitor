@@ -80,7 +80,41 @@
   </div>
 </div>-->
 <div class="container">
-  <mat-form-field *ngFor="let i of inputTags">
-    <input matInput placeholder="{{ i }}" />
-  </mat-form-field>
+  <div>
+    <form [formGroup]="newBrewForm">
+      <mat-form-field *ngFor="let i of inputTags">
+        <input matInput placeholder="{{ i }}" formControlName="{{ i }}" />
+      </mat-form-field>
+      <br />
+      Value: {{ newBrewForm.value | json }}
+    </form>
+  </div>
+  <div>
+    <form [formGroup]="ingredientsForm">
+      <div formArrayName="barley">
+        <div
+          *ngFor="let barley of ingredientsForm.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <div *ngFor="let ingredient of ingredientTags">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="{{ ingredient }}"
+                formControlName="{{ ingredient }}"
+              />
+            </mat-form-field>
+            <button mat-raised-button color="warn" (click)="removeBarley(i)">
+              Remove barley
+            </button>
+          </div>
+        </div>
+        <button mat-raised-button color="primary" (click)="addBarley()">
+          Add barley type
+        </button>
+        <br />
+        Value: {{ ingredientsForm.value | json }}
+      </div>
+    </form>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { BrewService } from "src/app/shared/services/brew/brew.service";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
 
 @Component({
   selector: "brew-form",
@@ -9,9 +9,9 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 })
 export class BrewFormComponent implements OnInit {
   inputTags: String[];
-  detailsForm: FormGroup;
-  fermentForm: FormGroup;
+  ingredientTags: String[];
   ingredientsForm: FormGroup;
+  newBrewForm: FormGroup;
 
   constructor(
     private _brewService: BrewService,
@@ -19,17 +19,13 @@ export class BrewFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.detailsForm = this._formBuilder.group({
+    this.newBrewForm = this._formBuilder.group({
       Brewname: "",
       brewType: "",
       brewDate: "",
       mashingTemp: "",
       mashingDuration: "",
       totalAmount: "",
-      amount: "",
-    });
-
-    this.fermentForm = this._formBuilder.group({
       startDate: "",
       endDate: "",
       temperature: "",
@@ -41,11 +37,11 @@ export class BrewFormComponent implements OnInit {
     });
 
     this.ingredientsForm = this._formBuilder.group({
-      barley: "",
-      yeast: "",
-      hops: "",
+      barley: this._formBuilder.array([]),
+      yeast: this._formBuilder.array([]),
+      hops: this._formBuilder.array([]),
       water: "",
-      extra: "",
+      extra: this._formBuilder.array([]),
     });
 
     this.inputTags = [
@@ -55,7 +51,6 @@ export class BrewFormComponent implements OnInit {
       "Mashing duration",
       "Brew type",
       "Total amount",
-
       "Fermentation start-date",
       "Original Gravity",
       "Fermentation end-date",
@@ -64,13 +59,45 @@ export class BrewFormComponent implements OnInit {
       "Final Gravity",
       "Fermentation temperature threshold",
       "Bottled days",
-
-      "Barley",
-      "Hops",
-      "Yeast",
-      "Extra",
-      "Water",
     ];
+
+    this.ingredientTags = ["Barley", "Hops", "Yeast", "Extra", "Water"];
+  }
+
+  get barleyForms() {
+    return this.ingredientsForm.get("barley") as FormArray;
+  }
+
+  get hopsForms() {
+    return this.ingredientsForm.get("hops") as FormArray;
+  }
+
+  get yeastForms() {
+    return this.ingredientsForm.get("yeast") as FormArray;
+  }
+
+  get extraForms() {
+    return this.ingredientsForm.get("extra") as FormArray;
+  }
+
+  addBarley() {
+    const barley = this._formBuilder.group({
+      type: "",
+      amount: "",
+    });
+
+    this.barleyForms.push(barley);
+  }
+
+  addIngredient(ingredientName: string) {
+    const ingredient = this._formBuilder.group({
+      type: "",
+      amount: "",
+    });
+  }
+
+  removeBarley(i: number) {
+    this.barleyForms.removeAt(i);
   }
 
   closeForm() {
