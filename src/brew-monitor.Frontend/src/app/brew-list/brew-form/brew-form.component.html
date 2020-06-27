@@ -81,17 +81,20 @@
 </div>-->
 <div class="container">
   <div>
-    <form [formGroup]="newBrewForm">
+    <form [formGroup]="brewForm">
       <mat-form-field *ngFor="let i of inputTags">
         <input matInput placeholder="{{ i }}" formControlName="{{ i }}" />
       </mat-form-field>
       <br />
-      Value: {{ newBrewForm.value | json }}
+      Value: {{ brewForm.value | json }}
     </form>
   </div>
   <div>
     <form [formGroup]="ingredientsForm">
-      <div formArrayName="barley">
+      <div
+        *ngFor="let ingredient of ingredientsForm.controls"
+        formArrayName="{{ ingredient }}"
+      >
         <div
           *ngFor="let barley of ingredientsForm.controls; let i = index"
           [formGroupName]="i"

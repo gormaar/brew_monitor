@@ -11,7 +11,7 @@ export class BrewFormComponent implements OnInit {
   inputTags: String[];
   ingredientTags: String[];
   ingredientsForm: FormGroup;
-  newBrewForm: FormGroup;
+  brewForm: FormGroup;
 
   constructor(
     private _brewService: BrewService,
@@ -19,7 +19,7 @@ export class BrewFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.newBrewForm = this._formBuilder.group({
+    this.brewForm = this._formBuilder.group({
       Brewname: "",
       brewType: "",
       brewDate: "",
@@ -94,6 +94,17 @@ export class BrewFormComponent implements OnInit {
       type: "",
       amount: "",
     });
+
+    switch (ingredientName) {
+      case "barley":
+        this.barleyForms.push(ingredient);
+      case "hops":
+        this.hopsForms.push(ingredient);
+      case "yeast":
+        this.yeastForms.push(ingredient);
+      case "extra":
+        this.extraForms.push(ingredient);
+    }
   }
 
   removeBarley(i: number) {
