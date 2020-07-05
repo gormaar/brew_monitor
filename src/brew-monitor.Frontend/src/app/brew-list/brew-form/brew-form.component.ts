@@ -13,6 +13,7 @@ export class BrewFormComponent implements OnInit {
   ingredientTags: String[];
   ingredientsForm: FormGroup;
   brewForm: FormGroup;
+  fermentationForm: FormGroup;
 
   constructor(
     private _brewService: BrewService,
@@ -29,6 +30,9 @@ export class BrewFormComponent implements OnInit {
       totalAmount: "",
       startDate: "",
       endDate: "",
+    });
+
+    this.fermentationForm = this._formBuilder.group({
       temperature: "",
       tempThreshold: "",
       OG: "",

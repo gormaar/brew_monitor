@@ -11,7 +11,7 @@
 
       <div *ngFor="let detail of inputTags" class="details__form">
         <div>
-          <form [formGroup]="detailsForm">
+          <form [formGroup]="brewForm">
             <mat-form-field>
               <input
                 matInput
@@ -28,7 +28,7 @@
       <h3>Fermentation</h3>
       <div *ngFor="let detail of fermentationTags" class="details__form">
         <div>
-          <form [formGroup]="fermentForm">
+          <form [formGroup]="fermentationForm">
             <mat-form-field>
               <input
                 matInput
