@@ -1,4 +1,4 @@
-<!--<div class="container">
+<div class="container">
   <div class="header">
     <h1>Create brew</h1>
     <button mat-button class="header__x-button" (click)="closeForm()">
@@ -9,7 +9,7 @@
     <div class="details">
       <h3>Brew details</h3>
 
-      <div *ngFor="let detail of inputTags.details" class="details__form">
+      <div *ngFor="let detail of inputTags" class="details__form">
         <div>
           <form [formGroup]="detailsForm">
             <mat-form-field>
@@ -26,7 +26,7 @@
     </div>
     <div class="fermentation">
       <h3>Fermentation</h3>
-      <div *ngFor="let detail of inputTags.fermentation" class="details__form">
+      <div *ngFor="let detail of fermentationTags" class="details__form">
         <div>
           <form [formGroup]="fermentForm">
             <mat-form-field>
@@ -42,10 +42,7 @@
     </div>
     <div class="ingredients">
       <h3>Ingredients</h3>
-      <div
-        *ngFor="let ingredient of inputTags.ingredients"
-        class="ingredients__form"
-      >
+      <div *ngFor="let ingredient of ingredientTags" class="ingredients__form">
         <div>
           <mat-form-field>
             <input
@@ -67,8 +64,7 @@
           <button mat-raised-button color="primary">
             Add {{ ingredient }}
           </button>
-          <ng-content>
-          </ng-content>
+          <ng-content> </ng-content>
         </div>
       </div>
     </div>
@@ -78,7 +74,8 @@
       </button>
     </div>
   </div>
-</div>-->
+</div>
+<!--
 <div class="container">
   <div>
     <form [formGroup]="brewForm">
@@ -121,3 +118,4 @@
     </form>
   </div>
 </div>
+-->

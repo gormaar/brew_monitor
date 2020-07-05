@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
 })
 export class BrewFormComponent implements OnInit {
   inputTags: String[];
+  fermentationTags: String[];
   ingredientTags: String[];
   ingredientsForm: FormGroup;
   brewForm: FormGroup;
@@ -51,6 +52,10 @@ export class BrewFormComponent implements OnInit {
       "Mashing duration",
       "Brew type",
       "Total amount",
+      ,
+    ];
+
+    this.fermentationTags = [
       "Fermentation start-date",
       "Original Gravity",
       "Fermentation end-date",
@@ -60,7 +65,6 @@ export class BrewFormComponent implements OnInit {
       "Fermentation temperature threshold",
       "Bottled days",
     ];
-
     this.ingredientTags = ["Barley", "Hops", "Yeast", "Extra", "Water"];
   }
 
