@@ -27,7 +27,7 @@ func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) GetAllBrews(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	setCors(&w)
 	brewModel := repository.Brew{}
 	brews, err := brewModel.GetAllBrews(server.DB)
 	if err != nil {
@@ -80,4 +80,9 @@ func (server *Server) PutBrew(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	response.JSON(w, http.StatusOK, brew)
+}
+
+func setCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	(*w).Header().Set("Access-Control-Allow-Headers", "Content-Type")
 }

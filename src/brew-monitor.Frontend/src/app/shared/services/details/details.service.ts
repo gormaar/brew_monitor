@@ -24,7 +24,7 @@ export class DetailsService {
   getBrewDetails(brew: number): IDetailsModel {
     //return this._http.get<IDetailsModel>("");
     let details: IDetailsModel = {
-      brewDate: new Date("2020,4,28"),
+      brewDate: new Date("2020,5,18"),
       fermentationDays: 14,
     };
     return details;

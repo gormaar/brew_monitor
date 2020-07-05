@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Chart } from "chart.js";
+import { Chart, ChartOptions } from "chart.js";
+import * as ChartAnnotation from "chartjs-plugin-annotation";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 import { TemperatureService } from "src/app/shared/services/temperature/temperature.service";
 
@@ -33,9 +34,31 @@ export class TemperatureComponent implements OnInit {
       .getTemperature(this.activeBrew.id)
       .map((item) => item.timestamp);
 
+    this.getShortTermChart();
+    this.getLongTermChart();
+  }
+
+  getShortTermChart() {
     this.shortTermChart = new Chart("temp-short", {
       type: "line",
+      plugins: [ChartAnnotation],
       options: {
+        annotation: {
+          annotations: [
+            {
+              label: {
+                enabled: false,
+                content: "Threshold",
+              },
+              type: "line",
+              mode: "horizontal",
+              scaleID: "y-axis-0",
+              value: 32,
+              borderWidth: 3,
+              borderColor: "tomato",
+            },
+          ],
+        },
         scales: {
           yAxes: [
             {
@@ -52,10 +75,6 @@ export class TemperatureComponent implements OnInit {
 
           xAxes: [
             {
-              type: "time",
-              time: {
-                unit: "hour",
-              },
               scaleLabel: {
                 display: true,
                 labelString: "Time",
@@ -63,9 +82,9 @@ export class TemperatureComponent implements OnInit {
             },
           ],
         },
-      },
+      } as ChartOptions,
       data: {
-        labels: [1, 2, 3, 4, 5],
+        labels: this.shortTermTime,
         datasets: [
           {
             label: "Short term",
@@ -75,10 +94,28 @@ export class TemperatureComponent implements OnInit {
         ],
       },
     });
+  }
 
+  getLongTermChart() {
     this.longTermChart = new Chart("temp-long", {
       type: "line",
       options: {
+        annotation: {
+          annotations: [
+            {
+              label: {
+                enabled: false,
+                content: "Threshold",
+              },
+              type: "line",
+              mode: "horizontal",
+              scaleID: "y-axis-0",
+              value: 32,
+              borderWidth: 3,
+              borderColor: "tomato",
+            },
+          ],
+        },
         scales: {
           yAxes: [
             {
@@ -94,10 +131,6 @@ export class TemperatureComponent implements OnInit {
           ],
           xAxes: [
             {
-              type: "time",
-              time: {
-                unit: "day",
-              },
               scaleLabel: {
                 display: true,
                 labelString: "Time",
@@ -105,9 +138,9 @@ export class TemperatureComponent implements OnInit {
             },
           ],
         },
-      },
+      } as ChartOptions,
       data: {
-        labels: [1, 2, 3, 4, 5],
+        labels: this.longTermTime,
         datasets: [
           {
             label: "Long term",

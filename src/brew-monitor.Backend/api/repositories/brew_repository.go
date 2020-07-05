@@ -12,13 +12,7 @@ type Brew struct {
 	BrewType		string		`json:"brew_type"`
 	CreationTime	time.Time	`gorm: "default: current_timestamp" json:"creation_timestamp"`
 }
-/*
-func (b *Brew) Prepare() {
-	b.BrewId = 0
-	b.BrewName = html.EscapeString(strings.TrimSpace(b.BrewName))
-	b.BrewType = html.EscapeString(strings.TrimSpace(b.BrewType))
-}
-*/
+
 func (b *Brew) GetSingleBrew(db *gorm.DB, brewId uint) (*Brew, error) {
 	var err error
 	err = db.Debug().Model(&Brew{}).Where("brew_id = ?", brewId).Take(&b).Error

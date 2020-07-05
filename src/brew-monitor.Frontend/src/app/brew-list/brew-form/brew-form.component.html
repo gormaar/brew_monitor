@@ -1,1 +1,121 @@
-<p>brew-form works!</p>
+<div class="container">
+  <div class="header">
+    <h1>Create brew</h1>
+    <button mat-button class="header__x-button" (click)="closeForm()">
+      <i class="material-icons" colo>clear</i>
+    </button>
+  </div>
+  <div class="form-container">
+    <div class="details">
+      <h3>Brew details</h3>
+
+      <div *ngFor="let detail of inputTags" class="details__form">
+        <div>
+          <form [formGroup]="detailsForm">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="{{ detail }}"
+                formControlName="{{ detail }}"
+                class="details__input"
+              />
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="fermentation">
+      <h3>Fermentation</h3>
+      <div *ngFor="let detail of fermentationTags" class="details__form">
+        <div>
+          <form [formGroup]="fermentForm">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="{{ detail }}"
+                formControlName="{{ detail }}"
+              />
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="ingredients">
+      <h3>Ingredients</h3>
+      <div *ngFor="let ingredient of ingredientTags" class="ingredients__form">
+        <div>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="{{ ingredient }}"
+              formControlName="{{ ingredient }}"
+              class="ingredients__input"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="{{ ingredient }}"
+              formControlName="amount"
+              class="ingredients__input"
+            />
+          </mat-form-field>
+
+          <button mat-raised-button color="primary">
+            Add {{ ingredient }}
+          </button>
+          <ng-content> </ng-content>
+        </div>
+      </div>
+    </div>
+    <div class="button-container">
+      <button mat-button class="create-button">
+        Save
+      </button>
+    </div>
+  </div>
+</div>
+<!--
+<div class="container">
+  <div>
+    <form [formGroup]="brewForm">
+      <mat-form-field *ngFor="let i of inputTags">
+        <input matInput placeholder="{{ i }}" formControlName="{{ i }}" />
+      </mat-form-field>
+      <br />
+      Value: {{ brewForm.value | json }}
+    </form>
+  </div>
+  <div>
+    <form [formGroup]="ingredientsForm">
+      <div
+        *ngFor="let ingredient of ingredientsForm.controls"
+        formArrayName="{{ ingredient }}"
+      >
+        <div
+          *ngFor="let barley of ingredientsForm.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <div *ngFor="let ingredient of ingredientTags">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="{{ ingredient }}"
+                formControlName="{{ ingredient }}"
+              />
+            </mat-form-field>
+            <button mat-raised-button color="warn" (click)="removeBarley(i)">
+              Remove barley
+            </button>
+          </div>
+        </div>
+        <button mat-raised-button color="primary" (click)="addBarley()">
+          Add barley type
+        </button>
+        <br />
+        Value: {{ ingredientsForm.value | json }}
+      </div>
+    </form>
+  </div>
+</div>
+-->

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Chart } from "chart.js";
+import { Chart, ChartOptions } from "chart.js";
+import * as ChartAnnotation from "chartjs-plugin-annotation";
 import { IBrewModel } from "src/app/shared/services/brew/brew.service";
 import { AirlockService } from "src/app/shared/services/airlock/airlock.service";
 
@@ -12,18 +13,47 @@ export class AirlockComponent implements OnInit {
   @Input() activeBrew: IBrewModel;
   shortTerm: Chart;
   longTerm: Chart;
-  longTermList: number[];
-  shortTermList: number[];
+  longTermData: number[];
+  shortTermData: number[];
+  longTermTime: Date[];
+  shortTermTime: Date[];
+  airlockActive: boolean;
+  threshold: number;
 
   constructor(private _airlockService: AirlockService) {}
 
   ngOnInit(): void {
+    this.getSimulatedAirlockFrequency();
     let data = this._airlockService.getRespiration(this.activeBrew.id);
-    this.shortTermList = data.map((item) => item.value);
-    this.longTermList = data.map((item) => item.hourValue);
+    this.shortTermData = data.map((item) => item.value);
+    this.longTermData = data.map((item) => item.hourValue);
+    this.longTermTime = data.map((item) => item.timestamp);
+    this.shortTermTime = data.map((item) => item.timestamp);
+    this.getShortTermChart();
+    this.getLongTermChart();
+  }
+
+  getShortTermChart() {
     this.shortTerm = new Chart("airlock-short", {
       type: "line",
+      plugins: [ChartAnnotation],
       options: {
+        annotation: {
+          annotations: [
+            {
+              label: {
+                enabled: false,
+                content: "Threshold",
+              },
+              type: "line",
+              mode: "horizontal",
+              scaleID: "y-axis-0",
+              value: 350,
+              borderWidth: 3,
+              borderColor: "tomato",
+            },
+          ],
+        },
         scales: {
           yAxes: [
             {
@@ -46,22 +76,42 @@ export class AirlockComponent implements OnInit {
             },
           ],
         },
-      },
+      } as ChartOptions,
       data: {
-        labels: this.shortTermList,
+        labels: this.shortTermTime,
         datasets: [
           {
             label: "Short term",
-            data: this.shortTermList,
+            data: this.shortTermData,
             backgroundColor: "rgb(240, 190, 114)",
           },
         ],
       },
     });
+  }
 
+  getLongTermChart() {
     this.longTerm = new Chart("airlock-long", {
       type: "line",
+      plugins: [ChartAnnotation],
       options: {
+        annotation: {
+          annotations: [
+            {
+              label: {
+                enabled: false,
+                content: "Threshold",
+                position: "top",
+              },
+              type: "line",
+              mode: "horizontal",
+              scaleID: "y-axis-0",
+              value: 1300,
+              borderWidth: 3,
+              borderColor: "tomato",
+            },
+          ],
+        },
         scales: {
           yAxes: [
             {
@@ -84,17 +134,33 @@ export class AirlockComponent implements OnInit {
             },
           ],
         },
-      },
+      } as ChartOptions,
       data: {
-        labels: this.longTermList,
+        labels: this.longTermTime,
         datasets: [
           {
             label: "Long term",
-            data: this.longTermList,
+            data: this.longTermData,
             backgroundColor: "rgb(240, 190, 114)",
           },
         ],
       },
     });
+  }
+
+  sleep(milliseconds: number) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
+
+  async getSimulatedAirlockFrequency() {
+    let airlockData = this._airlockService.getRecentAirlockActivity();
+    let frequencyTimeout = 60 / airlockData.value;
+    for (let i = 0; i <= airlockData.value; i++) {
+      this.airlockActive = true;
+      await this.sleep(1000);
+      this.airlockActive = false;
+      await this.sleep(frequencyTimeout * 1000);
+    }
+    this.getSimulatedAirlockFrequency();
   }
 }
