@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import BrewList from "../BrewList";
 import BrewPage from "../BrewPage";
 
-const Mainpage: React.FC = () => {
+const MainPage: React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<BrewList />
@@ -12,4 +12,4 @@ const Mainpage: React.FC = () => {
 	);
 };
 
-export default Mainpage;
+export default MainPage;

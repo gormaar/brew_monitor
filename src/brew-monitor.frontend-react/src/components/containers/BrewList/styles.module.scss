@@ -4,9 +4,9 @@
 	height: 100%;
 	width: calc(var(--grid) * 50);
 	border-right: 1px solid gray;
-	overflow: visible;
 	position: relative;
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 
 	h3 {
 		width: 100%;
@@ -21,7 +21,7 @@
 
 	.createBrew {
 		width: 100%;
-		position: sticky; //Have to fix this to be sticky
+		position: sticky; //Have to make this sticky
 		bottom: 0px;
 
 		button {
