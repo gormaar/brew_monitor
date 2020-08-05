@@ -67,6 +67,7 @@
     h3 {
       text-align: center;
       padding: calc(var(--grid) * 4) 0;
+      font-size: 20px;
     }
 
     .details__form {
@@ -98,32 +99,47 @@
   .ingredients {
     width: 100%;
     height: auto;
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
     padding-bottom: calc(var(--grid) * 5);
 
     h3 {
+      width: 100%;
       text-align: center;
-      padding: calc(var(--grid) * 4) 0;
+      font-size: 20px;
+      padding: calc(var(--grid) * 3);
     }
 
-    .ingredients__form {
-      display: inline-block;
+    .ingredient__form--container {
       width: 50%;
-      margin-top: calc(var(--grid) * 4);
+      background-color: blue;
 
-      div {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+      .ingredients__form {
+        height: auto;
+        width: 100%;
+        margin-top: calc(var(--grid) * 4);
 
-        .ingredients__input {
-          width: calc(var(--grid) * 5);
-        }
+        div {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
 
-        button {
-          height: calc(var(--grid) * 5);
+          .ingredients__input {
+            width: calc(var(--grid) * 5);
+          }
+
+          button {
+            height: calc(var(--grid) * 5);
+          }
         }
       }
+    }
+
+    .ingredients__list {
+      width: 50%;
+      height: 500px;
+      background-color: green;
+      display: inline-block;
     }
   }
 
