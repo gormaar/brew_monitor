@@ -8,7 +8,7 @@ const BrewPage: React.FC = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<h3>Statistics</h3>
+				<h3 className={styles.statistics}>Statistics</h3>
 				<h3>Brew</h3>
 			</div>
 			<div className={styles.body}>

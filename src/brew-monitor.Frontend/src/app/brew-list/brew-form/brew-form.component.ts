@@ -56,7 +56,6 @@ export class BrewFormComponent implements OnInit {
       "Mashing duration",
       "Brew type",
       "Total amount",
-      ,
     ];
 
     this.fermentationTags = [

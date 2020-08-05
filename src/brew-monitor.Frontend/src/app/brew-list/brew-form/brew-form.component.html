@@ -8,11 +8,10 @@
   <div class="form-container">
     <div class="details">
       <h3>Brew details</h3>
-
       <div *ngFor="let detail of inputTags" class="details__form">
         <div>
           <form [formGroup]="brewForm">
-            <mat-form-field>
+            <mat-form-field style="width: 15vw;">
               <input
                 matInput
                 placeholder="{{ detail }}"
@@ -29,7 +28,7 @@
       <div *ngFor="let detail of fermentationTags" class="details__form">
         <div>
           <form [formGroup]="fermentationForm">
-            <mat-form-field>
+            <mat-form-field style="width: 15vw;">
               <input
                 matInput
                 placeholder="{{ detail }}"
@@ -40,43 +39,59 @@
         </div>
       </div>
     </div>
+
     <div class="ingredients">
       <h3>Ingredients</h3>
-      <div *ngFor="let ingredient of ingredientTags" class="ingredients__form">
-        <div>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="{{ ingredient }}"
-              formControlName="{{ ingredient }}"
-              class="ingredients__input"
-            />
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="{{ ingredient }}"
-              formControlName="amount"
-              class="ingredients__input"
-            />
-          </mat-form-field>
-
-          <button mat-raised-button color="primary">
-            Add {{ ingredient }}
-          </button>
-          <ng-content> </ng-content>
+      <div class="ingredient__form--container">
+        <div
+          *ngFor="let ingredient of ingredientTags"
+          class="ingredients__form"
+        >
+          <div>
+            <mat-form-field style="width: 15vw;">
+              <input
+                matInput
+                placeholder="{{ ingredient }}"
+                formControlName="{{ ingredient }}"
+                class="ingredients__input"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Amount"
+                formControlName="amount"
+                class="ingredients__input"
+              />
+            </mat-form-field>
+            <button mat-raised-button color="primary">
+              Add {{ ingredient }}
+            </button>
+            <ng-content> </ng-content>
+          </div>
         </div>
       </div>
+      <div class="ingredients__list">
+        <p>hey</p>
+      </div>
     </div>
+
     <div class="button-container">
       <button mat-button class="create-button">
-        Save
+        Create brew
       </button>
     </div>
   </div>
 </div>
+
 <!--
 <div class="container">
+  <div class="header">
+    <h1>Create brew</h1>
+    <button mat-button class="header__x-button" (click)="closeForm()">
+      <i class="material-icons" colo>clear</i>
+    </button>
+  </div>
   <div>
     <form [formGroup]="brewForm">
       <mat-form-field *ngFor="let i of inputTags">
