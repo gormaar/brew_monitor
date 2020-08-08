@@ -1,6 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { BrewService } from "src/app/shared/services/brew/brew.service";
-import { FormBuilder, FormGroup, FormArray } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  FormControl,
+  FormControlName,
+} from "@angular/forms";
 
 @Component({
   selector: "brew-form",
@@ -46,7 +52,7 @@ export class BrewFormComponent implements OnInit {
       yeast: this._formBuilder.array([]),
       hops: this._formBuilder.array([]),
       water: "",
-      extra: this._formBuilder.array([]),
+      Extra: this._formBuilder.array([]),
     });
 
     this.inputTags = [
@@ -84,38 +90,40 @@ export class BrewFormComponent implements OnInit {
   }
 
   get extraForms() {
-    return this.ingredientsForm.get("extra") as FormArray;
+    return this.ingredientsForm.get("Extra") as FormArray;
   }
 
-  addBarley() {
-    const barley = this._formBuilder.group({
-      type: "",
-      amount: "",
-    });
-
-    this.barleyForms.push(barley);
-  }
-
-  addIngredient(ingredientName: string) {
+  addIngredient(ingredientType: string) {
     const ingredient = this._formBuilder.group({
       type: "",
       amount: "",
     });
 
-    switch (ingredientName) {
-      case "barley":
+    switch (ingredientType) {
+      case "Barley":
+        console.log(ingredientType);
         this.barleyForms.push(ingredient);
-      case "hops":
+      case "Hops":
         this.hopsForms.push(ingredient);
-      case "yeast":
+      case "Yeast":
         this.yeastForms.push(ingredient);
-      case "extra":
+      case "Extra":
         this.extraForms.push(ingredient);
     }
   }
 
-  removeBarley(i: number) {
-    this.barleyForms.removeAt(i);
+  removeIngredient(ingredientType: string, i: number) {
+    switch (ingredientType) {
+      case "Barley":
+        console.log(ingredientType);
+        this.barleyForms.removeAt(i);
+      case "Hops":
+        this.hopsForms.removeAt(i);
+      case "Yeast":
+        this.yeastForms.removeAt(i);
+      case "Extra":
+        this.extraForms.removeAt(i);
+    }
   }
 
   closeForm() {
