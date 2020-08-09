@@ -71,10 +71,10 @@
           </div>
         </div>
         <div class="ingredients__list">
-          <div *ngFor="let ingredient of ingredientTags">
+          <div *ngFor="let ingredient of barleyForms.controls; let i = index">
             <h4>{{ ingredient }}</h4>
-            <p>Value: {{ ingredientsForm.value }}</p>
-            <button mat-button (click)="removeIngredient(ingredient, 1)">
+            <p>Value: {{ ingredientsForm.value | json }}</p>
+            <button mat-button (click)="removeIngredient(ingredient, i)">
               Remove {{ ingredient }}
             </button>
           </div>
