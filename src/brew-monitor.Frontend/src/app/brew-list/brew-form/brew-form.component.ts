@@ -113,6 +113,7 @@ export class BrewFormComponent implements OnInit {
   }
 
   removeIngredient(ingredientType: string, i: number) {
+    console.log("remove ingredient");
     switch (ingredientType) {
       case "Barley":
         console.log(ingredientType);
