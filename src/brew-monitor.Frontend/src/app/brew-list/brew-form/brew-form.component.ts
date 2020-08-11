@@ -6,6 +6,7 @@ import {
   FormArray,
   FormControl,
   FormControlName,
+  Validators,
 } from "@angular/forms";
 
 @Component({
@@ -20,6 +21,7 @@ export class BrewFormComponent implements OnInit {
   ingredientsForm: FormGroup;
   brewForm: FormGroup;
   fermentationForm: FormGroup;
+  ingredientsForm2: FormGroup;
 
   constructor(
     private _brewService: BrewService,
@@ -28,31 +30,31 @@ export class BrewFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.brewForm = this._formBuilder.group({
-      Brewname: "",
-      brewType: "",
-      brewDate: "",
-      mashingTemp: "",
-      mashingDuration: "",
-      totalAmount: "",
-      startDate: "",
-      endDate: "",
-    });
-
-    this.fermentationForm = this._formBuilder.group({
-      temperature: "",
-      tempThreshold: "",
-      OG: "",
-      SG: "",
-      FG: "",
-      daysBottle: "",
+      brewType: [""],
+      Brewname: [""],
+      brewDate: [""],
+      mashingTemp: [""],
+      mashingDuration: [""],
+      totalAmount: [""],
+      startDate: [""],
+      endDate: [""],
     });
 
     this.ingredientsForm = this._formBuilder.group({
-      barley: this._formBuilder.array([]),
-      yeast: this._formBuilder.array([]),
-      hops: this._formBuilder.array([]),
-      water: "",
-      Extra: this._formBuilder.array([]),
+      barley: this._formBuilder.array([this._formBuilder.control("")]),
+      hops: this._formBuilder.array([this._formBuilder.control("")]),
+      yeast: this._formBuilder.array([this._formBuilder.control("")]),
+      extra: this._formBuilder.array([this._formBuilder.control("")]),
+      water: [""],
+    });
+
+    this.fermentationForm = this._formBuilder.group({
+      temperature: [""],
+      tempThreshold: [""],
+      OG: [""],
+      SG: [""],
+      FG: [""],
+      daysBottle: [""],
     });
 
     this.inputTags = [
@@ -90,7 +92,7 @@ export class BrewFormComponent implements OnInit {
   }
 
   get extraForms() {
-    return this.ingredientsForm.get("Extra") as FormArray;
+    return this.ingredientsForm.get("extra") as FormArray;
   }
 
   addIngredient(ingredientType: string) {

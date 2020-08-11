@@ -47,31 +47,35 @@
             *ngFor="let ingredient of ingredientTags"
             class="ingredients__form"
           >
-            <div>
-              <mat-form-field style="width: 15vw;">
-                <input
-                  matInput
-                  placeholder="{{ ingredient }}"
-                  formControlName="{{ ingredient }}"
-                  class="ingredients__input"
-                />
-              </mat-form-field>
-              <mat-form-field>
-                <input
-                  matInput
-                  placeholder="Amount"
-                  formControlName="amount"
-                  class="ingredients__input"
-                />
-              </mat-form-field>
-              <button mat-button (click)="addIngredient(ingredient)">
-                Add {{ ingredient }}
-              </button>
+            <div formArrayName="{{ ingredient }}">
+              <form [formGroup]="ingredientsForm2">
+                <mat-form-field style="width: 15vw;">
+                  <input
+                    matInput
+                    placeholder="{{ ingredient }}"
+                    formControlName="{{ ingredient }}"
+                    class="ingredients__input"
+                  />
+                </mat-form-field>
+                <mat-form-field>
+                  <input
+                    matInput
+                    placeholder="Amount"
+                    formControlName="amount"
+                    class="ingredients__input"
+                  />
+                </mat-form-field>
+                <button mat-button (click)="addIngredient(ingredient)">
+                  Add {{ ingredient }}
+                </button>
+              </form>
             </div>
           </div>
         </div>
         <div class="ingredients__list">
-          <div *ngFor="let ingredient of barleyForms.controls; let i = index">
+          <div
+            *ngFor="let ingredient of ingredientsForm.controls; let i = index"
+          >
             <h4>{{ ingredient }}</h4>
             <p>Value: {{ ingredientsForm.value | json }}</p>
             <button mat-button (click)="removeIngredient(ingredient, i)">
