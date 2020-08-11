@@ -1,0 +1,73 @@
+.airlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+  height: calc(var(--grid) * 70);
+  margin: 0 calc(var(--grid) * 3);
+}
+
+.airlock .airlock__header {
+  width: 100%;
+  text-align: center;
+}
+
+.airlock .airlock__header h4 {
+  font-size: 25px;
+  margin-bottom: calc(var(--grid) * 4);
+}
+
+.airlock .airlock__blinker-container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.airlock .airlock__blinker-container .airlock__blinker {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f89281;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin-right: calc(var(--grid) * 13);
+}
+
+.airlock .airlock__blinker-container .airlock__blinker--active {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: tomato;
+}
+
+.airlock .airlock__short-term {
+  width: 48%;
+  height: 100%;
+  position: static;
+}
+
+.airlock .airlock__short-term h5 {
+  text-align: center;
+  font-size: 18px;
+}
+
+.airlock .airlock__long-term {
+  width: 48%;
+  height: 100%;
+}
+
+.airlock .airlock__long-term h5 {
+  text-align: center;
+  font-size: 18px;
+}
+/*# sourceMappingURL=airlock.component.css.map */
