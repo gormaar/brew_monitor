@@ -4,6 +4,7 @@ import useBrews from "../../../hooks/useBrews";
 import { useState, useEffect } from "react";
 import Brew from "../../../types/Brew";
 import BrewListItem from "../BrewListItem";
+import Button from "@material-ui/core/Button";
 
 const BrewList: React.FC = (props) => {
 	const { tempBrews, fetchBrews } = useBrews();
@@ -31,7 +32,7 @@ const BrewList: React.FC = (props) => {
 				/>
 			))}
 			<div className={styles.createBrew}>
-				<button>Create brew</button>
+				<Button>Create brew</Button>
 			</div>
 		</div>
 	);

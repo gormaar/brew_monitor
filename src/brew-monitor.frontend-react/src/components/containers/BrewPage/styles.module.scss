@@ -7,23 +7,20 @@
 		display: flex;
 		flex-direction: row;
 		width: 100%;
-		border-bottom: 0.5px solid gray;
 
-		h3 {
+		.header__container {
 			width: 50%;
-			text-align: center;
-			margin-top: calc(var(--grid) * 2);
-			font-size: 24px;
+			height: calc(var(--grid) * 7);
 		}
 
-		.statistics {
-			width: 50%;
-			height: 100%;
+		h3 {
 			text-align: center;
 			padding-top: calc(var(--grid) * 2);
-			font-size: 24px;
-			border-right: 0.5px solid gray;
-			margin: 0;
+			font-size: 26px;
+		}
+
+		.header__inactive {
+			color: rgba(128, 128, 128, 0.692);
 		}
 	}
 
