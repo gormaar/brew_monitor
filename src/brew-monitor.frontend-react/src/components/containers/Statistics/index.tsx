@@ -1,10 +1,20 @@
 import React from "react";
 import styles from "./styles.module.scss";
 
-const Statistics: React.FC = () => {
+type StatisticsProps = {
+	temperature: number;
+	airlock: number;
+	startDate: Date;
+	endDate: Date;
+};
+
+const Statistics: React.FC = (props) => {
 	return (
 		<div className={styles.container}>
-			<p>Statistics is working!</p>
+			<div className={styles.status}></div>
+			<div className={styles.airlock}></div>
+			<div className={styles.temperature}></div>
+			<div className={styles.gravity}></div>
 		</div>
 	);
 };

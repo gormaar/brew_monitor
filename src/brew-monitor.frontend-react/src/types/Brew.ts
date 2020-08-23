@@ -8,6 +8,10 @@ type Brew = {
 	fermentationDaysLeft: number;
 	bottledDaysLeft: number;
 	lastActive: Date;
+	OG: number;
+	SG: number;
+	FG: number;
+	amount: number;
 };
 
 export default Brew;
