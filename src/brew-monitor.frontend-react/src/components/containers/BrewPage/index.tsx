@@ -3,8 +3,15 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import Statistics from "../Statistics";
 import Details from "../Details";
+import Brew from "../../../types/Brew";
+import Ingredients from "../../../types/Ingredients";
 
-const BrewPage: React.FC = () => {
+type BrewPageProps = {
+	activeBrew: Brew;
+	ingredients: Ingredients;
+};
+
+const BrewPage: React.FC<BrewPageProps> = (props) => {
 	const [page, togglePage] = useState(true);
 
 	return (
@@ -31,7 +38,13 @@ const BrewPage: React.FC = () => {
 					</span>
 				</div>
 			</div>
-			<div className={styles.body}>{page ? <Statistics /> : <Details />}</div>
+			<div className={styles.body}>
+				{page ? (
+					<Statistics />
+				) : (
+					<Details brew={props.activeBrew} ingredients={props.ingredients} />
+				)}
+			</div>
 		</div>
 	);
 };
