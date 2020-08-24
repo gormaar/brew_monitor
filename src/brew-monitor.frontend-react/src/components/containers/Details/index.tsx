@@ -42,7 +42,7 @@ const Details: React.FC<DetailsProps> = (props) => {
 				<div>{renderBrewData}</div>
 			</div>
 			<div className={styles.ingredients}>
-				<h3>Ingredients</h3>
+				<h3>Ingredients:</h3>
 				<div>{renderIngredientsMetaData}</div>
 				<div>{renderIngredientsData}</div>
 			</div>

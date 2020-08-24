@@ -12,7 +12,7 @@ type BrewPageProps = {
 };
 
 const BrewPage: React.FC<BrewPageProps> = (props) => {
-	const [page, togglePage] = useState(true);
+	const [page, togglePage] = useState<boolean>(true);
 
 	return (
 		<div className={styles.container}>
