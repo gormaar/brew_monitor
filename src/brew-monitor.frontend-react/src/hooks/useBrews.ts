@@ -7,7 +7,7 @@ const header = {
 };
 
 export default () => {
-	const [tempBrews, setTempBrews] = useState<Brew[]>([]);
+	const [brews, setBrews] = useState<Brew[]>([]);
 
 	const fetchBrews = async (): Promise<void> => {
 		try {
@@ -15,7 +15,7 @@ export default () => {
 			const response = await fetch(endpoint, header).then((response) =>
 				response.json()
 			);
-			setTempBrews(response);
+			setBrews(response);
 			console.log(response);
 		} catch (exception) {
 			console.log(`Error when fetching brews: ${exception}`);
@@ -27,7 +27,7 @@ export default () => {
 	}, []);
 
 	return {
-		tempBrews,
+		brews,
 		fetchBrews,
 	};
 };
