@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Brew from "../types/Brew";
 import { BACKEND_BASE_URL, BREWS_ENDPOINT } from "../constants";
+import { colors } from "@material-ui/core";
 
 const header = {
 	headers: { "Content-type": "application/json" },
@@ -8,6 +9,7 @@ const header = {
 
 export default () => {
 	const [brews, setBrews] = useState<Brew[]>([]);
+	const [brewError, setbrewError] = useState<string>("");
 
 	const fetchBrews = async (): Promise<void> => {
 		try {
@@ -16,9 +18,9 @@ export default () => {
 				response.json()
 			);
 			setBrews(response);
-			console.log(response);
 		} catch (exception) {
 			console.log(`Error when fetching brews: ${exception}`);
+			setbrewError(`Error when fetching brews ${exception}`);
 		}
 	};
 
@@ -28,6 +30,7 @@ export default () => {
 
 	return {
 		brews,
+		brewError,
 		fetchBrews,
 	};
 };
