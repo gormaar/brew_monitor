@@ -1,26 +1,20 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import useBrews from "../../../hooks/useBrews";
-import { useState, useEffect } from "react";
 import Brew from "../../../types/Brew";
 import BrewListItem from "../BrewListItem";
 import Button from "@material-ui/core/Button";
 
-const BrewList: React.FC = (props) => {
-	const { tempBrews, fetchBrews } = useBrews();
-	const [brews, setBrews] = useState<Brew[]>([]);
-	const [activeBrew, setActiveBrew] = useState<Brew>(brews.reverse()[0]);
+type BrewListProps = {
+	brews: Brew[];
+	activeBrew: Brew;
+};
 
-	useEffect(() => {
-		setBrews(tempBrews);
-		console.log("brews:", tempBrews);
-	}, [tempBrews]);
-
+const BrewList: React.FC<BrewListProps> = (props) => {
 	return (
 		<div className={styles.container}>
 			<h3>Brews</h3>
 
-			{tempBrews.map((brew) => (
+			{props.brews.map((brew) => (
 				<BrewListItem
 					name={brew.name}
 					type={brew.type}

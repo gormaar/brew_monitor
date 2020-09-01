@@ -6,12 +6,13 @@ const header = {
 	headers: { "Content-type": "application/json" },
 };
 
-export default () => {
+export default (brewId: number) => {
 	const [ingredients, setIngredients] = useState<Ingredients>();
+	const [error, setError] = useState<string>("");
 
-	const fetchIngredients = async (brewId: number): Promise<void> => {
+	const fetchIngredients = async (): Promise<void> => {
 		try {
-			const endpoint = `${BACKEND_BASE_URL}$/${brewId}{INGREDIENTS_ENDPOINT}}`;
+			const endpoint = `${BACKEND_BASE_URL}/${brewId}${INGREDIENTS_ENDPOINT}`;
 			const response = await fetch(endpoint, header).then((response) =>
 				response.json()
 			);
@@ -19,6 +20,7 @@ export default () => {
 			setIngredients(response);
 		} catch (exception) {
 			console.log(`Error when fetching ingredients: ${exception}`);
+			setError(`Error when fetching ingredients: ${exception}`);
 		}
 	};
 
@@ -28,6 +30,7 @@ export default () => {
 
 	return {
 		ingredients,
+		error,
 		fetchIngredients,
 	};
 };
