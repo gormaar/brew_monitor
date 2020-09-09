@@ -17,9 +17,13 @@ const Details: React.FC<DetailsProps> = (props) => {
 	};
 
 	const renderBrewMetaData = () => {
-		Object.keys(props.brew).map((item, i) => {
-			return <span key={i}>{item[i]}</span>;
-		});
+		if (props.brew) {
+			Object.keys(props.brew).map((item, i) => {
+				return <span key={i}>{item[i]}</span>;
+			});
+		} else {
+			return <span>{`Brew not found: ${props.brew}`}</span>;
+		}
 	};
 
 	const renderIngredientsData = () => {

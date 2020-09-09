@@ -5,10 +5,14 @@ import Statistics from "../Statistics";
 import Details from "../Details";
 import Brew from "../../../types/Brew";
 import Ingredients from "../../../types/Ingredients";
+import Temperature from "../../../types/Temperature";
+import Airlock from "../../../types/Airlock";
 
 type BrewPageProps = {
 	activeBrew: Brew;
 	ingredients: Ingredients;
+	temperature: Temperature;
+	airlock: Airlock;
 };
 
 const BrewPage: React.FC<BrewPageProps> = (props) => {
@@ -40,7 +44,11 @@ const BrewPage: React.FC<BrewPageProps> = (props) => {
 			</div>
 			<div className={styles.body}>
 				{page ? (
-					<Statistics />
+					<Statistics
+						temperature={props.temperature}
+						airlock={props.airlock}
+						activeBrew={props.activeBrew}
+					/>
 				) : (
 					<Details brew={props.activeBrew} ingredients={props.ingredients} />
 				)}
