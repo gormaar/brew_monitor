@@ -8,6 +8,7 @@
 	.brew {
 		width: 50%;
 		height: auto;
+		padding-top: calc(var(--grid) * 4);
 
 		h3 {
 			text-align: center;
@@ -27,6 +28,7 @@
 	.ingredients {
 		width: 50%;
 		height: auto;
+		padding-top: calc(var(--grid) * 4);
 
 		h3 {
 			text-align: center;

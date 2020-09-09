@@ -1,4 +1,50 @@
 .container {
 	height: 100%;
-	width: 50%;
+	width: 100%;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+
+	.airlock {
+		width: 85%;
+		height: auto;
+		margin: 0 auto;
+
+		h3 {
+			text-align: center;
+			color: rgba(0, 0, 0, 0.5);
+			padding-top: calc(var(--grid) * 10);
+			padding-bottom: calc(var(--grid) * 2);
+			font-size: 22px;
+		}
+
+		div {
+			background-color: rgb(247, 251, 252);
+			display: block;
+			height: calc(var(--grid) * 80);
+			width: 100%;
+		}
+	}
+
+	.temperature {
+		width: 80%;
+		height: calc(var(--grid) * 40);
+		margin: 0 auto;
+		padding-top: calc(var(--grid) * 15);
+
+		h3 {
+			text-align: center;
+			color: rgba(0, 0, 0, 0.5);
+			padding-top: calc(var(--grid) * 10);
+			padding-bottom: calc(var(--grid) * 2);
+			font-size: 22px;
+		}
+
+		div {
+			background-color: rgb(247, 251, 252);
+			display: block;
+			height: calc(var(--grid) * 80);
+			width: 100%;
+		}
+	}
 }
