@@ -10,8 +10,9 @@ type BrewListProps = {
 };
 
 const BrewList: React.FC<BrewListProps> = (props) => {
+	console.log("Brews", props.brews);
 	return (
-		<div className={styles.container}>
+		<div className={styles.container__brewList}>
 			<h3>Brews</h3>
 
 			{props.brews.map((brew) => (
@@ -19,7 +20,7 @@ const BrewList: React.FC<BrewListProps> = (props) => {
 					name={brew.name}
 					type={brew.type}
 					status={brew.status}
-					fermentationDaysleft={brew.fermentationDaysLeft}
+					fermentationDaysleft={+Date.now() - +brew.fermentationPeriod}
 					bottledDaysLeft={brew.bottledDaysLeft}
 					lastActive={brew.lastActive}
 					key={brew.id}

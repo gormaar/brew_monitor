@@ -2,10 +2,10 @@ type Brew = {
 	id: number;
 	name: string;
 	type: string;
-	timestamp: Date;
+	brewDate: Date;
 	selected: boolean;
 	status: string;
-	fermentationDaysLeft: number;
+	fermentationPeriod: number;
 	bottledDaysLeft: number;
 	lastActive: Date;
 	OG: number;

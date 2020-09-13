@@ -1,9 +1,28 @@
-.container {
-	height: 100%;
+.container__statistics {
+	height: calc(100% - 56px);
 	width: 100%;
 	overflow: auto;
 	display: flex;
 	flex-direction: column;
+
+	.status {
+		width: 75%;
+		margin: 0 auto;
+
+		h3 {
+			text-align: center;
+			color: rgba(0, 0, 0, 0.5);
+			padding-top: calc(var(--grid) * 10);
+			padding-bottom: calc(var(--grid) * 2);
+			font-size: 22px;
+		}
+
+		h5 {
+			text-align: center;
+			color: rgba(0, 0, 0, 0.5);
+			font-size: 14px;
+		}
+	}
 
 	.airlock {
 		width: 85%;
@@ -20,15 +39,15 @@
 
 		div {
 			background-color: rgb(247, 251, 252);
-			display: block;
 			height: calc(var(--grid) * 80);
 			width: 100%;
+			box-shadow: -4px 4px 5px -2px rgba(0, 0, 0, 0.3);
 		}
 	}
 
 	.temperature {
-		width: 80%;
-		height: calc(var(--grid) * 40);
+		width: 85%;
+		height: auto;
 		margin: 0 auto;
 		padding-top: calc(var(--grid) * 15);
 
@@ -42,9 +61,13 @@
 
 		div {
 			background-color: rgb(247, 251, 252);
-			display: block;
 			height: calc(var(--grid) * 80);
 			width: 100%;
+			box-shadow: -4px 4px 5px -2px rgba(0, 0, 0, 0.3);
+		}
+
+		.templong {
+			margin-bottom: 100px;
 		}
 	}
 }
