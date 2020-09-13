@@ -13,7 +13,7 @@ type BrewListItemProps = {
 
 const BrewListItem: React.FC<BrewListItemProps> = (props) => {
 	return (
-		<div className={styles.container}>
+		<div className={styles.container__brewListItem}>
 			<h4>Brew name:{props.name}</h4>
 			<div>
 				<h5>Brew type:{props.type}</h5>

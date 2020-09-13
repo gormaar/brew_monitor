@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import styles from "./styles.module.scss";
 import { ResponsiveLine } from "@nivo/line";
+import LinearProgress from "@material-ui/core/LinearProgress";
 import Brew from "../../../types/Brew";
 import Temperature from "../../../types/Temperature";
 import Airlock from "../../../types/Airlock";
+import { withStyles } from "@material-ui/core";
 
 type StatisticsProps = {
-	activeBrew: Brew;
+	activeBrew: Brew | undefined;
 	temperature: Temperature;
 	airlock: Airlock;
 };
 
 const Statistics: React.FC<StatisticsProps> = (props) => {
+	const [fermentationStatus, setFermentationStatus] = useState<number>();
 	const data = [
 		{
 			id: "Respiration",
@@ -29,9 +33,58 @@ const Statistics: React.FC<StatisticsProps> = (props) => {
 		},
 	];
 
+	const calculateFermentationStatus = () => {
+		if (props.activeBrew?.brewDate) {
+			var diff = Math.floor(
+				(+Date.now() - +props.activeBrew.brewDate) / (1000 * 60 * 60 * 24)
+			);
+			setFermentationStatus(
+				(diff! * 100) / props.activeBrew.fermentationPeriod
+			);
+		} else {
+			return 1;
+		}
+	};
+
+	const calculateFermentationDaysLeft = () => {
+		if (props.activeBrew?.fermentationPeriod) {
+			var diff = +props.activeBrew?.fermentationPeriod - +Date.now();
+			return diff;
+		}
+	};
+
+	useEffect(() => {
+		calculateFermentationStatus();
+	}, []);
+
+	const BorderLinearProgress = withStyles((theme) => ({
+		root: {
+			height: 10,
+			borderRadius: 5,
+		},
+		colorPrimary: {
+			backgroundColor:
+				theme.palette.grey[theme.palette.type === "light" ? 200 : 700],
+		},
+		bar: {
+			borderRadius: 5,
+			backgroundColor: "#1a90ff",
+		},
+	}))(LinearProgress);
+
 	return (
-		<div className={styles.container}>
-			<div className={styles.status}></div>
+		<div className={styles.container__statistics}>
+			<div className={styles.status}>
+				<h3>Fermentation status</h3>
+				<h5>
+					{fermentationStatus}% | {calculateFermentationDaysLeft()}/
+					{props.activeBrew?.fermentationPeriod} days
+				</h5>
+				<BorderLinearProgress
+					variant="determinate"
+					value={fermentationStatus}
+				/>
+			</div>
 			<div className={styles.airlock}>
 				<h3>Airlock activity short term</h3>
 				<div>
@@ -244,7 +297,7 @@ const Statistics: React.FC<StatisticsProps> = (props) => {
 					/>
 				</div>
 				<h3>Temperature long term</h3>
-				<div>
+				<div className={styles.templong}>
 					<ResponsiveLine
 						data={data}
 						margin={{ top: 50, right: 110, bottom: 50, left: 60 }}

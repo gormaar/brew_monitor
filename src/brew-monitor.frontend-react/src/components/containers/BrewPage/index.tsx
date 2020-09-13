@@ -19,7 +19,7 @@ const BrewPage: React.FC<BrewPageProps> = (props) => {
 	const [page, togglePage] = useState<boolean>(true);
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container__brewPage}>
 			<div className={styles.header}>
 				<div className={styles.header__container}>
 					<span>

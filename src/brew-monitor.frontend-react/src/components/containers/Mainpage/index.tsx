@@ -37,7 +37,7 @@ const MainPage: React.FC = () => {
 	}, [activeBrew]);
 
 	return (
-		<div className={styles.container}>
+		<div className={styles.container__mainpage}>
 			<BrewList brews={allBrews} activeBrew={activeBrew} />
 			<BrewPage
 				activeBrew={activeBrew}

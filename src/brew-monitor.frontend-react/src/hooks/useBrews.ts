@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Brew from "../types/Brew";
 import { BACKEND_BASE_URL, BREWS_ENDPOINT } from "../constants";
-import { colors } from "@material-ui/core";
 
 const header = {
 	headers: { "Content-type": "application/json" },
