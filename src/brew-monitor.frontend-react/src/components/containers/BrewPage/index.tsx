@@ -20,28 +20,6 @@ const BrewPage: React.FC<BrewPageProps> = (props) => {
 
 	return (
 		<div className={styles.container__brewPage}>
-			<div className={styles.header}>
-				<div className={styles.header__container}>
-					<span>
-						<h3
-							className={page ? undefined : styles.header__inactive}
-							onClick={() => togglePage(true)}
-						>
-							Statistics
-						</h3>
-					</span>
-				</div>
-				<div className={styles.header__container}>
-					<span>
-						<h3
-							className={page ? styles.header__inactive : undefined}
-							onClick={() => togglePage(false)}
-						>
-							Brew
-						</h3>
-					</span>
-				</div>
-			</div>
 			<div className={styles.body}>
 				{page ? (
 					<Statistics

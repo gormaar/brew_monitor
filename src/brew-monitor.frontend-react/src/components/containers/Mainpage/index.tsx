@@ -8,6 +8,9 @@ import useIngredients from "../../../hooks/useIngredients";
 import useTemperature from "../../../hooks/useTemperature";
 import useAirlock from "../../../hooks/useAirlock";
 import Brew from "../../../types/Brew";
+import Navbar from "../../common/Navbar";
+import Button from "@material-ui/core/Button";
+import { Link } from "react-router-dom";
 
 const MainPage: React.FC = () => {
 	const { brews, brewError, fetchBrews } = useBrews();
@@ -38,7 +41,13 @@ const MainPage: React.FC = () => {
 
 	return (
 		<div className={styles.container__mainpage}>
-			<BrewList brews={allBrews} activeBrew={activeBrew} />
+			<Navbar>
+				<BrewList brews={allBrews} activeBrew={activeBrew}>
+					{activeBrew}
+				</BrewList>
+				<Link to="">Statistics</Link>
+				<Link to="">Brew details</Link>
+			</Navbar>
 			<BrewPage
 				activeBrew={activeBrew}
 				ingredients={ingredients!}

@@ -1,0 +1,10 @@
+.navbar {
+	display: flex;
+	height: calc(var(--grid) * 10);
+	width: 100%;
+
+	.navbar__items {
+		height: 100%;
+		width: calc(var(--grid) * 5);
+	}
+}
