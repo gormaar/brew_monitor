@@ -3,6 +3,14 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import Brew from "../../../types/Brew";
 import Ingredients from "../../../types/Ingredients";
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
 
 type DetailsProps = {
 	brew: Brew;
@@ -42,11 +50,39 @@ const Details: React.FC<DetailsProps> = (props) => {
 		<div className={styles.container__details}>
 			<div className={styles.brew}>
 				<h3>Brew:</h3>
+				<TableContainer>
+					<Table>
+						<TableHead>
+							<TableRow>
+								<TableCell>Name</TableCell>
+								<TableCell>Type</TableCell>
+								<TableCell>Name</TableCell>
+							</TableRow>
+						</TableHead>
+					</Table>
+				</TableContainer>
 				<div>{renderBrewMetaData}</div>
 				<div>{renderBrewData}</div>
 			</div>
 			<div className={styles.ingredients}>
 				<h3>Ingredients:</h3>
+				<TableContainer>
+					<Table>
+						<TableHead>
+							<TableRow>
+								<TableCell>Barley</TableCell>
+								<TableCell>Hops</TableCell>
+								<TableCell>Yeast</TableCell>
+								<TableCell>Extra</TableCell>
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							<TableRow>
+								<TableCell>Caramunich, 3200g</TableCell>
+							</TableRow>
+						</TableBody>
+					</Table>
+				</TableContainer>
 				<div>{renderIngredientsMetaData}</div>
 				<div>{renderIngredientsData}</div>
 			</div>
