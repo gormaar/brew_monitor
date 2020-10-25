@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import styles from "./styles.module.scss";
 import Brew from "../../../types/Brew";
 import Ingredients from "../../../types/Ingredients";
@@ -9,7 +8,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
 
 type DetailsProps = {
 	brew: Brew;

@@ -65,7 +65,7 @@ const Status: React.FC<StatusProps> = (props) => {
 					variant="determinate"
 					value={fermentationStatus}
 				/>
-			</div>
+		</div>
     )
 }
 

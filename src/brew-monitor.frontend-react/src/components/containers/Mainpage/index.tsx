@@ -65,6 +65,9 @@ const MainPage: React.FC = () => {
 				<Tab className={styles.navbar__link} label="Details" >
 					<Link to="/brew/:brewId/details" />
 				</Tab>
+				<Tab className={styles.navbar__link} label="Create brew">
+					<Link to="/brew/create" />
+				</Tab>
 				</div>
 			</Navbar>
 			<BrewPage

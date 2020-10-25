@@ -1,6 +1,7 @@
 .status {
 	width: 75%;
 	margin: 0 auto;
+	background-color: green;
 
 	h3 {
 		text-align: center;
@@ -8,6 +9,7 @@
 		padding-top: calc(var(--grid) * 10);
 		padding-bottom: calc(var(--grid) * 2);
 		font-size: 22px;
+		background-color: blue;
 	}
 
 	h5 {
