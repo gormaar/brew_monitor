@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
-import BrewList from "../BrewList";
 import BrewPage from "../BrewPage";
 import { useState } from "react";
 import useBrews from "../../../hooks/useBrews";
@@ -9,8 +8,13 @@ import useTemperature from "../../../hooks/useTemperature";
 import useAirlock from "../../../hooks/useAirlock";
 import Brew from "../../../types/Brew";
 import Navbar from "../../common/Navbar";
-import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import FormControl from "@material-ui/core/FormControl";
+import Tab from "@material-ui/core/Tab";
+
+
 
 const MainPage: React.FC = () => {
 	const { brews, brewError, fetchBrews } = useBrews();
@@ -38,15 +42,30 @@ const MainPage: React.FC = () => {
 		fetchTemperature();
 		fetchAirlock();
 	}, [activeBrew]);
-
+	
 	return (
-		<div className={styles.container__mainpage}>
+		<div className={styles.mainpage}>
 			<Navbar>
-				<BrewList brews={allBrews} activeBrew={activeBrew}>
-					{activeBrew}
-				</BrewList>
-				<Link to="">Statistics</Link>
-				<Link to="">Brew details</Link>
+				<div className={styles.navbar}>	
+				<FormControl >
+					<InputLabel>Brews</InputLabel>
+					<Select className={styles.navbar__select}>
+						{brews.map((brew) => {
+							return(
+								<option>
+								{brew.name}
+							</option>
+							)
+						})}
+					</Select>
+				</FormControl>	
+				<Tab className={styles.navbar__link} label="Statistics" >
+					<Link to="/brew/:brewId/statistics" />
+				</Tab>
+				<Tab className={styles.navbar__link} label="Details" >
+					<Link to="/brew/:brewId/details" />
+				</Tab>
+				</div>
 			</Navbar>
 			<BrewPage
 				activeBrew={activeBrew}
@@ -57,5 +76,6 @@ const MainPage: React.FC = () => {
 		</div>
 	);
 };
+
 
 export default MainPage;
