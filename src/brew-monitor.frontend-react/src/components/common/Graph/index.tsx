@@ -2,14 +2,32 @@ import React from 'react';
 import { ResponsiveLine } from "@nivo/line";
 
 type GraphProps = {
-    data: number;
+    //data: number;
 	legend: string;
 }
 
 const Graph: React.FC<GraphProps> = (props) => {
+
+	const data = [
+		{
+			id: "Respiration",
+			data: [
+				{ x: 1, y: 30 },
+				{ x: 2, y: 31 },
+				{ x: 3, y: 30 },
+				{ x: 4, y: 33 },
+				{ x: 5, y: 50 },
+				{ x: 6, y: 40 },
+				{ x: 7, y: 39 },
+				{ x: 8, y: 45 },
+				{ x: 9, y: 52 },
+			],
+		},
+	];
+
 		return (
 				<ResponsiveLine
-						data={[]}
+						data={data}
 						margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
 						xScale={{ type: "point" }}
 						yScale={{
