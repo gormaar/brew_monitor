@@ -3,7 +3,6 @@ import { useState } from "react";
 import styles from "./styles.module.scss";
 import Brew from "../../../types/Brew";
 import Ingredients from "../../../types/Ingredients";
-import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
