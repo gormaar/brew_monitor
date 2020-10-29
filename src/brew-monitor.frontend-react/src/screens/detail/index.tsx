@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import Brew from "../../../types/Brew";
-import Ingredients from "../../../types/Ingredients";
+import Brew from "../../types/Brew";
+import Ingredients from "../../types/Ingredients";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -9,12 +9,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
-type DetailsProps = {
+type DetailScreenProps = {
 	brew: Brew;
 	ingredients: Ingredients;
 };
 
-const Details: React.FC<DetailsProps> = (props) => {
+const DetailScreen: React.FC<DetailScreenProps> = (props) => {
 	const renderBrewData = () => {
 		Object.keys(props.brew).map((item, i) => {
 			return <span key={i}>{item}</span>;
@@ -87,4 +87,4 @@ const Details: React.FC<DetailsProps> = (props) => {
 	);
 };
 
-export default Details;
+export default DetailScreen;
