@@ -1,13 +1,12 @@
 import React, { useEffect } from "react";
 import styles from "./styles.module.scss";
-import BrewPage from "../BrewPage";
 import { useState } from "react";
-import useBrews from "../../../hooks/useBrews";
-import useIngredients from "../../../hooks/useIngredients";
-import useTemperature from "../../../hooks/useTemperature";
-import useAirlock from "../../../hooks/useAirlock";
-import Brew from "../../../types/Brew";
-import Navbar from "../../common/Navbar";
+import useBrews from "../../hooks/useBrews";
+import useIngredients from "../../hooks/useIngredients";
+import useTemperature from "../../hooks/useTemperature";
+import useAirlock from "../../hooks/useAirlock";
+import Brew from "../../types/Brew";
+import Navbar from "../../common/navbar";
 import { Link } from "react-router-dom";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
@@ -70,12 +69,6 @@ const MainPage: React.FC = () => {
 				</Tab>
 				</div>
 			</Navbar>
-			<BrewPage
-				activeBrew={activeBrew}
-				ingredients={ingredients!}
-				temperature={temperature!}
-				airlock={airlock!}
-			/>
 		</div>
 	);
 };

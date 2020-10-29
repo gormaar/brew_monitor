@@ -1,6 +1,6 @@
 import React from 'react';
 import {useEffect, useState} from 'react';
-import Brew from "../../../../types/Brew";
+import Brew from "../../../types/Brew";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { withStyles } from "@material-ui/core";
 import styles from "../styles.module.scss";

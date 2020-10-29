@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import Brew from "../../../types/Brew";
-import Temperature from "../../../types/Temperature";
-import Airlock from "../../../types/Airlock";
-import Graph from "../../common/Graph"
-import Status from "./Status";
+import Brew from "../../types/Brew";
+import Temperature from "../../types/Temperature";
+import Airlock from "../../types/Airlock";
+import Graph from "./graph"
+import Status from "./statusBar";
+import Navbar from '../../common/navbar';
 
 type StatisticsProps = {
 	activeBrew: Brew | undefined;
@@ -14,7 +15,9 @@ type StatisticsProps = {
 
 const Statistics: React.FC<StatisticsProps> = (props) => {
 	return (
+		
 		<div className={styles.statistics}>
+			<Navbar />
 			<div className={styles.statistics__status}>
 				<Status activeBrew={props.activeBrew!}/>
 			</div>
