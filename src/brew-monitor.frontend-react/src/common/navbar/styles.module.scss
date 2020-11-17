@@ -1,0 +1,15 @@
+.navbar {
+	display: flex;
+	flex-direction: row;
+	height: auto;
+	width: 100%;
+
+	.navbar__items {
+		height: 60px;
+	}
+
+	.navbar__select {
+		width: 300px;
+		padding-left: 14px;
+	}
+}
