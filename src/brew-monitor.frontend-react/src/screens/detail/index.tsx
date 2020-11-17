@@ -8,6 +8,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import Navbar from '../../common/navbar';
 
 type DetailScreenProps = {
 	brew: Brew;
@@ -45,6 +46,7 @@ const DetailScreen: React.FC<DetailScreenProps> = (props) => {
 
 	return (
 		<div className={styles.container__details}>
+			<Navbar />
 			<div className={styles.brew}>
 				<h3>Brew:</h3>
 				<TableContainer>

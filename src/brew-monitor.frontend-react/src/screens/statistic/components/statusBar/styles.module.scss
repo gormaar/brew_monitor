@@ -1,0 +1,19 @@
+.status {
+  width: 75%;
+  height: calc(var(--grid) * 10);
+  margin: 0 auto;
+
+  h3 {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+    padding-top: calc(var(--grid) * 10);
+    padding-bottom: calc(var(--grid) * 2);
+    font-size: 22px;
+  }
+
+  h5 {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+  }
+}
