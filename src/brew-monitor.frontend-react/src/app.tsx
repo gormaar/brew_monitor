@@ -7,12 +7,11 @@ import DetailScreen from './screens/detail';
 const App: FC = () => {
     return(
         <BrowserRouter>
-        <Switch>
-            <Route to="/:brewId" component={Statistics}/>
-            <Route to="/:brewId/details" component={DetailScreen} />
-        </Switch>
+            <Switch>
+                <Route to="/:brewId" component={Statistics}/>
+                <Route to="/:brewId/details" component={DetailScreen} />
+            </Switch>
         </BrowserRouter>
-        
     )
 }
 

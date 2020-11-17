@@ -1,10 +1,10 @@
-import React from "react";
+import React, {Fragment, FC} from "react";
 import styles from "./styles.module.scss";
 import Brew from "../../types/Brew";
 import Temperature from "../../types/Temperature";
 import Airlock from "../../types/Airlock";
-import Graph from "./graph"
-import Status from "./statusBar";
+import Graph from "./components/graph"
+import Status from "./components/statusBar";
 import Navbar from '../../common/navbar';
 
 type StatisticsProps = {
@@ -13,36 +13,22 @@ type StatisticsProps = {
 	airlock: Airlock;
 };
 
-const Statistics: React.FC<StatisticsProps> = (props) => {
+const Statistics: FC<StatisticsProps> = (props) => {
 	return (
-		
-		<div className={styles.statistics}>
+		<Fragment>
 			<Navbar />
-			<div className={styles.statistics__status}>
-				<Status activeBrew={props.activeBrew!}/>
-			</div>
-			<div className={styles.airlock}>
-				<h3>Airlock activity short term</h3>
-				<div>
-						<Graph legend="Airlock activity"/>
-				</div>
-				<h3>Airlock activity long term</h3>
-				<div>
-						<Graph  legend="Airlock activity" />
-				</div>
-			</div>
-			<div className={styles.temperature}>
-				<h3>Temperature short term</h3>
-				<div>
-						<Graph  legend="Temperature"/>
-				</div>
-				<h3>Temperature long term</h3>
-				<div className={styles.templong}>
-						<Graph  legend="Temperature" />
-				</div>
-			</div>
-			<div className={styles.gravity}></div>
-		</div>
+			<Status activeBrew={props.activeBrew!}/>
+			<h2>Airlock activity</h2>
+			<h3>Short term</h3>
+			<Graph legend="Airlock activity"/>
+			<h3>Long term</h3>
+			<Graph legend="Airlock activity" />
+			<h2>Temperature</h2>
+			<h3>Short term</h3>
+			<Graph legend="Temperature" />
+			<h3>Long term</h3>
+			<Graph legend="Temperature" />
+		</Fragment>
 	);
 };
 
