@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
-import GraphData, { DataFormat } from '../../../../types/GraphData';
+import GraphData from '../../../../types/GraphData';
 
 type BarGraphProps = {
   data: GraphData[];
@@ -13,7 +13,7 @@ const BarGraph: FC<BarGraphProps> = (props) => {
   return (
     <ResponsiveBar
       data={data}
-      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: 'linear' }}
       colors={{ scheme: 'nivo' }}
