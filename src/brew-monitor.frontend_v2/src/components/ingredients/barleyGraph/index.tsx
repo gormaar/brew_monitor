@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import GraphData from '../../../../types/GraphData';
-import BarGraph from '../../../common/graphs/bar';
+import GraphData from '../../../types/GraphData';
+import BarGraph from '../../common/graphs/bar';
 
 type BarleyType = {
   name: string;

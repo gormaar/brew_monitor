@@ -9,7 +9,7 @@ import './styles.scss';
 const DetailsTable: FC = () => {
   return (
     <Fragment>
-      <Table className="descriptionTable">
+      <Table className="descriptionTable" style={{ width: '48%' }}>
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
