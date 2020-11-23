@@ -22,8 +22,10 @@ h6 {
 :root {
   --color-primary: rgb(88, 86, 86);
   --color-secondary: #808080;
-  --color-font: rgb(221, 218, 218);
+  --color-font: #dddada;
   --grid: 8px;
+  --box-shadow: 3px 3px 10px black;
+  --border-radius: 2px;
 }
 
 ::-webkit-scrollbar {

@@ -6,8 +6,9 @@ import './styles.scss';
 const Status: FC = () => {
   return (
     <Box className="status">
-      <h3>Progress</h3>
-      <LinearProgress />
+      <h3>Fermentation progress</h3>
+
+      <LinearProgress variant="determinate" value={50} style={{ borderRadius: '2px' }} />
     </Box>
   );
 };

@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import GraphData from '../../../types/GraphData';
 import BarGraph from '../../common/graphs/bar';
+import Box from '@material-ui/core/Box';
+import './styles.scss';
 
 type BarleyType = {
   name: string;
@@ -31,7 +33,31 @@ const BarleyGraph: FC = () => {
     },
   ];
 
-  return <BarGraph data={barleyData} bottomLegend="Barley type" leftLegend="Grams" />;
+  const testData = [
+    {
+      id: 'Barley',
+      data: [
+        {
+          x: 'Caramunich',
+          y: 3600,
+        },
+        {
+          x: 'Pilsner',
+          y: 4000,
+        },
+        {
+          x: 'Wheat',
+          y: 1900,
+        },
+      ],
+    },
+  ];
+
+  return (
+    <Box className="barleyGraph">
+      <BarGraph data={testData} bottomLegend="Barley type" leftLegend="Grams" />
+    </Box>
+  );
 };
 
 export default BarleyGraph;

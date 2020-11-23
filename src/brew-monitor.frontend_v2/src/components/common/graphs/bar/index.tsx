@@ -8,11 +8,48 @@ type BarGraphProps = {
   leftLegend: string;
 };
 
-const BarGraph: FC<BarGraphProps> = (props) => {
-  const { bottomLegend, data, leftLegend } = props;
+const BarGraph: FC<BarGraphProps> = ({ bottomLegend, data, leftLegend }) => {
+  const testData = [
+    {
+      id: 'Respiration',
+      data: [
+        {
+          country: 'AD',
+          'hot dog': 133,
+          'hot dogColor': 'hsl(278, 70%, 50%)',
+          burger: 54,
+          burgerColor: 'hsl(96, 70%, 50%)',
+          sandwich: 152,
+          sandwichColor: 'hsl(1, 70%, 50%)',
+          kebab: 135,
+          kebabColor: 'hsl(304, 70%, 50%)',
+          fries: 96,
+          friesColor: 'hsl(158, 70%, 50%)',
+          donut: 59,
+          donutColor: 'hsl(22, 70%, 50%)',
+        },
+        {
+          country: 'AE',
+          'hot dog': 110,
+          'hot dogColor': 'hsl(280, 70%, 50%)',
+          burger: 138,
+          burgerColor: 'hsl(255, 70%, 50%)',
+          sandwich: 101,
+          sandwichColor: 'hsl(269, 70%, 50%)',
+          kebab: 189,
+          kebabColor: 'hsl(172, 70%, 50%)',
+          fries: 183,
+          friesColor: 'hsl(345, 70%, 50%)',
+          donut: 126,
+          donutColor: 'hsl(198, 70%, 50%)',
+        },
+      ],
+    },
+  ];
   return (
     <ResponsiveBar
-      data={data}
+      data={testData}
+      keys={['donut', 'country']}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: 'linear' }}
@@ -21,8 +58,8 @@ const BarGraph: FC<BarGraphProps> = (props) => {
         {
           id: 'dots',
           type: 'patternDots',
-          background: 'inherit',
-          color: '#38bcb2',
+          background: 'wheat',
+          color: '#dddada',
           size: 4,
           padding: 1,
           stagger: true,
@@ -30,8 +67,8 @@ const BarGraph: FC<BarGraphProps> = (props) => {
         {
           id: 'lines',
           type: 'patternLines',
-          background: 'inherit',
-          color: '#eed312',
+          background: 'wheat',
+          color: '#dddada',
           rotation: -45,
           lineWidth: 6,
           spacing: 10,
@@ -58,7 +95,7 @@ const BarGraph: FC<BarGraphProps> = (props) => {
       }}
       labelSkipWidth={12}
       labelSkipHeight={12}
-      labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+      labelTextColor={'#dddada'}
       legends={[
         {
           dataFrom: 'keys',
