@@ -6,7 +6,7 @@ import Select from '../select';
 const Navbar: FC = () => {
   return (
     <Fragment>
-      <Appbar style={{ background: '#808080' }} position="static">
+      <Appbar style={{ background: '#808080' }} position="sticky">
         <Toolbar>
           <Select />
         </Toolbar>

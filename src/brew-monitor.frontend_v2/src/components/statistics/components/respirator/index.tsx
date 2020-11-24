@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment, useState, useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import './styles.scss';
 
@@ -11,21 +11,21 @@ const Respirator: FC<RespiratorProps> = ({ frequency }) => {
   const sleep = (milliseconds: number) => {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   };
-  const simulateAirlockFrequency = () => {
+  const simulateAirlockFrequency = async () => {
     const frequencyTimeout = 60 / frequency;
     for (let i = 0; i <= frequency; i++) {
       setBlink(true);
-      sleep(1000);
+      await sleep(1000);
       setBlink(false);
-      sleep(frequencyTimeout * 1000);
+      await sleep(frequencyTimeout * 1000);
     }
   };
-  return (
-    <Fragment>
-      {simulateAirlockFrequency}
-      {blink ? <Box className="respirator" /> : <Box className="respirator--blink" />}
-    </Fragment>
-  );
+
+  useEffect(() => {
+    simulateAirlockFrequency();
+  }, [frequency]);
+
+  return <Fragment>{blink ? <Box className="respirator" /> : <Box className="respirator--blink" />}</Fragment>;
 };
 
 export default Respirator;
