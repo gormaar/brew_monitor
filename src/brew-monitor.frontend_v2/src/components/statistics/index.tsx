@@ -1,6 +1,7 @@
 import React, { FC, Fragment } from 'react';
 import Status from './components/status';
 import BarleyGraph from '../ingredients/barleyGraph';
+import Respirator from './components/respirator';
 import HopsGraph from '../ingredients/hopsGraph';
 import TemperatureGraph from './components/temperature';
 import AirlockGraph from './components/airlock';
@@ -14,6 +15,7 @@ const Statistics: FC = () => {
       <Box className="statistics">
         <Details />
         <Status />
+        <Respirator frequency={420} />
         <BarleyGraph />
         <HopsGraph />
         <TemperatureGraph />
