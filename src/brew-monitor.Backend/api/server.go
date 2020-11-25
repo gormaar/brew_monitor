@@ -2,8 +2,8 @@ package api
 
 import (
 	"./controllers"
-	_ "github.com/go-sql-driver/mysql"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/denisenkom/go-mssqldb"
+	_ "github.com/jinzhu/gorm/dialects/mssql"
 	"github.com/joho/godotenv"
 	"log"
 	"os"

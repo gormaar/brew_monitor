@@ -4,7 +4,20 @@
   flex-wrap: wrap;
   flex-direction: row;
 
-  h3 {
-    margin: 0 16px 32px 0;
+  .dashboard__header {
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    width: 100%;
+    margin: 16px 16px 32px 0;
+
+    h3 {
+      margin: 0 32px 0 0;
+      align-self: center;
+    }
+
+    div {
+      align-self: center;
+    }
   }
 }

@@ -14,10 +14,13 @@ const DashboardScreen: FC = () => {
         <BrewSelector />
       </Navbar>
       <Box className="dashboard">
-        <Typography variant="h3" gutterBottom>
-          Name placeholder
-        </Typography>
-        <Respirator frequency={100} />
+        <Box className="dashboard__header">
+          <Typography variant="h3" gutterBottom>
+            Name placeholder
+          </Typography>
+          <Respirator frequency={100} />
+        </Box>
+
         <Statistics />
       </Box>
     </Fragment>
