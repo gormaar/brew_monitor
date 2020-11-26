@@ -15,11 +15,10 @@ type Server struct {
 	Router  *mux.Router
 }
 
-func (server *Server) Initialize(DbDriver, DbUser, DbPassword, DbPort, DbHost, DbName string) {
+func (server *Server) Initialize(Db_ConnectionString, DbName string) {
 
 	var err error
-	DbUrl := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
-	server.DB, err = gorm.Open(DbDriver, DbUrl)
+	server.DB, err = gorm.Open("mssql", Db_ConnectionString)
 	if err != nil {
 		fmt.Printf("Cannot connect to database: %s \n", DbName)
 		log.Fatal("Error: ", err)
