@@ -1,7 +1,7 @@
 type Brew = {
-    name: string;
-    type: string;
-
-}
+  id: string;
+  name: string;
+  type: string;
+};
 
 export default Brew;

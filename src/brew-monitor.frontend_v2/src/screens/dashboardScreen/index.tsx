@@ -1,4 +1,5 @@
 import React, { FC, Fragment } from 'react';
+import { useParams } from 'react-router';
 import Statistics from '../../components/statistics';
 import Navbar from '../../components/common/navbar';
 import Box from '@material-ui/core/Box';
@@ -7,11 +8,16 @@ import Typography from '@material-ui/core/Typography';
 import BrewSelector from '../../components/common/select';
 import './styles.scss';
 
+type DashBoardParams = {
+  brewId: string;
+};
+
 const DashboardScreen: FC = () => {
+  const { brewId } = useParams<DashBoardParams>();
   return (
     <Fragment>
       <Navbar>
-        <BrewSelector />
+        <BrewSelector brews={} />
       </Navbar>
       <Box className="dashboard">
         <Box className="dashboard__header">
@@ -20,7 +26,6 @@ const DashboardScreen: FC = () => {
           </Typography>
           <Respirator frequency={100} />
         </Box>
-
         <Statistics />
       </Box>
     </Fragment>

@@ -11,45 +11,25 @@ type BarGraphProps = {
 const BarGraph: FC<BarGraphProps> = ({ bottomLegend, data, leftLegend }) => {
   const testData = [
     {
-      id: 'Respiration',
-      data: [
-        {
-          country: 'AD',
-          'hot dog': 133,
-          'hot dogColor': 'hsl(278, 70%, 50%)',
-          burger: 54,
-          burgerColor: 'hsl(96, 70%, 50%)',
-          sandwich: 152,
-          sandwichColor: 'hsl(1, 70%, 50%)',
-          kebab: 135,
-          kebabColor: 'hsl(304, 70%, 50%)',
-          fries: 96,
-          friesColor: 'hsl(158, 70%, 50%)',
-          donut: 59,
-          donutColor: 'hsl(22, 70%, 50%)',
-        },
-        {
-          country: 'AE',
-          'hot dog': 110,
-          'hot dogColor': 'hsl(280, 70%, 50%)',
-          burger: 138,
-          burgerColor: 'hsl(255, 70%, 50%)',
-          sandwich: 101,
-          sandwichColor: 'hsl(269, 70%, 50%)',
-          kebab: 189,
-          kebabColor: 'hsl(172, 70%, 50%)',
-          fries: 183,
-          friesColor: 'hsl(345, 70%, 50%)',
-          donut: 126,
-          donutColor: 'hsl(198, 70%, 50%)',
-        },
-      ],
+      id: 'Pilsner',
+      label: 'Pilsner',
+      value: 3600,
+    },
+    {
+      id: 'Caramunich',
+      label: 'Caramunich',
+      value: 2500,
+    },
+    {
+      id: 'Wheat',
+      label: 'Wheat',
+      value: 2000,
     },
   ];
   return (
     <ResponsiveBar
       data={testData}
-      keys={['donut', 'country']}
+      keys={['Pilsner', 'Caramunich', 'Wheat']}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: 'linear' }}
