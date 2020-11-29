@@ -8,7 +8,7 @@ import Brew from '../../../types/Brew';
 import { useHistory } from 'react-router';
 
 type BrewSelectorProps = {
-  activeBrew: Brew;
+  activeBrew: Brew | null;
   brews: Brew[];
 };
 

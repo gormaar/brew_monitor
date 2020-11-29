@@ -7,15 +7,18 @@ import (
 )
 
 type Brew struct {
-	BrewId			uint		`gorm:"primary_key; not_null; auto_increment;" json:"brew_id"`
-	BrewName		string		`json:"brew_name"`
-	BrewType		string		`json:"brew_type"`
-	CreationTime	time.Time	`gorm: "default: current_timestamp" json:"creation_timestamp"`
+	ID			uint		`gorm:"primary_key; not_null; auto_increment;" json:"ID"`
+	Name		string		`json:"Name"`
+	Type		string		`json:"Type"`
+	Status		string		`json:"Status"`
+	FermentationTime uint 	`json:"FermentationTime"`
+	CreatedDate	time.Time	`gorm:"default: current_timestamp" json:"CreatedDate"`
+	ModifiedDate time.Time 	`json:"ModifiedDate"`
 }
 
 func (b *Brew) GetSingleBrew(db *gorm.DB, brewId uint) (*Brew, error) {
 	var err error
-	err = db.Debug().Model(&Brew{}).Where("brew_id = ?", brewId).Take(&b).Error
+	err = db.Debug().Model(&Brew{}).Where("ID = ?", brewId).Take(&b).Error
 	if err != nil{
 		return &Brew{}, err
 	}
@@ -55,7 +58,7 @@ func (b * Brew) DeleteBrew(db *gorm.DB, brewId uint) (int64, error){
 
 func (b *Brew) PutBrew(db *gorm.DB, brewId uint) (*Brew, error) {
 	var err error
-	err = db.Debug().Model(&Brew{}).Where("id = ?", brewId).Update(Brew{BrewName: b.BrewName, BrewType: b.BrewType}).Error
+	err = db.Debug().Model(&Brew{}).Where("id = ?", brewId).Update(Brew{Name: b.Name, Type: b.Type, Status: b.Status, FermentationTime: b.FermentationTime}).Error
 	if err != nil {
 		return &Brew{}, err
 	}
