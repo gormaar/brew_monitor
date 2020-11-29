@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment, useEffect, useState } from 'react';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -13,7 +13,7 @@ type BrewSelectorProps = {
 };
 
 const BrewSelector: FC<BrewSelectorProps> = ({ brews }) => {
-  const [activeBrew, setActiveBrew] = useState<Brew | undefined>(brews[brews.length - 1] || undefined);
+  const [activeBrew, setActiveBrew] = useState<Brew>(brews[brews.length - 1] || null);
   const history = useHistory();
 
   const handleChange = (event: React.ChangeEvent, brew: Brew) => {
@@ -23,11 +23,16 @@ const BrewSelector: FC<BrewSelectorProps> = ({ brews }) => {
     });
     history.push(`/${brew.id}`);
   };
+
+  useEffect(() => {
+    history.push(`/${activeBrew?.id}`);
+  }, []);
+
   return (
     <Fragment>
       <FormControl>
-        <InputLabel>{activeBrew?.name}</InputLabel>
-        <Select className="select" onChange={() => handleChange}>
+        <InputLabel id="brewSelector__label">{activeBrew?.name}</InputLabel>
+        <Select className="select" onChange={() => handleChange} labelId="brewSelector__label">
           {brews.map((brew) => {
             return <MenuItem key={`brew__${brew.id}`}>{brew}</MenuItem>;
           })}

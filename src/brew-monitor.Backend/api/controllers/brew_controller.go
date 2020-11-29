@@ -8,17 +8,17 @@ import (
 	"strconv"
 )
 
-func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
+func (server *Server) GetBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 
-	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
+	brewId, err := strconv.ParseUint(vars["ID"], 10, 32)
 	if err != nil {
 		response.ERROR(w, http.StatusBadRequest, err)
 		return
 	}
 	brewModel := repository.Brew{}
-	brew, err := brewModel.GetSingleBrew(server.DB, uint(brewId))
+	brew, err := brewModel.GetBrew(server.DB, uint(brewId))
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return
@@ -26,10 +26,10 @@ func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
 	response.JSON(w, http.StatusOK, brew)
 }
 
-func (server *Server) GetAllBrews(w http.ResponseWriter, r *http.Request) {
+func (server *Server) GetBrews(w http.ResponseWriter, r *http.Request) {
 	setCors(&w)
 	brewModel := repository.Brew{}
-	brews, err := brewModel.GetAllBrews(server.DB)
+	brews, err := brewModel.GetBrews(server.DB)
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return
@@ -51,7 +51,7 @@ func (server *Server) CreateBrew(w http.ResponseWriter, r *http.Request) {
 func (server *Server) DeleteBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
-	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
+	brewId, err := strconv.ParseUint(vars["ID"], 10, 32)
 	if err != nil {
 		response.ERROR(w, http.StatusBadRequest, err)
 		return
@@ -68,7 +68,7 @@ func (server *Server) DeleteBrew(w http.ResponseWriter, r *http.Request) {
 func (server *Server) PutBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
-	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
+	brewId, err := strconv.ParseUint(vars["ID"], 10, 32)
 	if err != nil {
 		response.ERROR(w, http.StatusBadRequest, err)
 		return

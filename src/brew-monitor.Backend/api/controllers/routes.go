@@ -19,8 +19,8 @@ func (server *Server) initializeRoutes() {
 	server.Router.HandleFunc("/temp/delete/{brew_id}/{temp_id}", server.DeleteTemperature).Methods("DELETE")
 
 	//Routes for brews
-	server.Router.HandleFunc("/brew/{brew_id}", server.GetSingleBrew).Methods("GET", "OPTIONS")
-	server.Router.HandleFunc("/brews", server.GetAllBrews).Methods("GET", "OPTIONS")
+	server.Router.HandleFunc("/brew/{brew_id}", server.GetBrew).Methods("GET", "OPTIONS")
+	server.Router.HandleFunc("/brews", server.GetBrews).Methods("GET", "OPTIONS")
 	server.Router.HandleFunc("/brew/create", server.CreateBrew).Methods("POST")
 	server.Router.HandleFunc("/brew/update/{brew_id}", server.PutBrew).Methods("PUT")
 	server.Router.HandleFunc("/brew/delete/{brew_id}", server.DeleteBrew).Methods("DELETE")

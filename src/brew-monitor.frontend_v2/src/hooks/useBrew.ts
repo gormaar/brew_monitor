@@ -9,7 +9,7 @@ const header = {
 
 export default () => {
   const [brews, setBrews] = useState<Brew[]>([]);
-  const [activeBrew, setActiveBrew] = useState<Brew>(brews[brews.length - 1]);
+  const [brew, setBrew] = useState<Brew | null>();
   const fetchBrews = async (): Promise<void> => {
     try {
       const response = await fetch(`${process.env.REACT_APP_APIURL}/brews`, header).then((response) => response.json());
@@ -24,7 +24,7 @@ export default () => {
       const response = await fetch(`${process.env.REACT_APP_APIURL}/brew/${brewId}`, header).then((response) =>
         response.json(),
       );
-      setActiveBrew(response);
+      setBrew(response);
     } catch (e) {
       console.log(`Error while fetching brewId ${brewId}: ${e}`);
     }
@@ -35,7 +35,7 @@ export default () => {
   }, []);
 
   return {
-    activeBrew,
+    brew,
     brews,
     fetchBrew,
     fetchBrews,

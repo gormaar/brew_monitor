@@ -15,10 +15,10 @@ type Server struct {
 	Router  *mux.Router
 }
 
-func (server *Server) Initialize(Db_ConnectionString, DbName string) {
+func (server *Server) Initialize(DbConnectionString, DbName string) {
 
 	var err error
-	server.DB, err = gorm.Open("mssql", Db_ConnectionString)
+	server.DB, err = gorm.Open("mssql", DbConnectionString)
 	if err != nil {
 		fmt.Printf("Cannot connect to database: %s \n", DbName)
 		log.Fatal("Error: ", err)

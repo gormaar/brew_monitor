@@ -16,12 +16,12 @@ type DashBoardParams = {
 
 const DashboardScreen: FC = () => {
   const { brewId } = useParams<DashBoardParams>();
-  const { activeBrew, brews, fetchBrews, fetchBrew } = useBrew();
-  const [active, setActiveBrew] = useState<Brew>();
+  const { brew, brews, fetchBrews, fetchBrew } = useBrew();
+  const [active, setActiveBrew] = useState<Brew | null>(brew!);
 
   useEffect(() => {
-    const newBrew = fetchBrew(brewId);
-    setActiveBrew(newBrew);
+    fetchBrew(brewId);
+    setActiveBrew(brew!);
   }, [brewId]);
 
   return (
@@ -32,7 +32,7 @@ const DashboardScreen: FC = () => {
       <Box className="dashboard">
         <Box className="dashboard__header">
           <Typography variant="h3" gutterBottom>
-            Name placeholder
+            {active?.name}
           </Typography>
           <Respirator frequency={100} />
         </Box>
