@@ -7,6 +7,7 @@ import (
 )
 
 type Brew struct {
+	gorm.Model
 	ID			uint		`gorm:"primary_key; not_null; auto_increment;" json:"ID"`
 	Name		string		`json:"Name"`
 	Type		string		`json:"Type"`
@@ -20,7 +21,7 @@ type Brew struct {
 
 func (b *Brew) GetBrew(db *gorm.DB, brewId uint) (*Brew, error) {
 	var err error
-	err = db.Debug().Model(&Brew{}).Where("ID = ?", brewId).Take(&b).Error
+	err = db.Debug().Model(&Brew{}).Limit(100).Where("ID = ?", brewId).Take(&b).Error
 	if err != nil{
 		return &Brew{}, err
 	}
@@ -30,7 +31,7 @@ func (b *Brew) GetBrew(db *gorm.DB, brewId uint) (*Brew, error) {
 func (b *Brew) GetBrews(db *gorm.DB) (*[]Brew, error){
 	var err error
 	brews := []Brew{}
-	err = db.Debug().Table(b.table).Find(&brews).Error
+	err = db.Debug().Table("Brew").Find(&brews).Error
 	if err != nil {
 		return &[]Brew{}, err
 	}
