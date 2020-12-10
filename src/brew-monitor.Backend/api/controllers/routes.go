@@ -4,12 +4,11 @@ package controllers
 func (server *Server) initializeRoutes() {
 
 	//Routes for respiration
-	server.Router.HandleFunc("/respiration/{brew_id}", server.GetRecentRespirationData).Methods("GET")
-	server.Router.HandleFunc("/respirations/{brew_id}", server.GetAllRespirations).Methods("GET")
-	server.Router.HandleFunc("/respiration/hour/{brew_id}", server.GetHourlyRespirationData).Methods("GET")
-	server.Router.HandleFunc("/respiration/create/{brew_id}", server.CreateRespiration).Methods("POST")
-	server.Router.HandleFunc("/respiration/update/{brew_id}/{resp_id}", server.PutRespiration).Methods("PUT")
-	server.Router.HandleFunc("/respiration/delete/{brew_id}/{resp_id}", server.DeleteRespiration).Methods("DELETE")
+	server.Router.HandleFunc("/airlock/{brew_id}", server.GetAirlock).Methods("GET")
+	server.Router.HandleFunc("/airlocks/{brew_id}", server.GetAirlocks).Methods("GET")
+	server.Router.HandleFunc("/airlock/create/{brew_id}", server.CreateAirlock).Methods("POST")
+	server.Router.HandleFunc("/airlock/update/{brew_id}/{resp_id}", server.PutAirlock).Methods("PUT")
+	server.Router.HandleFunc("/airlock/delete/{brew_id}/{resp_id}", server.DeleteAirlock).Methods("DELETE")
 
 	//Routes for temperature
 	server.Router.HandleFunc("/temp/{brew_id}", server.GetRecentTemperatureData).Methods("GET")
