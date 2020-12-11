@@ -40,7 +40,7 @@ func (server *Server) GetBrews(w http.ResponseWriter, r *http.Request) {
 func (server *Server) CreateBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	brewModel := repository.Brew{}
-	brew, err := brewModel.CreateBrew(server.DB)
+	brew, err := brewModel.CreateBrew(server.DB, r)
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return

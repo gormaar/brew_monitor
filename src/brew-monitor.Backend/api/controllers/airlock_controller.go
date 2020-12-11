@@ -45,7 +45,7 @@ func (server *Server) GetAirlocks(w http.ResponseWriter, r *http.Request) {
 func (server *Server) CreateAirlock(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	respModel := repository.Airlock{}
-	resp, err := respModel.CreateAirlock(server.DB)
+	resp, err := respModel.CreateAirlock(server.DB, r)
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return

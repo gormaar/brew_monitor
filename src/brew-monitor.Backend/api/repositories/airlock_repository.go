@@ -1,8 +1,11 @@
 package repositories
 
 import (
+	"encoding/json"
 	"errors"
 	"github.com/jinzhu/gorm"
+	"io/ioutil"
+	"net/http"
 	"time"
 )
 
@@ -14,16 +17,16 @@ type Airlock struct {
 	BrewId				uint			`json:"brew_id"`
 }
 
-func (r *Airlock) GetAirlock(db *gorm.DB, brewId uint) (*Airlock, error){
+func (a *Airlock) GetAirlock(db *gorm.DB, brewId uint) (*Airlock, error){
 	var err error
-	err = db.Debug().Model(&Airlock{}).Where("brew_id = ?", brewId).Last(&r).Error
+	err = db.Debug().Model(&Airlock{}).Where("brew_id = ?", brewId).Last(&a).Error
 	if err != nil{
 		return &Airlock{}, err
 	}
-	return r, nil
+	return a, nil
 }
 
-func (r *Airlock) GetAirlocks(db *gorm.DB, brewId uint) (*[]Airlock, error){
+func (a *Airlock) GetAirlocks(db *gorm.DB, brewId uint) (*[]Airlock, error){
 	var err error
 	respirations := []Airlock{}
 	err = db.Debug().Model(&Airlock{}).Where("brew_id = ?", brewId).Find(&respirations).Error
@@ -33,16 +36,21 @@ func (r *Airlock) GetAirlocks(db *gorm.DB, brewId uint) (*[]Airlock, error){
 	return &respirations, nil
 }
 
-func (r *Airlock) CreateAirlock(db *gorm.DB) (*Airlock, error) {
+func (a *Airlock) CreateAirlock(db *gorm.DB, r *http.Request) (*Airlock, error) {
 	var err error
-	err = db.Debug().Model(&Airlock{}).Create(&r).Error
+	body, _ := ioutil.ReadAll(r.Body)
+	requestErr := json.Unmarshal(body, &a)
+	if requestErr != nil {
+		return &Airlock{}, err
+	}
+	err = db.Debug().Model(&Airlock{}).Create(&a).Error
 	if err != nil {
 		return &Airlock{}, err
 	}
-	return r, nil
+	return a, nil
 }
 
-func (r *Airlock) DeleteAirlock(db *gorm.DB, respId uint) (int64, error) {
+func (a *Airlock) DeleteAirlock(db *gorm.DB, respId uint) (int64, error) {
 	db = db.Debug().Model(&Airlock{}).Where("airlock_id = ?", respId).Take(&Airlock{}).Delete(&Airlock{})
 	if db.Error != nil {
 		if gorm.IsRecordNotFoundError(db.Error) {
@@ -53,11 +61,11 @@ func (r *Airlock) DeleteAirlock(db *gorm.DB, respId uint) (int64, error) {
 	return db.RowsAffected, nil
 }
 
-func (r *Airlock) PutAirlock(db *gorm.DB, airlockId uint) (*Airlock, error) {
+func (a *Airlock) PutAirlock(db *gorm.DB, airlockId uint) (*Airlock, error) {
 	var err error
-	err = db.Debug().Model(&Airlock{}).Where("airlock_id = ?", airlockId).Update(Airlock{AirlockActivity: r.AirlockActivity, CreatedAt: r.CreatedAt, UpdatedAt: r.UpdatedAt, BrewId: r.BrewId}).Error
+	err = db.Debug().Model(&Airlock{}).Where("airlock_id = ?", airlockId).Update(Airlock{AirlockActivity: a.AirlockActivity, CreatedAt: a.CreatedAt, UpdatedAt: a.UpdatedAt, BrewId: a.BrewId}).Error
 	if err != nil {
 		return &Airlock{}, err
 	}
-	return r, nil
+	return a, nil
 }
