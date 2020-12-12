@@ -2,9 +2,12 @@ FROM golang:latest
 
 WORKDIR .
 COPY . .
-
-RUN go get -d -v ./...
-RUN go install -v ./...
+ENV PATH=$PATH:./
+RUN go get -u github.com/gorilla/mux
+RUN go get -u github.com/jinzhu/gorm
+RUN go get -u github.com/go-sql-driver/mysql
+RUN go get -u github.com/joho/godotenv
+RUN go build -o brew-monitor.Backend .
 
 EXPOSE 8080
 CMD ["brew-monitor.Backend"]
