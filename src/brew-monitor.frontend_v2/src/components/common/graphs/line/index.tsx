@@ -286,26 +286,6 @@ const LineGraph: FC = () => {
       xScale={{ type: 'point' }}
       yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
       yFormat=" >-.2f"
-      axisTop={null}
-      axisRight={null}
-      axisBottom={{
-        orient: 'bottom',
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-        legend: 'transportation',
-        legendOffset: 36,
-        legendPosition: 'middle',
-      }}
-      axisLeft={{
-        orient: 'left',
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-        legend: 'count',
-        legendOffset: -40,
-        legendPosition: 'middle',
-      }}
       pointSize={10}
       pointColor={{ theme: 'background' }}
       pointBorderWidth={2}
@@ -326,7 +306,7 @@ const LineGraph: FC = () => {
           itemOpacity: 0.75,
           symbolSize: 12,
           symbolShape: 'circle',
-          symbolBorderColor: 'rgba(0, 0, 0, .5)',
+          // symbolBorderColor: 'rgba(0, 0, 0, .5)',
           effects: [
             {
               on: 'hover',
