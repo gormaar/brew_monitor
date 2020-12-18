@@ -13,13 +13,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - working-directory: src/brew-monitor.frontend_v2
-    - name: Build docker image from client
+      name: Build docker image from client
       run: docker build -t gormerik/brew-monitor.client .
+    - uses: actions/checkout@v2
     - name: Push client to Docker Hub
       run: docker push gormerik/brew-monitor.client:latest
     - working-directory: src/brew-monitor.Backend
+    - uses: actions/checkout@v2
     - name: Build docker image from backend
       run: docker build -t gormerik/brew-monitor.api .
+    - uses: actions/checkout@v2
     - name: Push backend to Docker Hub
       run: docker push gormerik/brew-monitor.api:latest
 
