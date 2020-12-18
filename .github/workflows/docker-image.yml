@@ -1,0 +1,27 @@
+name: brew-monitor CI
+on:
+  pull_request:
+    branches: 
+      - master
+  workflow_dispatch:
+    branches:
+      - master
+jobs:
+  client_build:
+    name: build docker image from client
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - working-directory: src/brew-monitor.frontend_v2
+    - name: Build docker image from client
+      run: docker build -t gormerik/brew-monitor.client .
+    - name: Push client to Docker Hub
+      run: docker push gormerik/brew-monitor.client:latest
+    - working-directory: src/brew-monitor.Backend
+    - name: Build docker image from backend
+      run: docker build -t gormerik/brew-monitor.api .
+    - name: Push backend to Docker Hub
+      run: docker push gormerik/brew-monitor.api:latest
+
+      
+      
