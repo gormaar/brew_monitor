@@ -16,10 +16,10 @@ jobs:
         with:
          username: ${{ secrets.DOCKERHUB_USERNAME }}
          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - name: Build client
+      - name: Build
         working-directory: src/brew-monitor.frontend_v2
         run: docker build -t gormerik/brew-monitor.client .
-      - name: Push client
+      - name: Push
         run: docker push gormerik/brew-monitor.client
   backend_build:
     runs-on: ubuntu-latest
@@ -29,10 +29,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - name: Build backend
+      - name: Build
         working-directory: src/brew-monitor.Backend
         run: docker build -t gormerik/brew-monitor.api .
-      - name: Push backend
+      - name: Push
         run: docker push gormerik/brew-monitor.api
 
     
