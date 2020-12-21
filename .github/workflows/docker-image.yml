@@ -24,6 +24,7 @@ jobs:
           push: true
           dockerfile: ./Dockerfile
           repository: gormerik/brew-monitor.client
+          tags: gormerik/brew-monitor.client:latest
   backend_build:
     runs-on: ubuntu-latest
     steps:
