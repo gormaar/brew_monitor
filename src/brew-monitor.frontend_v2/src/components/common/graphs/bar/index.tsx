@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
-import GraphData, { DataFormat } from '../../../../types/GraphData';
+import GraphData from '../../../../types/GraphData';
 
 type BarGraphProps = {
   data: GraphData[];
@@ -8,12 +8,29 @@ type BarGraphProps = {
   leftLegend: string;
 };
 
-const BarGraph: FC<BarGraphProps> = (props) => {
-  const { bottomLegend, data, leftLegend } = props;
+const BarGraph: FC<BarGraphProps> = ({ bottomLegend, data, leftLegend }) => {
+  const testData = [
+    {
+      id: 'Pilsner',
+      label: 'Pilsner',
+      value: 3600,
+    },
+    {
+      id: 'Caramunich',
+      label: 'Caramunich',
+      value: 2500,
+    },
+    {
+      id: 'Wheat',
+      label: 'Wheat',
+      value: 2000,
+    },
+  ];
   return (
     <ResponsiveBar
-      data={data}
-      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      data={testData}
+      keys={['Pilsner', 'Caramunich', 'Wheat']}
+      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       padding={0.3}
       valueScale={{ type: 'linear' }}
       colors={{ scheme: 'nivo' }}
@@ -21,8 +38,8 @@ const BarGraph: FC<BarGraphProps> = (props) => {
         {
           id: 'dots',
           type: 'patternDots',
-          background: 'inherit',
-          color: '#38bcb2',
+          background: 'wheat',
+          color: '#dddada',
           size: 4,
           padding: 1,
           stagger: true,
@@ -30,8 +47,8 @@ const BarGraph: FC<BarGraphProps> = (props) => {
         {
           id: 'lines',
           type: 'patternLines',
-          background: 'inherit',
-          color: '#eed312',
+          background: 'wheat',
+          color: '#dddada',
           rotation: -45,
           lineWidth: 6,
           spacing: 10,
@@ -58,7 +75,7 @@ const BarGraph: FC<BarGraphProps> = (props) => {
       }}
       labelSkipWidth={12}
       labelSkipHeight={12}
-      labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+      labelTextColor={'#dddada'}
       legends={[
         {
           dataFrom: 'keys',

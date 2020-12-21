@@ -1,0 +1,15 @@
+.status {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  height: 100px;
+  background: var(--color-secondary);
+  padding: 8px;
+  box-shadow: 3px 3px 10px black;
+  border-radius: 2px;
+
+  h3 {
+    text-align: center;
+    color: var(--color-font);
+  }
+}

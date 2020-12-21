@@ -1,13 +1,13 @@
 package controllers
 
 import (
+	repository "../repositories"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
 	"net/http"
-	repository "../repositories"
 )
 
 type Server struct {
@@ -26,7 +26,7 @@ func (server *Server) Initialize(DbDriver, DbUser, DbPassword, DbPort, DbHost, D
 	} else {
 		fmt.Printf("Successfully connected to database: %s \n", DbName)
 	}
-	server.DB.Debug().AutoMigrate(&repository.Brew{}, &repository.Temperature{}, &repository.Respiration{})
+	server.DB.Debug().AutoMigrate(&repository.Brew{}, &repository.Temperature{}, &repository.Airlock{})
 	server.Router = mux.NewRouter()
 	server.initializeRoutes()
 }

@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
+func (server *Server) GetBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 
@@ -18,7 +18,7 @@ func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	brewModel := repository.Brew{}
-	brew, err := brewModel.GetSingleBrew(server.DB, uint(brewId))
+	brew, err := brewModel.GetBrew(server.DB, uint(brewId))
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return
@@ -26,10 +26,10 @@ func (server *Server) GetSingleBrew(w http.ResponseWriter, r *http.Request) {
 	response.JSON(w, http.StatusOK, brew)
 }
 
-func (server *Server) GetAllBrews(w http.ResponseWriter, r *http.Request) {
+func (server *Server) GetBrews(w http.ResponseWriter, r *http.Request) {
 	setCors(&w)
 	brewModel := repository.Brew{}
-	brews, err := brewModel.GetAllBrews(server.DB)
+	brews, err := brewModel.GetBrews(server.DB)
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return
@@ -40,7 +40,7 @@ func (server *Server) GetAllBrews(w http.ResponseWriter, r *http.Request) {
 func (server *Server) CreateBrew(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	brewModel := repository.Brew{}
-	brew, err := brewModel.CreateBrew(server.DB)
+	brew, err := brewModel.CreateBrew(server.DB, r)
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return

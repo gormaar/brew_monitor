@@ -1,19 +1,25 @@
 package repositories
 
 import (
+	"encoding/json"
 	"errors"
 	"github.com/jinzhu/gorm"
+	"io/ioutil"
+	"net/http"
 	"time"
 )
 
 type Brew struct {
-	BrewId			uint		`gorm:"primary_key; not_null; auto_increment;" json:"brew_id"`
-	BrewName		string		`json:"brew_name"`
-	BrewType		string		`json:"brew_type"`
-	CreationTime	time.Time	`gorm: "default: current_timestamp" json:"creation_timestamp"`
+	BrewId				uint		`gorm:"primary_key; not_null; auto_increment;" json:"brew_id"`
+	BrewName			string		`json:"brew_name"`
+	BrewType			string		`json:"brew_type"`
+	BrewStatus			string		`json:"brew_status"`
+	BrewFermentationTime uint	 	`json:"brew_fermentation_time"`
+	CreatedAt			time.Time	`json:"created_at"`
+	UpdatedAt 			time.Time	`json:"updated_at"`
 }
 
-func (b *Brew) GetSingleBrew(db *gorm.DB, brewId uint) (*Brew, error) {
+func (b *Brew) GetBrew(db *gorm.DB, brewId uint) (*Brew, error) {
 	var err error
 	err = db.Debug().Model(&Brew{}).Where("brew_id = ?", brewId).Take(&b).Error
 	if err != nil{
@@ -22,7 +28,7 @@ func (b *Brew) GetSingleBrew(db *gorm.DB, brewId uint) (*Brew, error) {
 	return b, nil
 }
 
-func (b *Brew) GetAllBrews(db *gorm.DB) (*[]Brew, error){
+func (b *Brew) GetBrews(db *gorm.DB) (*[]Brew, error){
 	var err error
 	brews := []Brew{}
 	err = db.Debug().Model(&Brew{}).Limit(100).Find(&brews).Error
@@ -33,8 +39,14 @@ func (b *Brew) GetAllBrews(db *gorm.DB) (*[]Brew, error){
 	return &brews, nil
 }
 
-func (b * Brew) CreateBrew(db *gorm.DB) (*Brew, error) {
+func (b *Brew) CreateBrew(db *gorm.DB, r *http.Request) (*Brew, error) {
 	var err error
+	body, _ := ioutil.ReadAll(r.Body)
+
+	jsonErr := json.Unmarshal(body, &b)
+	if jsonErr != nil {
+		return &Brew{}, err
+	}
 	err = db.Debug().Model(&Brew{}).Create(&b).Error
 	if err != nil {
 		return &Brew{}, err
@@ -55,7 +67,7 @@ func (b * Brew) DeleteBrew(db *gorm.DB, brewId uint) (int64, error){
 
 func (b *Brew) PutBrew(db *gorm.DB, brewId uint) (*Brew, error) {
 	var err error
-	err = db.Debug().Model(&Brew{}).Where("id = ?", brewId).Update(Brew{BrewName: b.BrewName, BrewType: b.BrewType}).Error
+	err = db.Debug().Model(&Brew{}).Where("id = ?", brewId).Update(Brew{BrewName: b.BrewName, BrewType: b.BrewType, BrewStatus: b.BrewStatus, BrewFermentationTime: b.BrewFermentationTime}).Error
 	if err != nil {
 		return &Brew{}, err
 	}

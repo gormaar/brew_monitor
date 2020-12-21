@@ -1,9 +1,13 @@
 .descriptionTable {
-  color: #b4afaf;
+  width: 50%;
+  color: var(--color-font);
+  background: var(--color-secondary);
+  box-shadow: 3px 3px 10px black;
+  border-radius: 2px;
 
   tr,
   th,
   td {
-    color: #b4afaf;
+    color: var(--color-font);
   }
 }
