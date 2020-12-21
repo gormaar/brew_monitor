@@ -1,68 +1,87 @@
+create schema brew_monitor;
+use brew_monitor;
 
 create table Brew(
-ID int not null primary key identity(1, 1),
-Name nvarchar(100),
-Type nvarchar(100),
-Status nvarchar(100),
-FermentationTime int,
-CreatedDate Date,
-ModifiedDate Date,
+brew_id integer not null auto_increment,
+brew_name varchar(100),
+brew_type varchar(100),
+created_date datetime,
+modified_date datetime
 );
 
 create table Temperature(
-ID int not null primary key identity(1, 1),
-Temperature decimal,
-CreatedDate Date,
-ModifiedDate Date,
-BrewID int foreign key references Brew(ID)
+temp_id integer not null auto_increment,
+temp_value decimal,
+created_date datetime,
+modified_date datetime,
+brew_id integer,
+
+constraint temp_pk primary key (temp_id),
+constraint temp_fk_1 foreign key (brew_id) references Brew (brew_id)
 );
 
 create table Airlock(
-ID int not null primary key identity(1, 1),
-Activity int,
-CreatedDate Date,
-ModifiedDate Date,
-BrewID int references Brew(ID)
-);
+airlock_id integer not null auto_increment,
+airlock_activity integer,
+created_date datetime,
+modified_date datetime,
+brew_id integer,
 
-create table Gravity(
-ID int not null primary key identity(1, 1),
-Gravity decimal,
-OriginalGravityAim decimal,
-SpecificGravityAim decimal,
-FinalGravityAim decimal,
-OriginalGravityActual decimal,
-SpecificGravityActual decimal,
-FinalGravityActual decimal,
-CreatedDate Date,
-ModifiedDate Date,
-BrewID int foreign key references Brew(ID)
+constraint airlock_pk primary key (airlock_id),
+constraint airlock_fk_1 foreign key (brew_id) references Brew (brew_id)
 );
 
 create table Ingredients(
-ID int not null primary key identity(1, 1),
-BrewID int foreign key references Brew(ID),
+ingredients_id integer not null auto_increment,
+brew_id integer,
+
+constraint ingredients_pk primary key (ingredients_id),
+constraint ingredients_fk_1 foreign key (brew_id) references Brew (brew_id)
 );
 
 create table Hops(
-ID int not null primary key identity(1, 1),
-Type nvarchar(100),
-Amount int,
-IngredientID int foreign key references Ingredients(ID)
+hop_id integer not null auto_increment,
+hop_type varchar(100),
+hop_amount integer,
+ingredients_id integer,
+
+constraint hop_pk primary key (hop_id),
+constraint hop_fk_1 foreign key (ingredients_id) references Ingredients (ingredients_id)
 );
 
 create table Yeast(
-ID int not null primary key identity(1, 1),
-Type nvarchar(100),
-Amount int,
-IngredientID int foreign key references Ingredients(ID)
+yeast_id integer not null auto_increment,
+yeast_type varchar(100),
+yeast_amount integer,
+ingredients_id integer,
+
+constraint yeast_pk primary key (yeast_id),
+constraint yeast_fk_1 foreign key (ingredients_id) references Ingredients (ingredients_id)
 );
 
 create table Barley(
-ID int not null primary key identity(1, 1),
-Type nvarchar(100),
-Amount int,
-IngredientID int foreign key references Ingredients(ID)
+barley_id integer not null auto_increment,
+barley_type varchar(100),
+barley_amount integer,
+ingredients_id integer,
+
+constraint barley_pk primary key (barley_id),
+constraint barley_fk_1 foreign key (ingredients_id) references Ingredients (ingredients_id)
 );
 
+create table Gravity(
+gravity_id integer not null auto_increment,
+gravity_value decimal,
+gravity_OG_aim decimal,
+gravity_SG_aim decimal,
+gravity_FG_aim decimal,
+gravity_OG_actual decimal,
+gravity_SG_actual decimal,
+gravity_FG_actual decimal,
+created_at datetime,
+updated_at datetime,
+brew_id integer,
 
+constraint gravity_pk primary key (gravity_id),
+constraint gravity_fk_1 foreign key (brew_id) references Brews (brew_id)
+);
