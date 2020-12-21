@@ -21,6 +21,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
+          context: .
           file: src/brew-monitor.frontend_v2/Dockerfile
           push: true
           tags: gormerik/brew-monitor.client:latest
