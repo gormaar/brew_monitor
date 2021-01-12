@@ -17,7 +17,7 @@ jobs:
          username: ${{ secrets.DOCKERHUB_USERNAME }}
          password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build
-        working-directory: src/brew-monitor.frontend_v2
+        working-directory: src/brew-monitor.frontend
         run: docker build -t gormerik/brew-monitor.client .
       - name: Push
         run: docker push gormerik/brew-monitor.client
