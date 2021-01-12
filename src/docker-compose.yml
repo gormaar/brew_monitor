@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  database:
+    container_name: db
+    image: gormerik/brew-monitor.db:latest
+    volumes: 
+      - data-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    cap_add: 
+      - SYS_NICE # CAP_SYS_NICE
+  api:
+    container_name: api
+    image: gormerik/brew-monitor.api:latest
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    depends_on:
+      - database
+    network_mode: host
+  client:
+    container_name: client
+    image: gormerik/brew-monitor.client:latest
+    ports:
+      - "80:80"
+volumes:
+  data-volume:
