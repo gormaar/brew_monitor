@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  api:
+    container_name: api
+    image: gormerik/brew-monitor.api:latest
+    ports:
+      - "8080:8080"
+  client:
+    container_name: client
+    image: gormerik/brew-monitor.client:latest
+    ports:
+      - "80:80"
+  database:
+    container_name: db
+    image: gormerik/brew-monitor.db:latest
+    volumes: 
+      - data-volume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+volumes:
+  data-volume:
