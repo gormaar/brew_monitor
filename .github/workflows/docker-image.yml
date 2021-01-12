@@ -1,8 +1,5 @@
 name: brew-monitor CI
 on:
-  pull_request:
-    branches: 
-      - master
   workflow_dispatch:
     branches: 
       - dev
