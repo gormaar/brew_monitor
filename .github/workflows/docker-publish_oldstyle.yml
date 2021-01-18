@@ -31,11 +31,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build
         working-directory: src/brew-monitor.Backend
-        run: docker build -t gormerik/brew-monitor.api .
+        run: docker build 
+        --build-arg DB_NAME={{ secrets.DB_NAME}} 
+        --build-arg DB_PASSWORD={{ secrets.DB_PASSWORD }} 
+        --build-arg DB_USER={{ secrets.DB_USER }} 
+        -t gormerik/brew-monitor.api .
       - name: Push
         run: docker push gormerik/brew-monitor.api
-
-    
-    
-      
-      
