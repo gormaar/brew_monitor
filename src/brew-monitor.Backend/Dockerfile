@@ -3,6 +3,10 @@ FROM golang:latest
 WORKDIR .
 COPY . .
 ENV PATH=$PATH:./
+ARG DB_USER
+ARG DB_PASSWORD
+ARG DB_NAME
+
 RUN go get -u github.com/gorilla/mux
 RUN go get -u github.com/jinzhu/gorm
 RUN go get -u github.com/go-sql-driver/mysql
