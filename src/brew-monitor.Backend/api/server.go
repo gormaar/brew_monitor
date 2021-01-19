@@ -15,7 +15,7 @@ func Run() {
 	var err error
 	err = godotenv.Load()
 	if err != nil {
-		log.Prinf("Error when loading .env file %v", err)
+		log.Printf("Error when loading .env file %v", err)
 	}
 
 	server.Initialize("mysql", os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), "3306", "127.0.0.1" , os.Getenv("DB_NAME"))
