@@ -47,3 +47,13 @@ jobs:
         run: docker build --build-arg DB_NAME=${{ secrets.DB_NAME}} --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} --build-arg DB_USER=${{ secrets.DB_USER }} -t gormerik/brew-monitor.db .
       - name: Push
         run: docker push gormerik/brew-monitor.db
+  webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Webhook Action
+        uses: joelwmale/webhook-action@2.0.2
+        with:
+          url: http://brew-monitor.no/undefined
+          #headers:
+          #body:
+    
