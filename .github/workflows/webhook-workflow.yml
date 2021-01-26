@@ -1,0 +1,19 @@
+name: Webhook 
+on:
+  workflow_run:
+    workflows: ["CI"]
+  workflow_dispatch:
+    branches:
+      - master
+        dev
+jobs:
+  webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - if: ${{ github.event.workflow_run.conclusion == 'success' }}
+      - name: Webhook Action
+        uses: joelwmale/webhook-action@2.0.2
+        with:
+          url: http://brew-monitor.no/undefined
+          #headers:
+          #body:
