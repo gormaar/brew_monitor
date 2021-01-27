@@ -10,6 +10,7 @@ jobs:
   webhook:
     runs-on: ubuntu-latest
     steps:
+      - name: Check build pipeline status
       - if: ${{ github.event.workflow_run.conclusion == 'success' }}
       - name: Webhook Action
         uses: joelwmale/webhook-action@2.0.2
