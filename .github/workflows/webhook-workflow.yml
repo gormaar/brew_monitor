@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Webhook Action
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        uses: joelwmale/webhook-action@master
+        uses: joelwmale/webhook-action@2.0.2
         with:
           url: ${{ secrets.WEBHOOK_ENDPOINT }}
+          #headers: 
+          #body:  
