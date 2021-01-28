@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Webhook Action
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        uses: joelwmale/webhook-action@2.0.2
+        uses: joelwmale/webhook-action@master
         with:
           url: http://brew-monitor.no/undefined
           #headers:
