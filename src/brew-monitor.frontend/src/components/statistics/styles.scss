@@ -1,7 +1,18 @@
+// .statistics {
+//   display: flex;
+//   flex-wrap: wrap;
+//   flex-direction: row;
+//   width: 100%;
+//   justify-content: space-between;
+// }
+
 .statistics {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    '. . . . .'
+    '. . . . .'
+    '. . . . .';
 }

@@ -1,4 +1,4 @@
-import React, { FC, Fragment } from 'react';
+import React, { FC } from 'react';
 import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableHead from '@material-ui/core/TableHead';
@@ -8,28 +8,26 @@ import './styles.scss';
 
 const DetailsTable: FC = () => {
   return (
-    <Fragment>
-      <Table className="descriptionTable" style={{ width: '48%' }}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell>Type</TableCell>
-            <TableCell>Brew date</TableCell>
-            <TableCell>Fermentation time</TableCell>
-            <TableCell>Predicted amount</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </Fragment>
+    <Table className="descriptionTable" style={{ width: '48%' }}>
+      <TableHead>
+        <TableRow>
+          <TableCell>Name</TableCell>
+          <TableCell>Type</TableCell>
+          <TableCell>Brew date</TableCell>
+          <TableCell>Fermentation time</TableCell>
+          <TableCell>Predicted amount</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Dead Pony Club</TableCell>
+          <TableCell>Pale Ale</TableCell>
+          <TableCell>16.02.21</TableCell>
+          <TableCell>14 days</TableCell>
+          <TableCell>20 liters</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
   );
 };
 

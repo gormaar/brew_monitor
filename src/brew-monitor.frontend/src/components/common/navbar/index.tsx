@@ -9,7 +9,7 @@ type NavbarProps = {
 const Navbar: FC<NavbarProps> = ({ children }) => {
   return (
     <Fragment>
-      <Appbar style={{ background: '#808080' }} position="sticky">
+      <Appbar style={{ background: '#637381' }} position="sticky">
         <Toolbar>{children}</Toolbar>
       </Appbar>
     </Fragment>
