@@ -1,7 +1,9 @@
-.barleyGraph {
-  width: 30%;
-  height: 100%;
+.shortTermAirlockGraph {
+  position: relative;
+  width: 60%;
+  height: 400px;
   background: var(--color-secondary);
+  color: var(--color-font);
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
 }

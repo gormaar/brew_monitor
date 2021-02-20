@@ -1,13 +1,15 @@
 .respirator {
+  position: absolute;
+  right: 0;
+  display: inline-block;
   background: tomato;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
+  margin: 10px 10px 0 0;
 }
 
 .respirator--blink {
-  background: rgb(238, 116, 95);
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
+  @extend .respirator;
+  background: rgb(241, 146, 129);
 }

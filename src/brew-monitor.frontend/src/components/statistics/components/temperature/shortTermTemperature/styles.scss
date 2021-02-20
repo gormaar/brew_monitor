@@ -1,7 +1,9 @@
-.barleyGraph {
-  width: 30%;
-  height: 100%;
+.shortTermTemperatureGraph {
+  width: 45%;
+  height: 400px;
   background: var(--color-secondary);
+  color: var(--color-font);
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
+  margin-top: 16px;
 }

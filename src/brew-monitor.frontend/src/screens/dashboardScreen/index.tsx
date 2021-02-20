@@ -34,7 +34,6 @@ const DashboardScreen: FC = () => {
           <Typography variant="h3" gutterBottom>
             {active?.name}
           </Typography>
-          <Respirator frequency={100} />
         </Box>
         <Statistics />
       </Box>

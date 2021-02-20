@@ -2,6 +2,7 @@ FROM mysql:latest as builder
 
 RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
 
+<<<<<<< HEAD
 ARG DB_USER
 ARG DB_PASSWORD
 ARG DB_DATABASE
@@ -9,6 +10,15 @@ ENV MYSQL_USER=${DB_USER}
 ENV MYSQL_PASSWORD=${DB_PASSWORD}
 ENV MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
 ENV MYSQL_DATABASE=${DB_DATABASE}
+=======
+#ARG DB_USER
+#ARG DB_PASSWORD
+#ARG DB_DATABASE
+#ENV MYSQL_USER=${DB_USER}
+#ENV MYSQL_PASSWORD=${DB_PASSWORD}
+ENV MYSQL_ROOT_PASSWORD a
+#ENV MYSQL_DATABASE=${DB_DATABASE}
+>>>>>>> master
 
 WORKDIR /app
 COPY brew-monitor_db.sql /docker-entrypoint-initdb.d/
