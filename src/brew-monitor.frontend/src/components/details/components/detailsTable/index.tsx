@@ -4,30 +4,36 @@ import TableRow from '@material-ui/core/TableRow';
 import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import Paper from '@material-ui/core/Paper';
+import TableContainer from '@material-ui/core/TableContainer';
 import './styles.scss';
 
 const DetailsTable: FC = () => {
   return (
-    <Table className="descriptionTable" style={{ width: '48%' }}>
-      <TableHead>
+    <TableContainer style={{ boxShadow: '2px 2px 5px black' }}>
+      <Table className="descriptionTable">
         <TableRow>
           <TableCell>Name</TableCell>
-          <TableCell>Type</TableCell>
-          <TableCell>Brew date</TableCell>
-          <TableCell>Fermentation time</TableCell>
-          <TableCell>Predicted amount</TableCell>
+          <TableCell align="right">Dead Pony Club</TableCell>
         </TableRow>
-      </TableHead>
-      <TableBody>
         <TableRow>
-          <TableCell>Dead Pony Club</TableCell>
-          <TableCell>Pale Ale</TableCell>
-          <TableCell>16.02.21</TableCell>
-          <TableCell>14 days</TableCell>
-          <TableCell>20 liters</TableCell>
+          <TableCell>Type</TableCell>
+          <TableCell align="right">Pale Ale</TableCell>
         </TableRow>
-      </TableBody>
-    </Table>
+        <TableRow>
+          <TableCell>Brew date</TableCell>
+          <TableCell align="right">16.02.21</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Fermentation time</TableCell>
+          <TableCell align="right">14 days</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Predicted amound</TableCell>
+          <TableCell align="right">20 liters</TableCell>
+        </TableRow>
+      </Table>
+    </TableContainer>
   );
 };
 

@@ -3,12 +3,12 @@ import LineGraph from '../../../../common/graphs/line';
 import Box from '@material-ui/core/Box';
 import './styles.scss';
 
-const LongTermTemperatureGraph: FC = () => {
+const LongTermAirlockGraph: FC = () => {
   return (
-    <Box className="longTermTemperatureGraph">
+    <Box className="longTermAirlockGraph">
       <LineGraph />
     </Box>
   );
 };
 
-export default LongTermTemperatureGraph;
+export default LongTermAirlockGraph;

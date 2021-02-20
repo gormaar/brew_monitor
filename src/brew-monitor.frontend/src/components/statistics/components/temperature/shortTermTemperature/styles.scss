@@ -1,6 +1,9 @@
 .shortTermTemperatureGraph {
-  grid-column-start: 3;
-  grid-column-end: five;
-  grid-row-start: 1;
-  grid-row-end: 3;
+  width: 45%;
+  height: 400px;
+  background: var(--color-secondary);
+  color: var(--color-font);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  margin-top: 16px;
 }

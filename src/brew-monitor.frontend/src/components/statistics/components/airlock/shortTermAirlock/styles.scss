@@ -1,9 +1,9 @@
-.longTermTemperatureGraph {
-  width: 45%;
+.shortTermAirlockGraph {
+  position: relative;
+  width: 60%;
   height: 400px;
   background: var(--color-secondary);
   color: var(--color-font);
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
-  margin-top: 16px;
 }
