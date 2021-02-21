@@ -1,37 +1,32 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
+import React, { FC, Fragment, useState } from 'react';
+import { Select, FormControl, MenuItem, InputLabel } from '@material-ui/core';
 import './styles.scss';
 import Brew from '../../../types/Brew';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 type BrewSelectorProps = {
-  activeBrew: Brew | null;
+  activeBrew: Brew | undefined;
   brews: Brew[];
 };
 
-const BrewSelector: FC<BrewSelectorProps> = ({ brews }) => {
-  const [activeBrew, setActiveBrew] = useState<Brew>(brews[brews.length - 1] || null);
+const BrewSelector: FC<BrewSelectorProps> = ({ activeBrew, brews }) => {
+  const [active, setActive] = useState<Brew>(activeBrew ?? brews[-1]);
   const history = useHistory();
 
   const handleChange = (event: React.ChangeEvent, brew: Brew) => {
     event.preventDefault();
-    setActiveBrew(() => {
-      return brew;
-    });
+    setActive(brew);
     history.push(`/${brew.id}`);
   };
 
-  useEffect(() => {
-    history.push(`/${activeBrew?.id}`);
-  }, []);
+  // useEffect(() => {
+  //   history.push(`/${active?.id}`);
+  // }, [activeBrew]);
 
   return (
     <Fragment>
       <FormControl>
-        <InputLabel id="brewSelector__label">{activeBrew?.name}</InputLabel>
+        <InputLabel id="brewSelector__label">{active?.name}</InputLabel>
         <Select className="select" onChange={() => handleChange} labelId="brewSelector__label">
           {brews.map((brew) => {
             return <MenuItem key={`brew__${brew.id}`}>{brew}</MenuItem>;

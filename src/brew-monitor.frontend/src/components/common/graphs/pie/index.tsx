@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import GraphData from '../../../../types/GraphData';
 import { ResponsivePie } from '@nivo/pie';
 
-type PieData = {
-  id: string;
-  label: string;
-  value: number;
-};
+// type PieData = {
+//   id: string;
+//   label: string;
+//   value: number;
+// };
 
 type PieGraphProps = {
   data?: GraphData[];

@@ -1,14 +1,11 @@
-import React, { FC, Fragment, useState, useEffect } from 'react';
+import React, { FC, Fragment, useEffect } from 'react';
 import { useParams } from 'react-router';
 import Statistics from '../../components/statistics';
 import Navbar from '../../components/common/navbar';
-import Box from '@material-ui/core/Box';
-import Respirator from '../../components/statistics/components/respirator';
-import Typography from '@material-ui/core/Typography';
+import { Box, Typography } from '@material-ui/core';
 import BrewSelector from '../../components/common/select';
 import useBrew from '../../hooks/useBrew';
 import './styles.scss';
-import Brew from '../../types/Brew';
 
 type DashBoardParams = {
   brewId: string;
@@ -17,22 +14,23 @@ type DashBoardParams = {
 const DashboardScreen: FC = () => {
   const { brewId } = useParams<DashBoardParams>();
   const { brew, brews, fetchBrews, fetchBrew } = useBrew();
-  const [active, setActiveBrew] = useState<Brew | null>(brew!);
 
   useEffect(() => {
+    fetchBrews();
     fetchBrew(brewId);
-    setActiveBrew(brew!);
   }, [brewId]);
 
+  console.log(brews);
+  console.log('Name', brew?.name, brew);
   return (
     <Fragment>
       <Navbar>
-        <BrewSelector brews={brews} activeBrew={active} />
+        <BrewSelector brews={brews} activeBrew={brew} />
       </Navbar>
       <Box className="dashboard">
         <Box className="dashboard__header">
           <Typography variant="h3" gutterBottom>
-            {active?.name}
+            {brew?.name}
           </Typography>
         </Box>
         <Statistics />

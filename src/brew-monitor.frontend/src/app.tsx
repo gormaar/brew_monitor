@@ -7,7 +7,7 @@ const App: FC = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/:brewId" component={DashboardScreen} />
-        <Route path="/" component={DashboardScreen} />
+        <Route path="" component={DashboardScreen} />
       </Switch>
     </BrowserRouter>
   );

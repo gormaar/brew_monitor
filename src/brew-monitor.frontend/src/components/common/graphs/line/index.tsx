@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { ResponsiveLine } from '@nivo/line';
-import GraphData from '../../../../types/GraphData';
+// import GraphData from '../../../../types/GraphData';
 
-type LineGraphProps = {
-  data?: GraphData[];
-};
+// type LineGraphProps = {
+//   data?: GraphData[];
+// };
 
 const LineGraph: FC = () => {
   const data = [

@@ -34,13 +34,6 @@ const Statistics: FC = () => {
       <Box className="stat-container">
         <HopsGraph />
       </Box>
-
-      {/* <AirlockGraph />
-      
-      <BarleyGraph />
-      <HopsGraph />
-
-      <AirlockGraph /> */}
     </Box>
   );
 };
