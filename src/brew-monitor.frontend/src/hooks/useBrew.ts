@@ -17,9 +17,9 @@ const useBrew = () => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-        return response.json();
+        return response;
       });
-      const data = (await response) as Brew[];
+      const data = (await response.json()) as Brew[];
       setBrews(data);
     } catch (e) {
       console.log(`Error while fetching brews: ${e}`);
@@ -32,12 +32,10 @@ const useBrew = () => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-        return response.json();
+        return response;
       });
-      const data = (await response) as Brew;
-      console.log('Res', data);
-      setBrew(response);
-      console.log('Brew', brew);
+      const data = (await response.json()) as Brew;
+      setBrew(data);
     } catch (e) {
       console.log(`Error while fetching brewId ${brewId}: ${e}`);
     }

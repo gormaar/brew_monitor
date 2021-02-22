@@ -20,8 +20,6 @@ const DashboardScreen: FC = () => {
     fetchBrew(brewId);
   }, [brewId]);
 
-  console.log(brews);
-  console.log('Name', brew?.name, brew);
   return (
     <Fragment>
       <Navbar>
