@@ -9,7 +9,7 @@ const header = {
 
 const useBrew = () => {
   const [brews, setBrews] = useState<Brew[]>([]);
-  const [brew, setBrew] = useState<Brew>(brews[-1] ?? null);
+  const [brew, setBrew] = useState<Brew>(brews[brews.length - 1] ?? null);
 
   const fetchBrews = async (): Promise<void> => {
     try {

@@ -4,19 +4,24 @@ import BarleyGraph from '../ingredients/barleyGraph';
 import HopsGraph from '../ingredients/hopsGraph';
 import ShortTermTemperatureGraph from './components/temperature/shortTermTemperature';
 import LongTermTemperatureGraph from './components/temperature/longTermTemperature';
-import Details from '../details';
+import DetailsTable from '../details/components/detailsTable';
 import Box from '@material-ui/core/Box';
 import './styles.scss';
 import ShortTermAirlockGraph from './components/airlock/shortTermAirlock';
 import LongTermAirlockGraph from './components/airlock/longTermAirlock';
+import Brew from '../../types/Brew';
 
-const Statistics: FC = () => {
+type StatisticsProps = {
+  activeBrew: Brew;
+};
+
+const Statistics: FC<StatisticsProps> = ({ activeBrew }) => {
   return (
     <Box className="statistics">
       <Box className="stat-container">
         <Box className="description">
-          <Status />
-          <Details />
+          <Status activeBrew={activeBrew} />
+          <DetailsTable activeBrew={activeBrew} />
         </Box>
         <ShortTermAirlockGraph />
       </Box>

@@ -4,10 +4,12 @@ import BarGraph from '../../common/graphs/bar';
 import Box from '@material-ui/core/Box';
 import './styles.scss';
 
-// type BarleyType = {
-//   name: string;
-//   amount: number;
-// };
+type BarleyType = {
+  name: string;
+  amount: number;
+};
+
+type BarleyGraphProps = {};
 
 const BarleyGraph: FC = () => {
   // var barleyA: BarleyType = {

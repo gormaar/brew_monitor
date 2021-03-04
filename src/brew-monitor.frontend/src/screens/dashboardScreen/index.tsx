@@ -31,7 +31,7 @@ const DashboardScreen: FC = () => {
             {brew?.name}
           </Typography>
         </Box>
-        <Statistics />
+        <Statistics activeBrew={brew} />
       </Box>
     </Fragment>
   );
