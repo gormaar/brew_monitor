@@ -9,7 +9,15 @@ const header = {
 
 const useBrew = () => {
   const [brews, setBrews] = useState<Brew[]>([]);
-  const [brew, setBrew] = useState<Brew>(brews[brews.length - 1] ?? null);
+  const [brew, setBrew] = useState<Brew>(brews[brews.length - 1]);
+
+  useEffect(() => {
+    fetchBrews();
+  }, []);
+
+  useEffect(() => {
+    setBrew(brews[brews.length - 1]);
+  }, [brews]);
 
   const fetchBrews = async (): Promise<void> => {
     try {
@@ -40,10 +48,6 @@ const useBrew = () => {
       console.log(`Error while fetching brewId ${brewId}: ${e}`);
     }
   };
-
-  useEffect(() => {
-    fetchBrews();
-  }, []);
 
   return {
     brew,

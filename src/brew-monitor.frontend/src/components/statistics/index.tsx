@@ -23,12 +23,12 @@ const Statistics: FC<StatisticsProps> = ({ activeBrew }) => {
           <Status activeBrew={activeBrew} />
           <DetailsTable activeBrew={activeBrew} />
         </Box>
-        <ShortTermAirlockGraph />
+        <ShortTermAirlockGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">
         <BarleyGraph />
-        <LongTermAirlockGraph />
+        <LongTermAirlockGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">

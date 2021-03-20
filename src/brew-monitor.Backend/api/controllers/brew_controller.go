@@ -38,7 +38,7 @@ func (server *Server) GetBrews(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) CreateBrew(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	setCors(&w)
 	brewModel := repository.Brew{}
 	brew, err := brewModel.CreateBrew(server.DB, r)
 	if err != nil {
@@ -49,7 +49,7 @@ func (server *Server) CreateBrew(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) DeleteBrew(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	setCors(&w)
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
@@ -66,7 +66,7 @@ func (server *Server) DeleteBrew(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) PutBrew(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	setCors(&w)
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
@@ -82,8 +82,4 @@ func (server *Server) PutBrew(w http.ResponseWriter, r *http.Request) {
 	response.JSON(w, http.StatusOK, brew)
 }
 
-func setCors(w *http.ResponseWriter) {
-	(*w).Header().Set("Access-Control-Allow-Origin", "*")
-	(*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-	(*w).Header().Set("Access-Control-Allow-Headers", "Content-Type")
-}
+

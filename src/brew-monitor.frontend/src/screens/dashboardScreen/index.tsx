@@ -13,10 +13,9 @@ type DashBoardParams = {
 
 const DashboardScreen: FC = () => {
   const { brewId } = useParams<DashBoardParams>();
-  const { brew, brews, fetchBrews, fetchBrew } = useBrew();
+  const { brew, brews, fetchBrew } = useBrew();
 
   useEffect(() => {
-    fetchBrews();
     fetchBrew(brewId);
   }, [brewId]);
 

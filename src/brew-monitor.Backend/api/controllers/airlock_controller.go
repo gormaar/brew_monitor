@@ -9,7 +9,7 @@ import (
 )
 
 func (server *Server) GetAirlock(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	setCors(&w)
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
@@ -26,7 +26,6 @@ func (server *Server) GetAirlock(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) GetAirlocks(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
@@ -43,7 +42,7 @@ func (server *Server) GetAirlocks(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) CreateAirlock(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	setCors(&w)
 	respModel := repository.Airlock{}
 	resp, err := respModel.CreateAirlock(server.DB, r)
 	if err != nil {
@@ -54,7 +53,7 @@ func (server *Server) CreateAirlock(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) DeleteAirlock(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	setCors(&w)
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
@@ -70,7 +69,8 @@ func (server *Server) DeleteAirlock(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) PutAirlock(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
+	setCors(&w)
+
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
 	if err != nil {
