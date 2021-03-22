@@ -10,12 +10,15 @@ import './styles.scss';
 import ShortTermAirlockGraph from './components/airlock/shortTermAirlock';
 import LongTermAirlockGraph from './components/airlock/longTermAirlock';
 import Brew from '../../types/Brew';
+import Ingredients from '../../types/Ingredients';
 
 type StatisticsProps = {
   activeBrew: Brew;
+  ingredients: Ingredients;
 };
 
-const Statistics: FC<StatisticsProps> = ({ activeBrew }) => {
+const Statistics: FC<StatisticsProps> = ({ activeBrew, ingredients }) => {
+  //const { barley } = ingredients;
   return (
     <Box className="statistics">
       <Box className="stat-container">
@@ -27,13 +30,13 @@ const Statistics: FC<StatisticsProps> = ({ activeBrew }) => {
       </Box>
 
       <Box className="stat-container">
-        <BarleyGraph />
+        <BarleyGraph barleyData={ingredients.barley!} />
         <LongTermAirlockGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">
         <LongTermTemperatureGraph />
-        <ShortTermTemperatureGraph />
+        <ShortTermTemperatureGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">

@@ -9,11 +9,7 @@ import './styles.scss';
 // };
 
 const HopsGraph: FC = () => {
-  return (
-    <Box className="hopsGraph">
-      <PieGraph />
-    </Box>
-  );
+  return <Box className="hopsGraph">{/* <PieGraph /> */}</Box>;
 };
 
 export default HopsGraph;

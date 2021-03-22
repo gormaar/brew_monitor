@@ -6,6 +6,7 @@ import { Box, Typography } from '@material-ui/core';
 import BrewSelector from '../../components/common/select';
 import useBrew from '../../hooks/useBrew';
 import './styles.scss';
+import Ingredients from '../../types/Ingredients';
 
 type DashBoardParams = {
   brewId: string;
@@ -19,6 +20,11 @@ const DashboardScreen: FC = () => {
     fetchBrew(brewId);
   }, [brewId]);
 
+  const ingredients: Ingredients = {
+    id: '1',
+    brewId: 'a',
+  };
+
   return (
     <Fragment>
       <Navbar>
@@ -30,7 +36,7 @@ const DashboardScreen: FC = () => {
             {brew?.name}
           </Typography>
         </Box>
-        <Statistics activeBrew={brew} />
+        <Statistics activeBrew={brew} ingredients={ingredients} />
       </Box>
     </Fragment>
   );
