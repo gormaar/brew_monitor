@@ -31,11 +31,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build
         working-directory: src/brew-monitor.Backend
-<<<<<<< HEAD:.github/workflows/docker-publish_oldstyle.yml
         run: docker build --build-arg DB_NAME=${{ secrets.DB_NAME}} --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} --build-arg DB_USER=${{ secrets.DB_USER }} -t gormerik/brew-monitor.api .
-=======
-        run: docker build -t gormerik/brew-monitor.api .
->>>>>>> master:.github/workflows/docker-deployment-workflow.yml
       - name: Push
         run: docker push gormerik/brew-monitor.api
   db_build:
@@ -51,7 +47,3 @@ jobs:
         run: docker build --build-arg DB_NAME=${{ secrets.DB_NAME}} --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} --build-arg DB_USER=${{ secrets.DB_USER }} -t gormerik/brew-monitor.db .
       - name: Push
         run: docker push gormerik/brew-monitor.db
-<<<<<<< HEAD:.github/workflows/docker-publish_oldstyle.yml
-=======
-    
->>>>>>> master:.github/workflows/docker-deployment-workflow.yml
