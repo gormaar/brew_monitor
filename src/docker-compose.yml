@@ -28,6 +28,9 @@ services:
     container_name: client
     image: gormerik/brew-monitor.client:latest
     ports:
+      - "80:80"
       - "443:443"
+    volumes:
+      - /data/certs:/home/gormerik/letsencrypt/keys
 volumes:
   data-volume:

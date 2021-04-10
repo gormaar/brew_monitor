@@ -26,7 +26,14 @@ const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ activeBrew }) => {
     {
       id: activeBrew.name,
       data: airlocks.map((airlock) => {
-        const createdAt = new Date(airlock.createdAt).toLocaleDateString('no');
+        const createdAt = new Date(airlock.createdAt).toLocaleDateString('no', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: 'numeric',
+          minute: 'numeric',
+          second: 'numeric',
+        });
         return { x: createdAt, y: airlock.activity };
       }),
     },
@@ -35,7 +42,7 @@ const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ activeBrew }) => {
   return (
     <Box className="shortTermAirlockGraph">
       {airlocks[1].activity && <Respirator frequency={airlocks[airlocks.length - 1].activity} />}
-      <LineGraph data={airlockData} xLegend="date" yLegend="activity" />
+      <LineGraph data={airlockData} xLegend="time" yLegend="activity" />
     </Box>
   );
 };

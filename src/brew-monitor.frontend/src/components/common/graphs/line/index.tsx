@@ -15,6 +15,7 @@ const LineGraph: FC<LineGraphProps> = ({ data, xLegend, yLegend }) => {
       xScale={{ type: 'point' }}
       yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
       yFormat=" >-.2f"
+      curve="cardinal"
       axisTop={null}
       axisRight={null}
       axisBottom={{
@@ -35,6 +36,7 @@ const LineGraph: FC<LineGraphProps> = ({ data, xLegend, yLegend }) => {
         legendOffset: -40,
         legendPosition: 'middle',
       }}
+      colors={{ scheme: 'accent' }}
       pointSize={10}
       pointColor={{ theme: 'background' }}
       pointBorderWidth={2}
