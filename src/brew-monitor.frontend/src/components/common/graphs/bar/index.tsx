@@ -1,34 +1,17 @@
 import React, { FC } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
-import GraphData from '../../../../types/GraphData';
+import { Serie } from '@nivo/line';
 
 type BarGraphProps = {
-  data: GraphData[];
-  bottomLegend: string;
-  leftLegend: string;
+  data: Serie[];
+  xLegend: string;
+  yLegend: string;
 };
 
-const BarGraph: FC<BarGraphProps> = ({ bottomLegend, data, leftLegend }) => {
-  const testData = [
-    {
-      id: 'Pilsner',
-      label: 'Pilsner',
-      value: 3600,
-    },
-    {
-      id: 'Caramunich',
-      label: 'Caramunich',
-      value: 2500,
-    },
-    {
-      id: 'Wheat',
-      label: 'Wheat',
-      value: 2000,
-    },
-  ];
+const BarGraph: FC<BarGraphProps> = ({ data, xLegend, yLegend }) => {
   return (
     <ResponsiveBar
-      data={testData}
+      data={data}
       keys={['Pilsner', 'Caramunich', 'Wheat']}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
       padding={0.3}
@@ -61,7 +44,7 @@ const BarGraph: FC<BarGraphProps> = ({ bottomLegend, data, leftLegend }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: bottomLegend,
+        legend: xLegend,
         legendPosition: 'middle',
         legendOffset: 32,
       }}
@@ -69,7 +52,7 @@ const BarGraph: FC<BarGraphProps> = ({ bottomLegend, data, leftLegend }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: leftLegend,
+        legend: yLegend,
         legendPosition: 'middle',
         legendOffset: -40,
       }}

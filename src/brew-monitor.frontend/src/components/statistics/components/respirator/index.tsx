@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import './styles.scss';
 
 type RespiratorProps = {
-  frequency: number;
+  frequency: number | undefined;
 };
 
 const Respirator: FC<RespiratorProps> = ({ frequency }) => {
@@ -12,12 +12,14 @@ const Respirator: FC<RespiratorProps> = ({ frequency }) => {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   };
   const simulateAirlockFrequency = async () => {
-    const frequencyTimeout = 60 / frequency;
-    for (let i = 0; i <= frequency; i++) {
-      setBlink(true);
-      await sleep(1000);
-      setBlink(false);
-      await sleep(frequencyTimeout * 1000);
+    if (frequency !== undefined) {
+      const frequencyTimeout = 60 / frequency;
+      for (let i = 0; i <= frequency; i++) {
+        setBlink(true);
+        await sleep(1000);
+        setBlink(false);
+        await sleep(frequencyTimeout * 1000);
+      }
     }
   };
 

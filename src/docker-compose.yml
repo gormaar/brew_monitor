@@ -18,7 +18,7 @@ services:
     image: gormerik/brew-monitor.api:latest
     ports:
       - "8080:8080"
-    restart: on-failure
+    #restart: on-failure
     depends_on:
       - database
     network_mode: host
@@ -28,6 +28,9 @@ services:
     container_name: client
     image: gormerik/brew-monitor.client:latest
     ports:
+      - "80:80"
       - "443:443"
+    volumes:
+      - /data/certs:/home/gormerik/letsencrypt/keys
 volumes:
   data-volume:

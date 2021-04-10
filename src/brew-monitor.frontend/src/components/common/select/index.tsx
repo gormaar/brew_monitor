@@ -1,41 +1,42 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import MenuItem from '@material-ui/core/MenuItem';
-import InputLabel from '@material-ui/core/InputLabel';
+import React, { FC, Fragment, useState } from 'react';
+import { Select, FormControl, MenuItem, InputLabel } from '@material-ui/core';
 import './styles.scss';
 import Brew from '../../../types/Brew';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 type BrewSelectorProps = {
-  activeBrew: Brew | null;
+  activeBrew?: Brew;
   brews: Brew[];
 };
 
-const BrewSelector: FC<BrewSelectorProps> = ({ brews }) => {
-  const [activeBrew, setActiveBrew] = useState<Brew>(brews[brews.length - 1] || null);
+const BrewSelector: FC<BrewSelectorProps> = ({ activeBrew, brews }) => {
   const history = useHistory();
 
-  const handleChange = (event: React.ChangeEvent, brew: Brew) => {
-    event.preventDefault();
-    setActiveBrew(() => {
-      return brew;
-    });
-    history.push(`/${brew.id}`);
-  };
+  const [selectedBrew, setSelectedBrew] = useState<string>(activeBrew?.name ?? '');
 
-  useEffect(() => {
-    history.push(`/${activeBrew?.id}`);
-  }, []);
+  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setSelectedBrew(event.target.value as string);
+    history.push(`/brew/${event.target.value as string}`);
+  };
 
   return (
     <Fragment>
       <FormControl>
-        <InputLabel id="brewSelector__label">{activeBrew?.name}</InputLabel>
-        <Select className="select" onChange={() => handleChange} labelId="brewSelector__label">
-          {brews.map((brew) => {
-            return <MenuItem key={`brew__${brew.id}`}>{brew}</MenuItem>;
-          })}
+        <InputLabel id="brewSelector__label" style={{ color: 'white' }}>
+          Brews
+        </InputLabel>
+        <Select
+          style={{ borderColor: 'white' }}
+          className="select"
+          onChange={handleChange}
+          labelId="brewSelector__label"
+          value={selectedBrew}
+        >
+          {brews.map((brew) => (
+            <MenuItem key={`brew__${brew.id}`} value={brew.id}>
+              {brew.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
     </Fragment>

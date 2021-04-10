@@ -10,11 +10,11 @@ import (
 )
 
 type Airlock struct {
-	AirlockId			uint			`gorm:"primary_key; not null; auto_increment; "json:"airlock_id"`
-	AirlockActivity 	int 			`json:"airlock_activity"`
-	CreatedAt			time.Time		`json:"created_at"`
-	UpdatedAt			time.Time		`json:"updated_at"`
-	BrewId				uint			`json:"brew_id"`
+	AirlockId			uint			`gorm:"primary_key; not null; auto_increment; "json:"id"`
+	AirlockActivity 	int 			`json:"activity"`
+	CreatedAt			time.Time		`json:"createdAt"`
+	UpdatedAt			time.Time		`json:"updatedAt"`
+	BrewId				uint			`json:"brewId"`
 }
 
 func (a *Airlock) GetAirlock(db *gorm.DB, brewId uint) (*Airlock, error){
