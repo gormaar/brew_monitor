@@ -1,10 +1,10 @@
 name: CI
 on:
   pull_request:
-    branches: 
+    branches:
       - master
   workflow_dispatch:
-    branches: 
+    branches:
       - dev
 jobs:
   client_build:
@@ -14,8 +14,8 @@ jobs:
       - name: DockerHub login
         uses: docker/login-action@v1
         with:
-         username: ${{ secrets.DOCKERHUB_USERNAME }}
-         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build
         working-directory: src/brew-monitor.frontend
         run: docker build -t gormerik/brew-monitor.client .
@@ -31,7 +31,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build
         working-directory: src/brew-monitor.Backend
-        run: docker build --build-arg DB_NAME=${{ secrets.DB_NAME}} --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} --build-arg DB_USER=${{ secrets.DB_USER }} -t gormerik/brew-monitor.api .
+        run: docker build -t gormerik/brew-monitor.api .
       - name: Push
         run: docker push gormerik/brew-monitor.api
   db_build:
@@ -39,7 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: docker/login-action@v1
-        with: 
+        with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build
