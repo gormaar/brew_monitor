@@ -1,14 +1,15 @@
 package controllers
 
 import (
-	repository "../repositories"
 	"fmt"
-	"github.com/gorilla/mux"
-	"github.com/gorilla/handlers"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
 	"net/http"
+
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	repository "github.com/gormaar/brew-monitor/api/repositories"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 type Server struct {

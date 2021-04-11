@@ -1,6 +1,6 @@
 package main
 
-import "./api"
+import "github.com/gormaar/brew-monitor/api"
 
 func main() {
 	api.Run()
