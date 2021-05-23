@@ -27,6 +27,17 @@ services:
     container_name: client
     image: gormerik/brew-monitor.client:latest
     ports:
+      - "80:80"
       - "443:443"
+    volumes:
+      - /home/gormerik/letsencrypt/live/brew-monitor.no:/app
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 1000M
+        reservations:
+          cpus: '0.50'
+          memory: 1000M
 volumes:
   data-volume:
