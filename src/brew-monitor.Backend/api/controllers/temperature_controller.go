@@ -1,11 +1,12 @@
 package controllers
 
 import (
-	repository "../repositories"
-	response "../responses"
-	"github.com/gorilla/mux"
 	"net/http"
 	"strconv"
+
+	"github.com/gorilla/mux"
+	repository "github.com/gormaar/brew-monitor/api/repositories"
+	response "github.com/gormaar/brew-monitor/api/responses"
 )
 
 func (server *Server) GetRecentTemperatureData(w http.ResponseWriter, r *http.Request) {

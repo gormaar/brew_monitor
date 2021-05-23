@@ -10,13 +10,13 @@ import (
 )
 
 type Brew struct {
-	BrewId				uint		`gorm:"primary_key; not_null; auto_increment;" json:"brew_id"`
-	BrewName			string		`json:"brew_name"`
-	BrewType			string		`json:"brew_type"`
-	BrewStatus			string		`json:"brew_status"`
-	BrewFermentationTime uint	 	`json:"brew_fermentation_time"`
-	CreatedAt			time.Time	`json:"created_at"`
-	UpdatedAt 			time.Time	`json:"updated_at"`
+	BrewId				uint		`gorm:"primary_key; not_null; auto_increment;" json:"id"`
+	BrewName			string		`json:"name"`
+	BrewType			string		`json:"type"`
+	BrewStatus			string		`json:"status"`
+	BrewFermentationTime uint	 	`json:"fermentationTime"`
+	CreatedAt			time.Time	`json:"createdAt"`
+	UpdatedAt 			time.Time	`json:"updatedAt"`
 }
 
 func (b *Brew) GetBrew(db *gorm.DB, brewId uint) (*Brew, error) {

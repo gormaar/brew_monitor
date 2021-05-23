@@ -7,13 +7,28 @@ const header = {
   },
 };
 
-export default () => {
+const useBrew = () => {
   const [brews, setBrews] = useState<Brew[]>([]);
-  const [brew, setBrew] = useState<Brew | null>();
+  const [brew, setBrew] = useState<Brew>(brews[brews.length - 1]);
+
+  useEffect(() => {
+    fetchBrews();
+  }, []);
+
+  useEffect(() => {
+    setBrew(brews[brews.length - 1]);
+  }, [brews]);
+
   const fetchBrews = async (): Promise<void> => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_APIURL}/brews`, header).then((response) => response.json());
-      setBrews(response);
+      const response = await fetch(`http://localhost:8080/brews`, header).then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response;
+      });
+      const data = (await response.json()) as Brew[];
+      setBrews(data);
     } catch (e) {
       console.log(`Error while fetching brews: ${e}`);
     }
@@ -21,18 +36,18 @@ export default () => {
 
   const fetchBrew = async (brewId: string): Promise<void> => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_APIURL}/brew/${brewId}`, header).then((response) =>
-        response.json(),
-      );
-      setBrew(response);
+      const response = await fetch(`http://localhost:8080/brew/${brewId}`, header).then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response;
+      });
+      const data = (await response.json()) as Brew;
+      setBrew(data);
     } catch (e) {
       console.log(`Error while fetching brewId ${brewId}: ${e}`);
     }
   };
-
-  useEffect(() => {
-    fetchBrews();
-  }, []);
 
   return {
     brew,
@@ -41,3 +56,5 @@ export default () => {
     fetchBrews,
   };
 };
+
+export default useBrew;

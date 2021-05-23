@@ -1,5 +1,4 @@
 .descriptionTable {
-  width: 50%;
   color: var(--color-font);
   background: var(--color-secondary);
   box-shadow: 3px 3px 10px black;
@@ -9,5 +8,8 @@
   th,
   td {
     color: var(--color-font);
+    border-bottom: none;
+    font-size: 16px;
+    padding: 12px;
   }
 }

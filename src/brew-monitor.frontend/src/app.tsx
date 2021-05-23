@@ -6,8 +6,8 @@ const App: FC = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/:brewId" component={DashboardScreen} />
-        <Route path="/" component={DashboardScreen} />
+        <Route path="/brew/:brewId" component={DashboardScreen} />
+        <Route path="" component={DashboardScreen} />
       </Switch>
     </BrowserRouter>
   );

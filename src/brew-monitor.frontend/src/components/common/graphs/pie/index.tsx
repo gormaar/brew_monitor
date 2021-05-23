@@ -1,55 +1,19 @@
 import React, { FC } from 'react';
-import GraphData from '../../../../types/GraphData';
 import { ResponsivePie } from '@nivo/pie';
 
-type PieData = {
-  id: string;
-  label: string;
+export type PieData = {
+  id: string | number;
   value: number;
 };
 
 type PieGraphProps = {
-  data?: GraphData[];
-  bottomLegend?: string;
-  leftLegend?: string;
+  data: PieData[];
 };
 
-const PieGraph: FC<PieGraphProps> = ({ bottomLegend, data, leftLegend }) => {
-  const testdata = [
-    {
-      id: 'stylus',
-      label: 'stylus',
-      value: 406,
-      color: 'hsl(218, 70%, 50%)',
-    },
-    {
-      id: 'rust',
-      label: 'rust',
-      value: 476,
-      color: 'hsl(4, 70%, 50%)',
-    },
-    {
-      id: 'ruby',
-      label: 'ruby',
-      value: 403,
-      color: 'hsl(323, 70%, 50%)',
-    },
-    {
-      id: 'java',
-      label: 'java',
-      value: 234,
-      color: 'hsl(129, 70%, 50%)',
-    },
-    {
-      id: 'make',
-      label: 'make',
-      value: 493,
-      color: 'hsl(226, 70%, 50%)',
-    },
-  ];
+const PieGraph: FC<PieGraphProps> = ({ data }) => {
   return (
     <ResponsivePie
-      data={testdata}
+      data={data}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
       innerRadius={0.5}
       padAngle={0.7}
