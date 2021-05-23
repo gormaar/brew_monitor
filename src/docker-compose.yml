@@ -21,9 +21,8 @@ services:
     #restart: on-failure
     depends_on:
       - database
-    network_mode: host
     env_file:
-      - brew-monitor.Backend/.env
+      - brew-monitor.Backend/api.env
   client:
     container_name: client
     image: gormerik/brew-monitor.client:latest
