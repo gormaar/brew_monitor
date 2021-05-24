@@ -3,6 +3,7 @@ WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
+RUN make app/ssl/private
 
 COPY . .
 

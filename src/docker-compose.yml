@@ -30,6 +30,6 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /home/gormerik/letsencrypt/live/brew-monitor.no:/app
+      - /home/gormerik/letsencrypt/live/brew-monitor.no:/app/ssl/private
 volumes:
   data-volume:
