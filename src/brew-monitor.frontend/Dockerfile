@@ -3,7 +3,7 @@ WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
-RUN mkdir app/ssl
+RUN mkdir -p app/ssl
 
 COPY . .
 
