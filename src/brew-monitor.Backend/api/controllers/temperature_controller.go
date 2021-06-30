@@ -52,7 +52,7 @@ func (server *Server) CreateTemperature(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 	tempModel := repository.Temperature{}
-	temp, err := tempModel.CreateTemperature(server.DB, uint(tempId))
+	temp, err := tempModel.CreateTemperature(server.DB, r, uint(tempId))
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return
@@ -64,12 +64,13 @@ func (server *Server) DeleteTemperature(w http.ResponseWriter, r *http.Request) 
 	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
+	tempId, err := strconv.ParseUint(vars["temp_id"], 10, 32)
 	if err != nil {
 		response.ERROR(w, http.StatusBadRequest, err)
 		return
 	}
 	tempModel := repository.Temperature{}
-	temp, err := tempModel.DeleteTemperature(server.DB, uint(brewId))
+	temp, err := tempModel.DeleteTemperature(server.DB, uint(brewId), uint(tempId))
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return

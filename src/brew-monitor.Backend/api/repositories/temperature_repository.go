@@ -1,16 +1,21 @@
 package repositories
 
 import (
+	"encoding/json"
 	"errors"
-	"github.com/jinzhu/gorm"
+	"io/ioutil"
+	"net/http"
 	"time"
+
+	"github.com/jinzhu/gorm"
 )
 
 type Temperature struct {
-	TempId			uint		`gorm:"primary_key; not null; auto_increment; "json:"temp_id"`
-	TempValue		int			`json:"temp_value"`
-	TempTimestamp	time.Time	`gorm: "default: current_timestamp" json:"temp_timestamp"`
-	BrewId			uint		`json:"brew_id"`
+	TempId			uint		`gorm:"primary_key; not_null; auto_increment;" json:"id"`
+	TempValue		int			`json:"value"`
+	CreatedAt	time.Time		`json:"createdAt"`
+	UpdatedAt   time.Time		`json:"updatedAt"`
+	BrewId			uint		`json:"brewId"`
 }
 
 func (t *Temperature) GetRecentTemperature(db *gorm.DB, brewId uint) (*Temperature, error){
@@ -32,8 +37,14 @@ func (t *Temperature) GetAllTemperatures(db *gorm.DB, brewId uint) (*[]Temperatu
 	return &temps, nil
 }
 
-func (t *Temperature) CreateTemperature(db *gorm.DB, brewId uint) (*Temperature, error) {
+func (t *Temperature) CreateTemperature(db *gorm.DB,r *http.Request, brewId uint) (*Temperature, error) {
 	var err error
+	body, _ := ioutil.ReadAll(r.Body)
+
+	jsonErr := json.Unmarshal(body, &t)
+	if jsonErr != nil {
+		return &Temperature{}, err
+	}
 	err = db.Debug().Model(&Temperature{}).Where("brew_id = ?", brewId).Create(&t).Error
 	if err != nil {
 		return &Temperature{}, err
@@ -41,8 +52,8 @@ func (t *Temperature) CreateTemperature(db *gorm.DB, brewId uint) (*Temperature,
 	return t, nil
 }
 
-func (t *Temperature) DeleteTemperature(db *gorm.DB, tempId uint) (int64, error) {
-	db = db.Debug().Model(&Temperature{}).Where("temp_id = ?", tempId).Take(&Temperature{}).Delete(&Temperature{})
+func (t *Temperature) DeleteTemperature(db *gorm.DB, brewId uint, tempId uint) (int64, error) {
+	db = db.Debug().Model(&Temperature{}).Where("brew_id = ?", brewId).Where("temp_id = ?", tempId).Take(&Temperature{}).Delete(&Temperature{})
 	if db.Error != nil {
 		if gorm.IsRecordNotFoundError(db.Error) {
 			return 0, errors.New("Temperature not found")
