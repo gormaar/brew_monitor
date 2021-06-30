@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Temperature from '../types/Temperature';
 
 const header = {
@@ -12,7 +12,7 @@ const useTemperature = () => {
 
   const fetchTemperatures = async (brewId: string): Promise<void> => {
     try {
-      const response = await fetch(`http://localhost:8080/temps/${brewId}`, header).then((response) => {
+      const response = await fetch(`http://localhost:8080/temperatures/${brewId}`, header).then((response) => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }

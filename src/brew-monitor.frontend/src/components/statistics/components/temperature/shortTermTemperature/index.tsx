@@ -1,9 +1,10 @@
 import React, { FC, useEffect } from 'react';
-import LineGraph from '../../../../common/graphs/line';
 import Box from '@material-ui/core/Box';
+import { Serie } from '@nivo/line';
+
+import LineGraph from '../../../../common/graphs/line';
 import Brew from '../../../../../types/Brew';
 import useTemperature from '../../../../../hooks/useTemperature';
-import { Serie } from '@nivo/line';
 import './styles.scss';
 
 type ShortTermTempGraphProps = {
@@ -13,19 +14,25 @@ type ShortTermTempGraphProps = {
 const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ activeBrew }) => {
   const { temperatures, fetchTemperatures } = useTemperature();
 
-  // useEffect(() => {
-  //   fetchTemperatures(id);
-  // }, [activeBrew]);
+  useEffect(() => {
+    fetchTemperatures(activeBrew?.id);
+  }, [activeBrew]);
 
-  if (temperatures === undefined) {
+  if (!temperatures) {
     return null;
   }
 
   const tempData: Serie[] = [
     {
-      id: activeBrew.name,
+      id: `${activeBrew.name}__temp`,
       data: temperatures.map((temp) => {
-        const createdAt = new Date(temp.createdAt).toLocaleDateString('no');
+        const createdAt = new Date(temp.createdAt).toLocaleDateString('no', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: 'numeric',
+          minute: 'numeric',
+        });
         return { x: createdAt, y: temp.value };
       }),
     },
@@ -33,7 +40,7 @@ const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ activeBrew }) 
 
   return (
     <Box className="shortTermTemperatureGraph">
-      <LineGraph data={tempData} xLegend="date" yLegend="temperature" />
+      <LineGraph data={tempData} xLegend="Date" yLegend="Temperature" />
     </Box>
   );
 };

@@ -1,10 +1,11 @@
 import React, { FC, useEffect } from 'react';
-import LineGraph from '../../../../common/graphs/line';
 import Box from '@material-ui/core/Box';
-import './styles.scss';
-import useAirlock from '../../../../../hooks/useAirlock';
 import { Serie } from '@nivo/line';
+
+import LineGraph from '../../../../common/graphs/line';
+import useAirlock from '../../../../../hooks/useAirlock';
 import Brew from '../../../../../types/Brew';
+import './styles.scss';
 
 type LongTermAirlockGraphProps = {
   activeBrew: Brew;
@@ -39,7 +40,7 @@ const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ activeBrew }) => 
 
   return (
     <Box className="longTermAirlockGraph">
-      <LineGraph data={airlockData} xLegend="date" yLegend="activity" />
+      <LineGraph data={airlockData} xLegend="Time" yLegend="Activity" />
     </Box>
   );
 };

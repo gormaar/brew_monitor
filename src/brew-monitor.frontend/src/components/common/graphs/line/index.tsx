@@ -43,6 +43,23 @@ const LineGraph: FC<LineGraphProps> = ({ data, xLegend, yLegend }) => {
       pointBorderColor={{ from: 'serieColor' }}
       pointLabelYOffset={-12}
       useMesh={true}
+      theme={{
+        axis: {
+          ticks: {
+            line: {
+              stroke: '#e2e0e0',
+            },
+            text: {
+              fill: '#e2e0e0',
+            },
+          },
+          legend: {
+            text: {
+              fill: '#e2e0e0',
+            },
+          },
+        },
+      }}
       legends={[
         {
           anchor: 'bottom-right',

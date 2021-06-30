@@ -1,6 +1,5 @@
 package controllers
 
-
 func (server *Server) initializeRoutes() {
 
 	//Routes for respiration
@@ -11,11 +10,11 @@ func (server *Server) initializeRoutes() {
 	server.Router.HandleFunc("/airlock/delete/{brew_id}/{resp_id}", server.DeleteAirlock).Methods("DELETE")
 
 	//Routes for temperature
-	server.Router.HandleFunc("/temp/{brew_id}", server.GetRecentTemperatureData).Methods("GET")
-	server.Router.HandleFunc("/temps/{brew_id}", server.GetAllTemperatureData).Methods("GET")
-	server.Router.HandleFunc("/temp/create/{brew_id}", server.CreateTemperature).Methods("POST")
-	server.Router.HandleFunc("/temp/update/{brew_id}/{temp_id}", server.PutTemperature).Methods("PUT")
-	server.Router.HandleFunc("/temp/delete/{brew_id}/{temp_id}", server.DeleteTemperature).Methods("DELETE")
+	server.Router.HandleFunc("/temperature/{brew_id}", server.GetRecentTemperatureData).Methods("GET")
+	server.Router.HandleFunc("/temperatures/{brew_id}", server.GetAllTemperatureData).Methods("GET")
+	server.Router.HandleFunc("/temperature/create/{brew_id}", server.CreateTemperature).Methods("POST")
+	server.Router.HandleFunc("/temperature/update/{brew_id}/{temp_id}", server.PutTemperature).Methods("PUT")
+	server.Router.HandleFunc("/temperature/delete/{brew_id}/{temp_id}", server.DeleteTemperature).Methods("DELETE")
 
 	//Routes for brews
 	server.Router.HandleFunc("/brew/{brew_id}", server.GetBrew).Methods("GET", "OPTIONS")

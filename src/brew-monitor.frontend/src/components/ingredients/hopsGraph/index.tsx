@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import PieGraph from '../../common/graphs/pie';
+
 import Box from '@material-ui/core/Box';
 import './styles.scss';
 

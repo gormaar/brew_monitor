@@ -1,11 +1,12 @@
 import React, { FC, useEffect } from 'react';
-import LineGraph from '../../../../common/graphs/line';
+import { Serie } from '@nivo/line';
 import Box from '@material-ui/core/Box';
+
+import LineGraph from '../../../../common/graphs/line';
 import Respirator from '../../respirator';
-import { Datum, Serie } from '@nivo/line';
 import useAirlock from '../../../../../hooks/useAirlock';
-import './styles.scss';
 import Brew from '../../../../../types/Brew';
+import './styles.scss';
 
 type ShortTermAirlockProps = {
   activeBrew: Brew;
@@ -32,7 +33,6 @@ const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ activeBrew }) => {
           day: '2-digit',
           hour: 'numeric',
           minute: 'numeric',
-          second: 'numeric',
         });
         return { x: createdAt, y: airlock.activity };
       }),
@@ -41,8 +41,8 @@ const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ activeBrew }) => {
 
   return (
     <Box className="shortTermAirlockGraph">
-      {airlocks[1].activity && <Respirator frequency={airlocks[airlocks.length - 1].activity} />}
-      <LineGraph data={airlockData} xLegend="time" yLegend="activity" />
+      {airlocks[1]?.activity && <Respirator frequency={airlocks[airlocks.length - 1].activity} />}
+      <LineGraph data={airlockData} xLegend="Time" yLegend="Activity" />
     </Box>
   );
 };

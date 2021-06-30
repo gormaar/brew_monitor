@@ -1,16 +1,17 @@
 import React, { FC } from 'react';
+import Box from '@material-ui/core/Box';
+
 import Status from './components/status';
 import BarleyGraph from '../ingredients/barleyGraph';
 import HopsGraph from '../ingredients/hopsGraph';
 import ShortTermTemperatureGraph from './components/temperature/shortTermTemperature';
 import LongTermTemperatureGraph from './components/temperature/longTermTemperature';
 import DetailsTable from '../details/components/detailsTable';
-import Box from '@material-ui/core/Box';
-import './styles.scss';
 import ShortTermAirlockGraph from './components/airlock/shortTermAirlock';
 import LongTermAirlockGraph from './components/airlock/longTermAirlock';
 import Brew from '../../types/Brew';
 import Ingredients from '../../types/Ingredients';
+import './styles.scss';
 
 type StatisticsProps = {
   activeBrew: Brew;
@@ -35,7 +36,7 @@ const Statistics: FC<StatisticsProps> = ({ activeBrew, ingredients }) => {
       </Box>
 
       <Box className="stat-container">
-        <LongTermTemperatureGraph />
+        <LongTermTemperatureGraph activeBrew={activeBrew} />
         <ShortTermTemperatureGraph activeBrew={activeBrew} />
       </Box>
 
