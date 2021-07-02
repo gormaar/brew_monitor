@@ -23,17 +23,13 @@ const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ activeBrew }) => {
     return null;
   }
 
+  const recentAirlocks = airlocks.slice(Math.max(airlocks.length - 12, 1));
+
   const airlockData: Serie[] = [
     {
-      id: activeBrew.name,
-      data: airlocks.map((airlock) => {
-        const createdAt = new Date(airlock.createdAt).toLocaleDateString('no', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: 'numeric',
-          minute: 'numeric',
-        });
+      id: 'Short term airlock activity',
+      data: recentAirlocks.map((airlock) => {
+        const createdAt = new Date(airlock.createdAt).toTimeString().slice(0, 8);
         return { x: createdAt, y: airlock.activity };
       }),
     },

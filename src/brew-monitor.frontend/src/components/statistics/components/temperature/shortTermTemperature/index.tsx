@@ -22,17 +22,13 @@ const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ activeBrew }) 
     return null;
   }
 
+  const recentTemperature = temperatures.slice(Math.max(temperatures.length - 12, 1));
+
   const tempData: Serie[] = [
     {
-      id: `${activeBrew.name}__temp`,
-      data: temperatures.map((temp) => {
-        const createdAt = new Date(temp.createdAt).toLocaleDateString('no', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: 'numeric',
-          minute: 'numeric',
-        });
+      id: 'Temperature short term',
+      data: recentTemperature.map((temp) => {
+        const createdAt = new Date(temp.createdAt).toTimeString().slice(0, 8);
         return { x: createdAt, y: temp.value };
       }),
     },

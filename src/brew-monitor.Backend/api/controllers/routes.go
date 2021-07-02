@@ -23,6 +23,9 @@ func (server *Server) initializeRoutes() {
 	server.Router.HandleFunc("/brew/update/{brew_id}", server.PutBrew).Methods("PUT")
 	server.Router.HandleFunc("/brew/delete/{brew_id}", server.DeleteBrew).Methods("DELETE")
 
+	//Routes for ingredients
+	server.Router.HandleFunc("/ingredients/{brew_id}/{ingredients_id}", server.GetIngredients).Methods("GET", "OPTIONS")
+
 	//Redeploy application
 	server.Router.HandleFunc("/redeploy", server.Redeploy).Methods("GET", "OPTIONS")
 }

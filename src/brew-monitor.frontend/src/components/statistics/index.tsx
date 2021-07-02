@@ -6,7 +6,7 @@ import BarleyGraph from '../ingredients/barleyGraph';
 import HopsGraph from '../ingredients/hopsGraph';
 import ShortTermTemperatureGraph from './components/temperature/shortTermTemperature';
 import LongTermTemperatureGraph from './components/temperature/longTermTemperature';
-import DetailsTable from '../details/components/detailsTable';
+import DetailsTable from '../details/detailsTable';
 import ShortTermAirlockGraph from './components/airlock/shortTermAirlock';
 import LongTermAirlockGraph from './components/airlock/longTermAirlock';
 import Brew from '../../types/Brew';

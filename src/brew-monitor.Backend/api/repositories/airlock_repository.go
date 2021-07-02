@@ -3,18 +3,20 @@ package repositories
 import (
 	"encoding/json"
 	"errors"
-	"github.com/jinzhu/gorm"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	"github.com/jinzhu/gorm"
 )
 
 type Airlock struct {
-	AirlockId			uint			`gorm:"primary_key; not null; auto_increment; "json:"id"`
-	AirlockActivity 	int 			`json:"activity"`
-	CreatedAt			time.Time		`json:"createdAt"`
-	UpdatedAt			time.Time		`json:"updatedAt"`
-	BrewId				uint			`json:"brewId"`
+	AirlockId				uint			`gorm:"primary_key; not null; auto_increment; "json:"id"`
+	AirlockActivity 		int 			`json:"activity"`
+	AirlockActivityLongterm int				`json:"activityLongterm"`
+	CreatedAt				time.Time		`json:"createdAt"`
+	UpdatedAt				time.Time		`json:"updatedAt"`
+	BrewId					uint			`json:"brewId"`
 }
 
 func (a *Airlock) GetAirlock(db *gorm.DB, brewId uint) (*Airlock, error){

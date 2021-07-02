@@ -62,11 +62,11 @@ const LineGraph: FC<LineGraphProps> = ({ data, xLegend, yLegend }) => {
       }}
       legends={[
         {
-          anchor: 'bottom-right',
+          anchor: 'top-left',
           direction: 'column',
           justify: false,
-          translateX: 100,
-          translateY: 0,
+          translateX: -50,
+          translateY: -40,
           itemsSpacing: 0,
           itemDirection: 'left-to-right',
           itemWidth: 80,
@@ -74,6 +74,7 @@ const LineGraph: FC<LineGraphProps> = ({ data, xLegend, yLegend }) => {
           itemOpacity: 0.75,
           symbolSize: 12,
           symbolShape: 'circle',
+          itemTextColor: '#eee',
           symbolBorderColor: 'rgba(0, 0, 0, .5)',
           effects: [
             {

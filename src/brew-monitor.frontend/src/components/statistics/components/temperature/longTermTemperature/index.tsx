@@ -22,10 +22,12 @@ const LongTermTemperatureGraph: FC<LongTermTempGraphProps> = ({ activeBrew }) =>
     return null;
   }
 
+  const longtermTemperatures = temperatures.filter((t) => t.longTermValue !== 0);
+
   const tempData: Serie[] = [
     {
-      id: activeBrew.name,
-      data: temperatures.map((temp) => {
+      id: 'Temperature long term',
+      data: longtermTemperatures.map((temp) => {
         const createdAt = new Date(temp.createdAt).toLocaleDateString('no', {
           year: 'numeric',
           month: '2-digit',
@@ -33,7 +35,7 @@ const LongTermTemperatureGraph: FC<LongTermTempGraphProps> = ({ activeBrew }) =>
           hour: 'numeric',
           minute: 'numeric',
         });
-        return { x: createdAt, y: temp.value };
+        return { x: createdAt, y: temp.longTermValue };
       }),
     },
   ];
