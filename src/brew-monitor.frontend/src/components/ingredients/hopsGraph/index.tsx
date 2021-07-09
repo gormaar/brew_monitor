@@ -2,15 +2,30 @@ import React, { FC } from 'react';
 import PieGraph from '../../common/graphs/pie';
 
 import Box from '@material-ui/core/Box';
+import { PieData } from '../../../components/common/graphs/pie';
+import Hops from '../../../types/Hops';
 import './styles.scss';
 
-// type HopsGraphProps = {
-//   amount: number;
-//   type: string;
-// };
+type HopsGraphProps = {
+  hopsData: Hops[];
+};
 
-const HopsGraph: FC = () => {
-  return <Box className="hopsGraph">{/* <PieGraph /> */}</Box>;
+const HopsGraph: FC<HopsGraphProps> = ({ hopsData }) => {
+  if (!hopsData) {
+    return null;
+  }
+
+  const data: PieData[] = hopsData?.map((hops) => {
+    return {
+      id: hops.type,
+      value: hops.amount,
+    };
+  });
+  return (
+    <Box className="hopsGraph">
+      <PieGraph data={data} />
+    </Box>
+  );
 };
 
 export default HopsGraph;

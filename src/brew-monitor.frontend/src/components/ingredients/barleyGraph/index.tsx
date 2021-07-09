@@ -6,25 +6,21 @@ import { PieData } from '../../../components/common/graphs/pie';
 import './styles.scss';
 
 type BarleyGraphProps = {
-  barleyData: Barley[];
+  barleyData?: Barley[];
 };
 
 const BarleyGraph: FC<BarleyGraphProps> = ({ barleyData }) => {
-  if (barleyData === undefined) {
+  if (!barleyData) {
     return null;
   }
-  const data: PieData[] = barleyData.map((barley) => {
+  const data: PieData[] = barleyData?.map((barley) => {
     return {
-      id: barley.name,
+      id: barley.type,
       value: barley.amount,
     };
   });
 
-  return (
-    <Box className="barleyGraph">
-      <PieGraph data={data} />
-    </Box>
-  );
+  return <Box className="barleyGraph">{data && <PieGraph data={data} />}</Box>;
 };
 
 export default BarleyGraph;

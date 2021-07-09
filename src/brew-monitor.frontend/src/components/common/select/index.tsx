@@ -30,7 +30,8 @@ const BrewSelector: FC<BrewSelectorProps> = ({ activeBrew, brews }) => {
           className="select"
           onChange={handleChange}
           labelId="brewSelector__label"
-          value={selectedBrew}
+          value={selectedBrew ?? ''}
+          defaultValue=""
         >
           {brews.map((brew) => (
             <MenuItem key={`brew__${brew.id}`} value={brew.id}>

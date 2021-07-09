@@ -3,8 +3,8 @@ import Hops from './Hops';
 
 type Ingredients = {
   id: string;
-  barley?: Barley[];
-  hops?: Hops[];
+  barley: Barley[];
+  hops: Hops[];
   brewId: string;
 };
 

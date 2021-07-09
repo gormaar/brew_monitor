@@ -19,7 +19,6 @@ type StatisticsProps = {
 };
 
 const Statistics: FC<StatisticsProps> = ({ activeBrew, ingredients }) => {
-  //const { barley } = ingredients;
   return (
     <Box className="statistics">
       <Box className="stat-container">
@@ -31,17 +30,17 @@ const Statistics: FC<StatisticsProps> = ({ activeBrew, ingredients }) => {
       </Box>
 
       <Box className="stat-container">
-        <BarleyGraph barleyData={ingredients.barley!} />
+        {ingredients?.brewId === activeBrew?.id && <BarleyGraph barleyData={ingredients?.barley} />}
         <LongTermAirlockGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">
+        {ingredients?.brewId === activeBrew?.id && <HopsGraph hopsData={ingredients.hops} />}
         <LongTermTemperatureGraph activeBrew={activeBrew} />
-        <ShortTermTemperatureGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">
-        <HopsGraph />
+        <ShortTermTemperatureGraph activeBrew={activeBrew} />
       </Box>
     </Box>
   );

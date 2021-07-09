@@ -15,7 +15,9 @@ const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ activeBrew }) 
   const { temperatures, fetchTemperatures } = useTemperature();
 
   useEffect(() => {
-    fetchTemperatures(activeBrew?.id);
+    if (activeBrew?.id) {
+      fetchTemperatures(activeBrew?.id);
+    }
   }, [activeBrew]);
 
   if (!temperatures) {

@@ -15,7 +15,9 @@ const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ activeBrew }) => 
   const { airlocks, fetchAirlocks } = useAirlock();
 
   useEffect(() => {
-    fetchAirlocks(activeBrew?.id);
+    if (activeBrew?.id) {
+      fetchAirlocks(activeBrew?.id);
+    }
   }, [activeBrew]);
 
   if (airlocks === undefined) {

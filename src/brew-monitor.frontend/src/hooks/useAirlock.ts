@@ -1,18 +1,19 @@
 import { useState } from 'react';
 import Airlock from '../types/Airlock';
 
-const header = {
+const options = {
+  method: 'GET',
   headers: {
     'Content-type': 'application/json',
   },
 };
 
-export default () => {
+const useAirlock = () => {
   const [airlocks, setAirlocks] = useState<Airlock[]>();
 
   const fetchAirlocks = async (brewId: string): Promise<void> => {
     try {
-      const response = await fetch(`http://localhost:8080/airlocks/${brewId}`, header).then((response) => {
+      const response = await fetch(`http://localhost:8080/airlocks/${brewId}`, options).then((response) => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -30,3 +31,5 @@ export default () => {
     fetchAirlocks,
   };
 };
+
+export default useAirlock;

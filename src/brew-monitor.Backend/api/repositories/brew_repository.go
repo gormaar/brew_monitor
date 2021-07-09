@@ -3,10 +3,11 @@ package repositories
 import (
 	"encoding/json"
 	"errors"
-	"github.com/jinzhu/gorm"
 	"io/ioutil"
 	"net/http"
 	"time"
+
+	"github.com/jinzhu/gorm"
 )
 
 type Brew struct {
@@ -65,9 +66,9 @@ func (b * Brew) DeleteBrew(db *gorm.DB, brewId uint) (int64, error){
 	return db.RowsAffected, nil
 }
 
-func (b *Brew) PutBrew(db *gorm.DB, brewId uint) (*Brew, error) {
+func (b *Brew) PutBrew(db *gorm.DB) (*Brew, error) {
 	var err error
-	err = db.Debug().Model(&Brew{}).Where("id = ?", brewId).Update(Brew{BrewName: b.BrewName, BrewType: b.BrewType, BrewStatus: b.BrewStatus, BrewFermentationTime: b.BrewFermentationTime}).Error
+	err = db.Debug().Model(&Brew{}).Where("brew_id = ?", b.BrewId).Update(Brew{BrewName: b.BrewName, BrewType: b.BrewType, BrewStatus: b.BrewStatus, BrewFermentationTime: b.BrewFermentationTime}).Error
 	if err != nil {
 		return &Brew{}, err
 	}
