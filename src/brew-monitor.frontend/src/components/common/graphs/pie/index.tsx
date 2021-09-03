@@ -20,12 +20,8 @@ const PieGraph: FC<PieGraphProps> = ({ data }) => {
       cornerRadius={3}
       colors={{ scheme: 'accent' }}
       borderWidth={1}
+      animate
       borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
-      radialLabelsSkipAngle={10}
-      radialLabelsTextColor="#333333"
-      radialLabelsLinkColor={{ from: 'color' }}
-      sliceLabelsSkipAngle={10}
-      sliceLabelsTextColor="#333333"
       defs={[
         {
           id: 'dots',

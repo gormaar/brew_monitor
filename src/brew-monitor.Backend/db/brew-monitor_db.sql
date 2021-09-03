@@ -73,17 +73,18 @@ constraint barley_fk_1 foreign key (ingredients_id) references Ingredients (ingr
 
 create table if not exists Gravity(
 gravity_id integer not null auto_increment,
-gravity_value decimal,
-gravity_OG_aim decimal,
-gravity_SG_aim decimal,
-gravity_FG_aim decimal,
-gravity_OG_actual decimal,
-gravity_SG_actual decimal,
-gravity_FG_actual decimal,
+gravity_current_value decimal,
+gravity_original decimal,
+gravity_specific decimal,
+gravity_final decimal,
+gravity_target_FG decimal,
+gravity_target_OG decimal,
+gravity_target_SG decimal,
 created_at datetime,
 updated_at datetime,
 brew_id integer,
 
 constraint gravity_pk primary key (gravity_id),
-constraint gravity_fk_1 foreign key (brew_id) references Brew (brew_id)
+constraint gravity_fk_1 foreign key (brew_id) references Brews (brew_id)
 );
+

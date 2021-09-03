@@ -1,0 +1,27 @@
+.mainContentWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  padding: 16px;
+  margin: 16px 16px 32px 2.5%;
+
+  .formHeader {
+    width: 100%;
+  }
+
+  .formContainer {
+    margin-top: 32px;
+
+    .brewForm {
+      height: 400px;
+      width: 500px;
+      background-color: var(--color-secondary);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+
+      h3 {
+        padding: 16px;
+      }
+    }
+  }
+}

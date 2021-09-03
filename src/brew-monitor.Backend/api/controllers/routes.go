@@ -26,6 +26,9 @@ func (server *Server) initializeRoutes() {
 	//Routes for ingredients
 	server.Router.HandleFunc("/ingredients/{brew_id}", server.GetIngredients).Methods("GET", "OPTIONS")
 
+	//Routes for gravity
+	server.Router.HandleFunc("/gravity/{brew_id}", server.GetGravity).Methods("GET", "OPTIONS")
+
 	//Redeploy application
 	server.Router.HandleFunc("/redeploy", server.Redeploy).Methods("GET", "OPTIONS")
 }
