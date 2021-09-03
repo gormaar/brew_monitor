@@ -1,7 +1,7 @@
 create schema if not exists brew_monitor;
 use brew_monitor;
 
-create table if not exists Brew(
+create table if not exists Brews(
 brew_id integer not null auto_increment,
 brew_name varchar(100),
 brew_type varchar(100),
@@ -19,7 +19,7 @@ modified_date datetime,
 brew_id integer,
 
 constraint temp_pk primary key (temp_id),
-constraint temp_fk_1 foreign key (brew_id) references Brew (brew_id)
+constraint temp_fk_1 foreign key (brew_id) references Brews (brew_id)
 );
 
 create table if not exists Airlock(
@@ -30,7 +30,7 @@ modified_date datetime,
 brew_id integer,
 
 constraint airlock_pk primary key (airlock_id),
-constraint airlock_fk_1 foreign key (brew_id) references Brew (brew_id)
+constraint airlock_fk_1 foreign key (brew_id) references Brews (brew_id)
 );
 
 create table if not exists Ingredients(
@@ -38,7 +38,7 @@ ingredients_id integer not null auto_increment,
 brew_id integer,
 
 constraint ingredients_pk primary key (ingredients_id),
-constraint ingredients_fk_1 foreign key (brew_id) references Brew (brew_id)
+constraint ingredients_fk_1 foreign key (brew_id) references Brews (brew_id)
 );
 
 create table if not exists Hops(
