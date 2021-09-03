@@ -1,34 +1,58 @@
 import React, { FC, Fragment, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { Box, Typography, Button, makeStyles } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+
 import Statistics from '../../components/statistics';
 import Navbar from '../../components/common/navbar';
-import { Box, Typography } from '@material-ui/core';
 import BrewSelector from '../../components/common/select';
 import useBrew from '../../hooks/useBrew';
+import useIngredients from '../../hooks/useIngredients';
+import useGravity from '../../hooks/useGravity';
 import './styles.scss';
-import Ingredients from '../../types/Ingredients';
 
 type DashBoardParams = {
   brewId: string;
 };
 
+const useStyles = makeStyles({
+  brewFormButton: {
+    position: 'absolute',
+    right: 16,
+    backgroundColor: '#7fc97f',
+    '&:hover': {
+      backgroundColor: '#97f097',
+    },
+  },
+});
+
 const DashboardScreen: FC = () => {
+  const classes = useStyles();
+  const history = useHistory();
   const { brewId } = useParams<DashBoardParams>();
   const { brew, brews, fetchBrew } = useBrew();
+  const { ingredients, fetchIngredients } = useIngredients();
+  const { fetchGravity, gravity } = useGravity();
 
   useEffect(() => {
-    fetchBrew(brewId);
+    if (brewId) {
+      fetchIngredients(brewId);
+      fetchBrew(brewId);
+      fetchGravity(brewId);
+    }
   }, [brewId]);
 
-  const ingredients: Ingredients = {
-    id: '1',
-    brewId: 'a',
-  };
+  useEffect(() => {
+    if (brews[0]) history.push(`/brew/${brews[0]?.id}`);
+  }, [brews]);
 
   return (
     <Fragment>
       <Navbar>
-        <BrewSelector brews={brews} activeBrew={brew} />
+        {brews[0] && <BrewSelector brews={brews} activeBrew={brew} />}
+        {/* <Button type="button" onClick={() => history.push('/brew/create')} className={classes.brewFormButton}>
+          Create brew
+        </Button> */}
       </Navbar>
       <Box className="dashboard">
         <Box className="dashboard__header">
@@ -36,7 +60,7 @@ const DashboardScreen: FC = () => {
             {brew?.name}
           </Typography>
         </Box>
-        <Statistics activeBrew={brew} ingredients={ingredients} />
+        <Statistics activeBrew={brew} ingredients={ingredients} gravity={gravity} />
       </Box>
     </Fragment>
   );

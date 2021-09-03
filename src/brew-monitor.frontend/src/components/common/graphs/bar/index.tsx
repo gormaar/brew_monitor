@@ -1,37 +1,60 @@
 import React, { FC } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
-import { Serie } from '@nivo/line';
+
+type BarGraphData = {};
 
 type BarGraphProps = {
-  data: Serie[];
+  data: BarGraphData[];
   xLegend: string;
   yLegend: string;
+  keys: string[];
+  indexBy: string;
 };
 
-const BarGraph: FC<BarGraphProps> = ({ data, xLegend, yLegend }) => {
+const BarGraph: FC<BarGraphProps> = ({ data, xLegend, yLegend, keys, indexBy }) => {
   return (
     <ResponsiveBar
       data={data}
-      keys={['Pilsner', 'Caramunich', 'Wheat']}
-      margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-      padding={0.3}
+      keys={keys}
+      indexBy={indexBy}
+      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      padding={0.5}
       valueScale={{ type: 'linear' }}
+      indexScale={{ type: 'band', round: true }}
       colors={{ scheme: 'nivo' }}
+      layout="vertical"
+      theme={{
+        axis: {
+          ticks: {
+            line: {
+              stroke: '#e2e0e0',
+            },
+            text: {
+              fill: '#e2e0e0',
+            },
+          },
+          legend: {
+            text: {
+              fill: '#e2e0e0',
+            },
+          },
+        },
+      }}
       defs={[
         {
           id: 'dots',
           type: 'patternDots',
-          background: 'wheat',
-          color: '#dddada',
-          size: 4,
+          background: 'inherit',
+          color: '#38bcb2',
+          size: 3,
           padding: 1,
           stagger: true,
         },
         {
           id: 'lines',
           type: 'patternLines',
-          background: 'wheat',
-          color: '#dddada',
+          background: 'inherit',
+          color: '#eed312',
           rotation: -45,
           lineWidth: 6,
           spacing: 10,
@@ -58,7 +81,7 @@ const BarGraph: FC<BarGraphProps> = ({ data, xLegend, yLegend }) => {
       }}
       labelSkipWidth={12}
       labelSkipHeight={12}
-      labelTextColor={'#dddada'}
+      labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
       legends={[
         {
           dataFrom: 'keys',
@@ -69,9 +92,10 @@ const BarGraph: FC<BarGraphProps> = ({ data, xLegend, yLegend }) => {
           translateY: 0,
           itemsSpacing: 2,
           itemWidth: 100,
+          itemTextColor: 'rgb(226, 224, 224)',
           itemHeight: 20,
           itemDirection: 'left-to-right',
-          itemOpacity: 0.85,
+          itemOpacity: 1,
           symbolSize: 20,
           effects: [
             {
@@ -83,9 +107,6 @@ const BarGraph: FC<BarGraphProps> = ({ data, xLegend, yLegend }) => {
           ],
         },
       ]}
-      animate={true}
-      motionStiffness={90}
-      motionDamping={15}
     />
   );
 };

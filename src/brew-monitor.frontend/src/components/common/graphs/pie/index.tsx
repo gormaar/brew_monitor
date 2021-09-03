@@ -18,14 +18,10 @@ const PieGraph: FC<PieGraphProps> = ({ data }) => {
       innerRadius={0.5}
       padAngle={0.7}
       cornerRadius={3}
-      colors={{ scheme: 'nivo' }}
+      colors={{ scheme: 'accent' }}
       borderWidth={1}
+      animate
       borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
-      radialLabelsSkipAngle={10}
-      radialLabelsTextColor="#333333"
-      radialLabelsLinkColor={{ from: 'color' }}
-      sliceLabelsSkipAngle={10}
-      sliceLabelsTextColor="#333333"
       defs={[
         {
           id: 'dots',
@@ -106,7 +102,7 @@ const PieGraph: FC<PieGraphProps> = ({ data }) => {
           itemsSpacing: 0,
           itemWidth: 100,
           itemHeight: 18,
-          itemTextColor: '#999',
+          itemTextColor: '#eee',
           itemDirection: 'left-to-right',
           itemOpacity: 1,
           symbolSize: 18,

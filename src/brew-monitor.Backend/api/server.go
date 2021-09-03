@@ -1,6 +1,8 @@
 package api
 
 import (
+	"os"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gormaar/brew-monitor/api/controllers"
 	_ "github.com/jinzhu/gorm/dialects/mysql"

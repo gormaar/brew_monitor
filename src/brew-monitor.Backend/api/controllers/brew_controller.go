@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"encoding/json"
 	"net/http"
 	"strconv"
 
@@ -68,19 +69,17 @@ func (server *Server) DeleteBrew(w http.ResponseWriter, r *http.Request) {
 
 func (server *Server) PutBrew(w http.ResponseWriter, r *http.Request) {
 	setCors(&w)
-	vars := mux.Vars(r)
-	brewId, err := strconv.ParseUint(vars["brew_id"], 10, 32)
+	var b repository.Brew
+	err := json.NewDecoder(r.Body).Decode(&b)
 	if err != nil {
 		response.ERROR(w, http.StatusBadRequest, err)
 		return
 	}
-	brewModel := repository.Brew{}
-	brew, err := brewModel.PutBrew(server.DB, uint(brewId))
+
+	brew, err := b.PutBrew(server.DB)
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
 	response.JSON(w, http.StatusOK, brew)
 }
-
-

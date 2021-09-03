@@ -11,11 +11,12 @@ import (
 )
 
 type Temperature struct {
-	TempId			uint		`gorm:"primary_key; not_null; auto_increment;" json:"id"`
-	TempValue		int			`json:"value"`
-	CreatedAt	time.Time		`json:"createdAt"`
-	UpdatedAt   time.Time		`json:"updatedAt"`
-	BrewId			uint		`json:"brewId"`
+	TempId				uint		`gorm:"primary_key; not_null; auto_increment;" json:"id"`
+	TempValue			int			`json:"value"`
+	TempValueLongterm 	int			`json:"longTermValue"`
+	CreatedAt			time.Time	`json:"createdAt"`
+	UpdatedAt   		time.Time	`json:"updatedAt"`
+	BrewId				uint		`json:"brewId"`
 }
 
 func (t *Temperature) GetRecentTemperature(db *gorm.DB, brewId uint) (*Temperature, error){

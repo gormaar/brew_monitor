@@ -6,20 +6,22 @@ import BarleyGraph from '../ingredients/barleyGraph';
 import HopsGraph from '../ingredients/hopsGraph';
 import ShortTermTemperatureGraph from './components/temperature/shortTermTemperature';
 import LongTermTemperatureGraph from './components/temperature/longTermTemperature';
-import DetailsTable from '../details/components/detailsTable';
+import DetailsTable from '../details/detailsTable';
 import ShortTermAirlockGraph from './components/airlock/shortTermAirlock';
 import LongTermAirlockGraph from './components/airlock/longTermAirlock';
+import GravityGraph from './components/gravity';
 import Brew from '../../types/Brew';
 import Ingredients from '../../types/Ingredients';
 import './styles.scss';
+import Gravity from '../../types/Gravity';
 
 type StatisticsProps = {
   activeBrew: Brew;
   ingredients: Ingredients;
+  gravity?: Gravity;
 };
 
-const Statistics: FC<StatisticsProps> = ({ activeBrew, ingredients }) => {
-  //const { barley } = ingredients;
+const Statistics: FC<StatisticsProps> = ({ activeBrew, gravity, ingredients }) => {
   return (
     <Box className="statistics">
       <Box className="stat-container">
@@ -31,17 +33,18 @@ const Statistics: FC<StatisticsProps> = ({ activeBrew, ingredients }) => {
       </Box>
 
       <Box className="stat-container">
-        <BarleyGraph barleyData={ingredients.barley!} />
+        {ingredients?.brewId === activeBrew?.id && <BarleyGraph barleyData={ingredients?.barley} />}
         <LongTermAirlockGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">
+        {ingredients?.brewId === activeBrew?.id && <HopsGraph hopsData={ingredients.hops} />}
         <LongTermTemperatureGraph activeBrew={activeBrew} />
-        <ShortTermTemperatureGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">
-        <HopsGraph />
+        {gravity?.brewId === activeBrew?.id && <GravityGraph gravity={gravity} />}
+        <ShortTermTemperatureGraph activeBrew={activeBrew} />
       </Box>
     </Box>
   );

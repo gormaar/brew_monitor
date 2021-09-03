@@ -15,17 +15,21 @@ const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ activeBrew }) => 
   const { airlocks, fetchAirlocks } = useAirlock();
 
   useEffect(() => {
-    fetchAirlocks(activeBrew?.id);
+    if (activeBrew?.id) {
+      fetchAirlocks(activeBrew?.id);
+    }
   }, [activeBrew]);
 
   if (airlocks === undefined) {
     return null;
   }
 
+  const longTermActivity = airlocks.filter((a) => a.activityLongterm !== 0);
+
   const airlockData: Serie[] = [
     {
-      id: activeBrew.name,
-      data: airlocks.map((airlock) => {
+      id: 'Long term airlock activity',
+      data: longTermActivity.map((airlock) => {
         const createdAt = new Date(airlock.createdAt).toLocaleDateString('no', {
           year: 'numeric',
           month: '2-digit',
@@ -33,7 +37,7 @@ const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ activeBrew }) => 
           hour: 'numeric',
           minute: 'numeric',
         });
-        return { x: createdAt, y: airlock.activity };
+        return { x: createdAt, y: airlock.activityLongterm };
       }),
     },
   ];

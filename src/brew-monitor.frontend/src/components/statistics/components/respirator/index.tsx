@@ -8,11 +8,12 @@ type RespiratorProps = {
 
 const Respirator: FC<RespiratorProps> = ({ frequency }) => {
   const [blink, setBlink] = useState<boolean>(false);
+
   const sleep = (milliseconds: number) => {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   };
   const simulateAirlockFrequency = async () => {
-    if (frequency !== undefined) {
+    if (frequency) {
       const frequencyTimeout = 60 / frequency;
       for (let i = 0; i <= frequency; i++) {
         setBlink(true);

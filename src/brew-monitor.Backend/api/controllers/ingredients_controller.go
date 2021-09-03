@@ -5,12 +5,11 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-	"github.com/gormaar/brew-monitor/api/repositories"
+	repository "github.com/gormaar/brew-monitor/api/repositories"
 	response "github.com/gormaar/brew-monitor/api/responses"
 )
 
-
-func (server *Server) GetGravity(w http.ResponseWriter, r *http.Request) {
+func (server *Server) GetIngredients(w http.ResponseWriter, r *http.Request) {
 	setCors(&w)
 	vars := mux.Vars(r)
 
@@ -19,12 +18,12 @@ func (server *Server) GetGravity(w http.ResponseWriter, r *http.Request) {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
-
-	gravityModel := repositories.Gravity{}
-	gravity, err := gravityModel.GetGravity(server.DB, uint(brewId))
+	
+	ingredientsModel := repository.Ingredients{}
+	ingredients, err := ingredientsModel.GetIngredients(server.DB, uint(brewId))
 	if err != nil {
 		response.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
-	response.JSON(w, http.StatusOK, gravity)
+	response.JSON(w, http.StatusOK, ingredients)
 }
