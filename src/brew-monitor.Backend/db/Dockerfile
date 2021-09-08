@@ -1,4 +1,4 @@
-FROM mysql:latest as builder
+FROM mysql:8.0.23 as builder
 
 RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
 
