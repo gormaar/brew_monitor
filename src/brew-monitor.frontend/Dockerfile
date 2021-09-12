@@ -1,5 +1,6 @@
 FROM node:14.17.6 AS builder
 WORKDIR /app
+RUN mkdir /home/certs
 
 COPY package*.json ./
 RUN npm ci

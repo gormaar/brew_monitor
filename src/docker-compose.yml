@@ -30,7 +30,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
+      - /etc/letsencrypt/live/brew-monitor.no:/home/certs
       - /etc/ssl:/etc/ssl
 volumes:
   data-volume:
