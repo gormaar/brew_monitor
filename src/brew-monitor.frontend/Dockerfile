@@ -1,6 +1,6 @@
 FROM node:14.17.6 AS builder
 WORKDIR /app
-RUN chmod -R 600 /etc/nginx/ssl
+RUN chmod -R 600 /etc/nginx
 
 COPY package*.json ./
 RUN npm ci
