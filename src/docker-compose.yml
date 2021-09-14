@@ -30,7 +30,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - /etc/letsencrypt:/root
+      - /etc/letsencrypt:/etc/letsencrypt
       - /etc/ssl:/etc/ssl
 volumes:
   data-volume:
