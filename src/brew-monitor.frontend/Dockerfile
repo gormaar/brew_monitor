@@ -10,7 +10,7 @@ RUN npm run build
 
 FROM nginx:1.17-alpine
 
-RUN usermod -u 1000 www-data
+RUN chmod -R 600 /etc/nginx
 
 WORKDIR /app
 COPY --from=builder /app/build /app
