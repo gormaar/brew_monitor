@@ -1,5 +1,8 @@
 FROM mysql:latest as builder
 
+ADD brew-monitor_db.sql /docker-entrypoint-initdb.d/
+RUN chown -R mysql:mysql /docker-entrypoint-initdb.d/
+
 RUN ["sed", "-i", "s/exec \"$@\"/echo \"not running $@\"/", "/usr/local/bin/docker-entrypoint.sh"]
 
 ARG DB_USER
@@ -11,7 +14,6 @@ ENV MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
 ENV MYSQL_DATABASE=${DB_DATABASE}
 
 WORKDIR /app
-COPY brew-monitor_db.sql /docker-entrypoint-initdb.d/
 
 RUN ["/usr/local/bin/docker-entrypoint.sh", "mysqld", "--datadir", "/initialized-db"]
 

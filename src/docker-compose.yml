@@ -4,15 +4,16 @@ services:
     container_name: db
     image: gormerik/brew-monitor.db:latest
     command: --default-authentication-plugin=mysql_native_password
-    volumes: 
+    volumes:
       - data-volume:/var/lib/mysql
     ports:
       - "3306:3306"
-    cap_add: 
+    cap_add:
       - SYS_NICE # CAP_SYS_NICE
     env_file:
-      - brew-monitor.Backend/db/db.env    
-    command: --default-authentication-plugin=mysql_native_password
+      - brew-monitor.Backend/db/db.env
+    networks:
+      - net
   api:
     container_name: api
     image: gormerik/brew-monitor.api:latest
@@ -23,14 +24,23 @@ services:
       - mysql
     env_file:
       - brew-monitor.Backend/api.env
+    networks:
+      - net
+    links:
+      - "mysql:database"
   client:
     container_name: client
     image: gormerik/brew-monitor.client:latest
+    networks:
+      - net
     ports:
       - "80:80"
       - "443:443"
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - /etc/ssl:/etc/ssl
+networks:
+  net:
+    driver: bridge
 volumes:
   data-volume:
