@@ -21,7 +21,7 @@ updated_at datetime,
 brew_id integer,
 
 constraint temp_pk primary key (temp_id),
-constraint temp_fk_1 foreign key (brew_id) references Brews (brew_id)
+constraint temp_fk_1 foreign key (brew_id) references brews (brew_id)
 );
 
 create table if not exists airlocks(
@@ -33,7 +33,7 @@ updated_at datetime,
 brew_id integer,
 
 constraint airlock_pk primary key (airlock_id),
-constraint airlock_fk_1 foreign key (brew_id) references Brews (brew_id)
+constraint airlock_fk_1 foreign key (brew_id) references brews (brew_id)
 );
 
 create table if not exists ingredients(
@@ -43,7 +43,7 @@ updated_at datetime,
 brew_id integer,
 
 constraint ingredients_pk primary key (ingredients_id),
-constraint ingredients_fk_1 foreign key (brew_id) references Brews (brew_id)
+constraint ingredients_fk_1 foreign key (brew_id) references brews (brew_id)
 );
 
 create table if not exists hops(
@@ -55,7 +55,7 @@ updated_at datetime,
 ingredients_id integer,
 
 constraint hop_pk primary key (hop_id),
-constraint hop_fk_1 foreign key (ingredients_id) references Ingredients (ingredients_id)
+constraint hop_fk_1 foreign key (ingredients_id) references ingredients (ingredients_id)
 );
 
 create table if not exists yeast(
@@ -67,7 +67,7 @@ updated_at datetime,
 ingredients_id integer,
 
 constraint yeast_pk primary key (yeast_id),
-constraint yeast_fk_1 foreign key (ingredients_id) references Ingredients (ingredients_id)
+constraint yeast_fk_1 foreign key (ingredients_id) references ingredients (ingredients_id)
 );
 
 create table if not exists barley(
@@ -79,7 +79,7 @@ updated_at datetime,
 ingredients_id integer,
 
 constraint barley_pk primary key (barley_id),
-constraint barley_fk_1 foreign key (ingredients_id) references Ingredients (ingredients_id)
+constraint barley_fk_1 foreign key (ingredients_id) references ingredients (ingredients_id)
 );
 
 create table if not exists gravity(
@@ -96,6 +96,6 @@ updated_at datetime,
 brew_id integer,
 
 constraint gravity_pk primary key (gravity_id),
-constraint gravity_fk_1 foreign key (brew_id) references Brews (brew_id)
+constraint gravity_fk_1 foreign key (brew_id) references brews (brew_id)
 );
 
