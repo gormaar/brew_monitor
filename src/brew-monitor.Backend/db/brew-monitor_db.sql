@@ -1,7 +1,7 @@
 create schema if not exists brew_monitor;
 use brew_monitor;
 
-create table if not exists Brews(
+create table if not exists brews(
 brew_id integer not null auto_increment,
 brew_name varchar(100),
 brew_type varchar(100),
@@ -13,7 +13,7 @@ updated_at datetime,
 constraint brew_pk primary key (brew_id)
 );
 
-create table if not exists Temperature(
+create table if not exists temperature(
 temp_id integer not null auto_increment,
 temp_value decimal,
 created_at datetime,
@@ -24,7 +24,7 @@ constraint temp_pk primary key (temp_id),
 constraint temp_fk_1 foreign key (brew_id) references Brews (brew_id)
 );
 
-create table if not exists Airlocks(
+create table if not exists airlocks(
 airlock_id integer not null auto_increment,
 airlock_activity integer,
 airlock_activity_longterm integer,
@@ -36,7 +36,7 @@ constraint airlock_pk primary key (airlock_id),
 constraint airlock_fk_1 foreign key (brew_id) references Brews (brew_id)
 );
 
-create table if not exists Ingredients(
+create table if not exists ingredients(
 ingredients_id integer not null auto_increment,
 created_at datetime,
 updated_at datetime,
@@ -46,7 +46,7 @@ constraint ingredients_pk primary key (ingredients_id),
 constraint ingredients_fk_1 foreign key (brew_id) references Brews (brew_id)
 );
 
-create table if not exists Hops(
+create table if not exists hops(
 hop_id integer not null auto_increment,
 hop_type varchar(100),
 hop_amount integer,
@@ -58,7 +58,7 @@ constraint hop_pk primary key (hop_id),
 constraint hop_fk_1 foreign key (ingredients_id) references Ingredients (ingredients_id)
 );
 
-create table if not exists Yeast(
+create table if not exists yeast(
 yeast_id integer not null auto_increment,
 yeast_type varchar(100),
 yeast_amount integer,
@@ -70,7 +70,7 @@ constraint yeast_pk primary key (yeast_id),
 constraint yeast_fk_1 foreign key (ingredients_id) references Ingredients (ingredients_id)
 );
 
-create table if not exists Barley(
+create table if not exists barley(
 barley_id integer not null auto_increment,
 barley_type varchar(100),
 barley_amount integer,
@@ -82,7 +82,7 @@ constraint barley_pk primary key (barley_id),
 constraint barley_fk_1 foreign key (ingredients_id) references Ingredients (ingredients_id)
 );
 
-create table if not exists Gravity(
+create table if not exists gravity(
 gravity_id integer not null auto_increment,
 gravity_current_value decimal,
 gravity_original decimal,
