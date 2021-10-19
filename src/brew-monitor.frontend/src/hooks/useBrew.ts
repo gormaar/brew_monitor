@@ -16,7 +16,7 @@ const useBrew = () => {
   const fetchBrews = async (): Promise<void> => {
     const options = { method: 'GET', header: { 'Content-Type': 'application/json' } };
     try {
-      const response = await fetch(`http://localhost:8080/brews`, options).then((response) => {
+      const response = await fetch(`host.docker.internal:8080/brews`, options).then((response) => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
