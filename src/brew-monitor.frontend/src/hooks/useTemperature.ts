@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getBackendBaseUri } from '../constants'
 import Temperature from '../types/Temperature';
 
 const header = {
@@ -9,10 +10,11 @@ const header = {
 
 const useTemperature = () => {
   const [temperatures, setTemperatures] = useState<Temperature[]>();
+  const apiBaseUrl = getBackendBaseUri();
 
   const fetchTemperatures = async (brewId: string): Promise<void> => {
     try {
-      const response = await fetch(`http://localhost:8080/temperatures/${brewId}`, header).then((response) => {
+      const response = await fetch(`${apiBaseUrl}/temperatures/${brewId}`, header).then((response) => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }

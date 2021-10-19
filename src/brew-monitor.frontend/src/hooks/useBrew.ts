@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { getBackendBaseUri } from '../constants'
 import Brew from '../types/Brew';
 
 const header = {
@@ -8,6 +9,7 @@ const header = {
 const useBrew = () => {
   const [brews, setBrews] = useState<Brew[]>([]);
   const [brew, setBrew] = useState<Brew>(brews[0]);
+  const apiBaseUrl = getBackendBaseUri();
 
   useEffect(() => {
     fetchBrews();
@@ -16,7 +18,7 @@ const useBrew = () => {
   const fetchBrews = async (): Promise<void> => {
     const options = { method: 'GET', header: { 'Content-Type': 'application/json' } };
     try {
-      const response = await fetch(`http://host.docker.internal:8080/brews`, options).then((response) => {
+      const response = await fetch(`${apiBaseUrl}/brews`, options).then((response) => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -32,7 +34,7 @@ const useBrew = () => {
   const fetchBrew = async (brewId: string): Promise<void> => {
     const options = { method: 'GET', header: { 'Content-Type': 'application/json' } };
     try {
-      const response = await fetch(`http://localhost:8080/brew/${brewId}`, options).then((response) => {
+      const response = await fetch(`${apiBaseUrl}/brew/${brewId}`, options).then((response) => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
@@ -43,12 +45,12 @@ const useBrew = () => {
     } catch (e) {
       console.log(`Error while fetching brewId ${brewId}: ${e}`);
     }
-  }; //#7fc97f rgba(0,0,0,.5)
+  }; 
 
   const updateBrew = async (brew: Brew): Promise<void> => {
     const options = { method: 'PUT', headers: header, body: JSON.stringify(brew) };
     try {
-      await fetch(`http://localhost:8080/brew/update`, options).then((response) => {
+      await fetch(`${apiBaseUrl}/brew/update`, options).then((response) => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }

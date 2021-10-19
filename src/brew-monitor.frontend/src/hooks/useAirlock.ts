@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { getBackendBaseUri } from '../constants'
 import Airlock from '../types/Airlock';
 
 const options = {
@@ -10,10 +11,11 @@ const options = {
 
 const useAirlock = () => {
   const [airlocks, setAirlocks] = useState<Airlock[]>();
+  const apiBaseUrl = getBackendBaseUri();
 
   const fetchAirlocks = async (brewId: string): Promise<void> => {
     try {
-      const response = await fetch(`http://localhost:8080/airlocks/${brewId}`, options).then((response) => {
+      const response = await fetch(`${apiBaseUrl}/airlocks/${brewId}`, options).then((response) => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
