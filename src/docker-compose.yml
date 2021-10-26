@@ -28,6 +28,8 @@ services:
       - net
     links:
       - "mysql:database"
+    volumes:
+      - /etc/ssl:etc/ssl
   client:
     container_name: client
     image: gormerik/brew-monitor.client:latest
