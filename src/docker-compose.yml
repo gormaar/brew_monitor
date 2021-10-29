@@ -39,6 +39,8 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt
       - /etc/ssl:/etc/ssl
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 networks:
   net:
     driver: bridge
