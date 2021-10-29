@@ -57,7 +57,7 @@ const DetailsTable: FC<DetailTableProps> = ({ activeBrew }) => {
         <TableHead>
           <TableRow>
             <TableCell>Predicted amount</TableCell>
-            <TableCell align="right">20 liters</TableCell>
+            <TableCell align="right"></TableCell>
           </TableRow>
         </TableHead>
       </Table>
