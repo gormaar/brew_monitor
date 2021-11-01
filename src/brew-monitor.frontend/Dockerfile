@@ -15,3 +15,4 @@ RUN chmod -R 600 /etc/nginx
 WORKDIR /app
 COPY --from=builder /app/build /app
 COPY ./server/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./server/error.log /etc/nginx
