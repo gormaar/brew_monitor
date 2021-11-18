@@ -7,7 +7,6 @@ import (
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	repository "github.com/gormaar/brew-monitor/api/repositories"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
@@ -29,7 +28,6 @@ func (server *Server) Initialize(DbDriver, DbUser, DbPassword, DbPort, DbHost, D
 		fmt.Printf("Successfully connected to database: %s \n", DbName)
 	}
 	server.DB.DB().SetMaxIdleConns(1)
-	server.DB.Debug().AutoMigrate(&repository.Brew{}, &repository.Temperature{}, &repository.Airlock{})
 	server.Router = mux.NewRouter()
 	server.initializeRoutes()
 }
