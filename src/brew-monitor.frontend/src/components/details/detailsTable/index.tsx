@@ -51,13 +51,13 @@ const DetailsTable: FC<DetailTableProps> = ({ activeBrew }) => {
         <TableHead>
           <TableRow>
             <TableCell>Fermentation time</TableCell>
-            <TableCell align="right">{activeBrew?.fermentationTime}</TableCell>
+            <TableCell align="right">{activeBrew?.fermentationTime} days</TableCell>
           </TableRow>
         </TableHead>
         <TableHead>
           <TableRow>
-            <TableCell>Predicted amount</TableCell>
-            <TableCell align="right"></TableCell>
+            <TableCell>Estimated volume</TableCell>
+            <TableCell align="right">{activeBrew?.estimatedAmount} liters</TableCell>
           </TableRow>
         </TableHead>
       </Table>

@@ -16,6 +16,7 @@ type Brew struct {
 	BrewType			string		`json:"type"`
 	BrewStatus			string		`json:"status"`
 	BrewFermentationTime uint	 	`json:"fermentationTime"`
+	BrewEstimatedAmount  float32	`json:"estimatedAmount"`
 	CreatedAt			time.Time	`json:"createdAt"`
 	UpdatedAt 			time.Time	`json:"updatedAt"`
 }

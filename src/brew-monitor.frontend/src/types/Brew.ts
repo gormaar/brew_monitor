@@ -4,6 +4,7 @@ type Brew = {
   type: string;
   status: string;
   fermentationTime: number;
+  estimatedAmount: number;
   createdAt: Date;
   updatedAt: Date;
 };

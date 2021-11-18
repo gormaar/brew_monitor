@@ -7,6 +7,7 @@ brew_name varchar(100),
 brew_type varchar(100),
 brew_status varchar(100),
 brew_fermentation_time integer,
+brew_estimated_amount decimal,
 created_at datetime,
 updated_at datetime,
 
