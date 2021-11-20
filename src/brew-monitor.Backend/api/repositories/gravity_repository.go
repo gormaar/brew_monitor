@@ -31,5 +31,5 @@ func (g *Gravity) GetGravity(db *gorm.DB, brewId uint) (*Gravity, error) {
 }
 
 func (Gravity) TableName() string {
-	return "Gravity"
+	return "gravity"
 }
