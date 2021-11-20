@@ -14,9 +14,10 @@ updated_at datetime,
 constraint brew_pk primary key (brew_id)
 );
 
-create table if not exists temperature(
+create table if not exists temperatures(
 temp_id integer not null auto_increment,
 temp_value decimal,
+temp_value_longterm decimal,
 created_at datetime,
 updated_at datetime,
 brew_id integer,
