@@ -62,5 +62,5 @@ func (i *Ingredients) GetIngredients(db *gorm.DB, brewId uint) (*Ingredients, er
 }
 
 func (Barley) TableName() string {
-	return "Barley"
+	return "barley"
 }
