@@ -10,17 +10,22 @@ type BarleyGraphProps = {
 };
 
 const BarleyGraph: FC<BarleyGraphProps> = ({ barleyData }) => {
+
   if (!barleyData) {
-    return null;
+    return <Box className="barleyGraph"></Box>
   }
-  const data: PieData[] = barleyData?.map((barley) => {
+  const data: PieData[] = barleyData.map((barley) => {
     return {
       id: barley.type,
       value: barley.amount,
     };
   });
 
-  return <Box className="barleyGraph">{data && <PieGraph data={data} />}</Box>;
+  return (
+  <Box className="barleyGraph">
+    {data && <PieGraph data={data} />}
+  </Box>
+  );
 };
 
 export default BarleyGraph;

@@ -9,7 +9,6 @@ type GravityGraphProps = {
 };
 
 const GravityGraph: FC<GravityGraphProps> = ({ gravity }) => {
-  if (!gravity) return null;
 
   const gravityData = [
     {
@@ -26,7 +25,7 @@ const GravityGraph: FC<GravityGraphProps> = ({ gravity }) => {
     },
     {
       gravity: 'TargetOG',
-      TargetOG: gravity.targetOG,
+      TargetOG: gravity?.targetOG,
     },
     {
       gravity: 'FG',
@@ -34,19 +33,20 @@ const GravityGraph: FC<GravityGraphProps> = ({ gravity }) => {
     },
     {
       gravity: 'TargetFG',
-      TargetFG: gravity.targetFG,
+      TargetFG: gravity?.targetFG,
     },
   ];
 
   return (
     <Box className="gravityGraph">
+      {gravity && 
       <BarGraph
         data={gravityData}
         xLegend="Value"
         yLegend="Gravity"
         keys={['SG', 'TargetSG', 'OG', 'TargetOG', 'FG', 'TargetFG']}
         indexBy="gravity"
-      />
+      />}
     </Box>
   );
 };

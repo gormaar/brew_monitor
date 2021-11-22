@@ -33,17 +33,17 @@ const Statistics: FC<StatisticsProps> = ({ activeBrew, gravity, ingredients }) =
       </Box>
 
       <Box className="stat-container">
-        {ingredients?.brewId === activeBrew?.id && <BarleyGraph barleyData={ingredients?.barley} />}
+        <BarleyGraph barleyData={ingredients.barley} />
         <LongTermAirlockGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">
-        {ingredients?.brewId === activeBrew?.id && <HopsGraph hopsData={ingredients.hops} />}
+        <HopsGraph hopsData={ingredients.hops} />
         <LongTermTemperatureGraph activeBrew={activeBrew} />
       </Box>
 
       <Box className="stat-container">
-        {gravity?.brewId === activeBrew?.id && <GravityGraph gravity={gravity} />}
+        <GravityGraph gravity={gravity} />
         <ShortTermTemperatureGraph activeBrew={activeBrew} />
       </Box>
     </Box>

@@ -1,11 +1,11 @@
 import React, { FC, Fragment, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { Box, Typography, Button, makeStyles } from '@material-ui/core';
+import { Box, Typography, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import Statistics from '../../components/statistics';
 import Navbar from '../../components/common/navbar';
-import BrewSelector from '../../components/common/select';
+import BrewSelector from '../../components/common/brewSelctor';
 import useBrew from '../../hooks/useBrew';
 import useIngredients from '../../hooks/useIngredients';
 import useGravity from '../../hooks/useGravity';
@@ -49,7 +49,7 @@ const DashboardScreen: FC = () => {
   return (
     <Fragment>
       <Navbar>
-        {brews[0] && <BrewSelector brews={brews} activeBrew={brew} />}
+        {brew && <BrewSelector brews={brews} activeBrew={brew} />}
         {/* <Button type="button" onClick={() => history.push('/brew/create')} className={classes.brewFormButton}>
           Create brew
         </Button> */}

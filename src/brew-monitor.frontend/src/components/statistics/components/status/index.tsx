@@ -17,6 +17,7 @@ const useStyles = makeStyles({
 
 const Status: FC<StatusProps> = ({ activeBrew }) => {
   const classes = useStyles();
+
   const calculateProgress = (): number => {
     const brewDate = new Date(activeBrew?.createdAt);
     const diff = Math.floor((+Date.now() - +brewDate) / (1000 * 60 * 60 * 24));
@@ -36,7 +37,7 @@ const Status: FC<StatusProps> = ({ activeBrew }) => {
     }
     return Math.round(result);
   };
-
+  
   return (
     <Box className="status">
       <h3>Fermentation progress</h3>

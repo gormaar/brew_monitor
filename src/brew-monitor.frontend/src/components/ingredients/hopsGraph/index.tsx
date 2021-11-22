@@ -7,15 +7,15 @@ import Hops from '../../../types/Hops';
 import './styles.scss';
 
 type HopsGraphProps = {
-  hopsData: Hops[];
+  hopsData?: Hops[];
 };
 
 const HopsGraph: FC<HopsGraphProps> = ({ hopsData }) => {
-  if (!hopsData) {
-    return null;
-  }
 
-  const data: PieData[] = hopsData?.map((hops) => {
+  if (!hopsData) {
+    return <Box className="hopsGraph"></Box>
+  }
+  const data: PieData[] = hopsData.map((hops) => {
     return {
       id: hops.type,
       value: hops.amount,

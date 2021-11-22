@@ -21,7 +21,7 @@ const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ activeBrew }) => 
   }, [activeBrew]);
 
   if (airlocks === undefined) {
-    return null;
+    return <Box className="longTermAirlockGraph"></Box>
   }
 
   const longTermActivity = airlocks.filter((a) => a.activityLongterm !== 0);

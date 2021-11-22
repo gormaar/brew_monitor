@@ -12,7 +12,7 @@ const useBrew = () => {
   const apiBaseUrl = getBackendBaseUri();
 
   useEffect(() => {
-    fetchBrews();
+      fetchBrews();
   }, []);
 
   const fetchBrews = async (): Promise<void> => {

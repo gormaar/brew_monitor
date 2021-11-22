@@ -22,7 +22,7 @@ const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ activeBrew }) => {
   }, [activeBrew]);
 
   if (airlocks === undefined) {
-    return null;
+    return <Box className="shortTermAirlockGraph"></Box>
   }
 
   const recentAirlocks = airlocks.slice(Math.max(airlocks.length - 12, 1));

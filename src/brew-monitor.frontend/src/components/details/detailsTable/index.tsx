@@ -45,19 +45,19 @@ const DetailsTable: FC<DetailTableProps> = ({ activeBrew }) => {
         <TableHead>
           <TableRow>
             <TableCell>Brew date</TableCell>
-            <TableCell align="right">{createdAt}</TableCell>
+            {createdAt !== "Invalid Date" && <TableCell align="right">{createdAt}</TableCell>}
           </TableRow>
         </TableHead>
         <TableHead>
           <TableRow>
             <TableCell>Fermentation time</TableCell>
-            <TableCell align="right">{activeBrew?.fermentationTime} days</TableCell>
+            {activeBrew?.fermentationTime && <TableCell align="right">{activeBrew?.fermentationTime} days</TableCell>}
           </TableRow>
         </TableHead>
         <TableHead>
           <TableRow>
             <TableCell>Estimated volume</TableCell>
-            <TableCell align="right">{activeBrew?.estimatedAmount} liters</TableCell>
+            {activeBrew?.estimatedAmount ? <TableCell align="right">{activeBrew.estimatedAmount} liters</TableCell> : null}
           </TableRow>
         </TableHead>
       </Table>

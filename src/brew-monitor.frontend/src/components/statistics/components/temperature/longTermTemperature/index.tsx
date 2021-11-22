@@ -21,7 +21,7 @@ const LongTermTemperatureGraph: FC<LongTermTempGraphProps> = ({ activeBrew }) =>
   }, [activeBrew]);
 
   if (!temperatures) {
-    return null;
+    return <Box className="longTermTemperatureGraph"></Box>
   }
 
   const longtermTemperatures = temperatures.filter((t) => t.longTermValue !== 0);

@@ -21,7 +21,7 @@ const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ activeBrew }) 
   }, [activeBrew]);
 
   if (!temperatures) {
-    return null;
+    return <Box className="shortTermTemperatureGraph"></Box>
   }
 
   const recentTemperature = temperatures.slice(Math.max(temperatures.length - 12, 1));
