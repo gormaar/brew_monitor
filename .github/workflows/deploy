@@ -1,0 +1,20 @@
+name: Deploy 
+on:
+  workflow_run:
+    workflows: ["CI"]
+  workflow_dispatch:
+    branches:
+      - master
+        dev
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: whoami
