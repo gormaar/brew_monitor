@@ -25,7 +25,8 @@ jobs:
               env:
                   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
               run: |
-                  cd /home
+                  cd /home/brew-monitor/src
+                  ls
                   git pull
                   docker-compose down
                   
