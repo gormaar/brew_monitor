@@ -11,7 +11,7 @@ jobs:
             - name: ssh to host and run redeploy script
               uses: appleboy/ssh-action@master
               with:
-                host: ${{ secrets.SSH_HOST
+                host: ${{ secrets.SSH_HOST }}
                 username: ${{ secrets.USERNAME }}
                 key_path: ${{ secrets.SSH_PRIVATE_KEY }}
                 script: whoami
