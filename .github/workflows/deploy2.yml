@@ -1,0 +1,36 @@
+name: Redeploy
+on:
+  workflow_dispatch:
+    branches:
+      - master
+      - dev
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Add SSH key
+              env:
+                  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+              run: |
+                  mkdir -p /home/runner/.ssh
+                  ssh-keyscan ${{ secrets.HOST }} >> /home/runner/.ssh/known_hosts
+                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/github_actions
+                  chmod 600 /home/runner/.ssh/github_actions
+                  ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+                  ssh-add /home/runner/.ssh/github_actions
+            - name: Install dependencies
+              run: yarn
+            - name: Build and deploy
+              env:
+                  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+              run: |
+                  cd /home
+                  git pull
+                  docker-compose down
+                  
+                  docker pull ${{ secrets.USERNAME }}/brew-monitor.db
+                  docker pull ${{ secrets.USERNAME }}/brew-monitor.api
+                  docker pull ${{ secrets.USERNAME }}/brew-monitor.client
+                  
+                  docker-compose up -d
