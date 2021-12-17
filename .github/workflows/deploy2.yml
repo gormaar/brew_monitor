@@ -9,21 +9,19 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: ssh to host and run redeploy script
+              #if: ${{ github.event.workflow_run.conclusion == 'success' }}
               uses: appleboy/ssh-action@master
               with:
                 host: ${{ secrets.HOST }}
                 username: ${{ secrets.USERNAME }}
                 key: ${{ secrets.SSH_PRIVATE_KEY }}
                 port: 22
-                script: whoami
-            
-              #run: |
-                  #cd /home/${{ secrets.USERNAME }}/brew-monitor/src
-                  #git pull
-                 # docker-compose down
+                script: |
+                  cd /home/${{ secrets.USERNAME }}/brew-monitor/src
+                  git pull
+                  docker-compose down
+                  docker pull ${{ secrets.USERNAME }}/brew-monitor.db
+                  docker pull ${{ secrets.USERNAME }}/brew-monitor.api
+                  docker pull ${{ secrets.USERNAME }}/brew-monitor.client
                   
-                  #docker pull ${{ secrets.USERNAME }}/brew-monitor.db
-                  #docker pull ${{ secrets.USERNAME }}/brew-monitor.api
-                  #docker pull ${{ secrets.USERNAME }}/brew-monitor.client
-                  
-                  #docker-compose up -d
+                  docker-compose up -d
