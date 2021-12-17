@@ -25,6 +25,7 @@ jobs:
               env:
                   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
               run: |
+                  pwd
                   ls
                   cd /home/${{ secrets.USERNAME }}/brew-monitor/src
                   ls
