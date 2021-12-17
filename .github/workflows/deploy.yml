@@ -10,15 +10,18 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Deploy
+      - name: Install ssh key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.SSH_HOST }}
+          config: |
+            Host target
+              HostName {{ secretes.HOST }}
+              User {{ secrets.USERNAME }}
+      #- name: Deploy
+        #run: rsync -avz ${{ secrest.USERNAME }}@${{ secrets.SSH_HOST }}
+      - name: Redeploy
+        run: whoami
+      
         #if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        run: |
-          ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no ${{ secrets.USERNAME }}@${{ secrets.HOST }}
-          ${{ secrets.PASSWORD }}
-          whoami
-        #with:
-          #host: ${{ secrets.HOST }}
-          #username: ${{ secrets.USERNAME }}
-          #password: ${{ secrets.PASSWORD }}
-          #script: whoami
