@@ -1,11 +1,11 @@
-name: Redeploy
+name: Deploy
 on:
   workflow_dispatch:
     branches:
       - master
       - dev
 jobs:
-    redeploy:
+    deploy:
         runs-on: ubuntu-latest
         steps:
             - name: ssh to host and run redeploy script
