@@ -1,27 +1,18 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Box from '@material-ui/core/Box';
 import { Serie } from '@nivo/line';
 
 import LineGraph from '../../../../common/graphs/line';
-import Brew from '../../../../../types/Brew';
-import useTemperature from '../../../../../hooks/useTemperature';
 import './styles.scss';
+import Temperature from '../../../../../types/Temperature';
 
 type ShortTermTempGraphProps = {
-  activeBrew: Brew;
+  temperatures?: Temperature[];
 };
 
-const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ activeBrew }) => {
-  const { temperatures, fetchTemperatures } = useTemperature();
-
-  useEffect(() => {
-    if (activeBrew?.id) {
-      fetchTemperatures(activeBrew?.id);
-    }
-  }, [activeBrew]);
-
+const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ temperatures }) => {
   if (!temperatures) {
-    return <Box className="shortTermTemperatureGraph"></Box>
+    return <Box className="shortTermTemperatureGraph"></Box>;
   }
 
   const recentTemperature = temperatures.slice(Math.max(temperatures.length - 12, 1));

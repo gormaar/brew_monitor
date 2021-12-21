@@ -11,14 +11,13 @@ type HopsGraphProps = {
 };
 
 const HopsGraph: FC<HopsGraphProps> = ({ hopsData }) => {
-
   if (!hopsData) {
-    return <Box className="hopsGraph"></Box>
+    return <Box className="hopsGraph"></Box>;
   }
   const data: PieData[] = hopsData.map((hops) => {
     return {
       id: hops.type,
-      value: hops.amount,
+      value: hops?.amount,
     };
   });
   return (

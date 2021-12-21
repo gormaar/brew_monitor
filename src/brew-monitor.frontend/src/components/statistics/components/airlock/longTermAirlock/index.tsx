@@ -1,27 +1,19 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Box from '@material-ui/core/Box';
 import { Serie } from '@nivo/line';
 
 import LineGraph from '../../../../common/graphs/line';
-import useAirlock from '../../../../../hooks/useAirlock';
-import Brew from '../../../../../types/Brew';
+
 import './styles.scss';
+import Airlock from '../../../../../types/Airlock';
 
 type LongTermAirlockGraphProps = {
-  activeBrew: Brew;
+  airlocks?: Airlock[];
 };
 
-const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ activeBrew }) => {
-  const { airlocks, fetchAirlocks } = useAirlock();
-
-  useEffect(() => {
-    if (activeBrew?.id) {
-      fetchAirlocks(activeBrew?.id);
-    }
-  }, [activeBrew]);
-
+const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ airlocks }) => {
   if (airlocks === undefined) {
-    return <Box className="longTermAirlockGraph"></Box>
+    return <Box className="longTermAirlockGraph"></Box>;
   }
 
   const longTermActivity = airlocks.filter((a) => a.activityLongterm !== 0);

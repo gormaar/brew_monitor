@@ -1,27 +1,19 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Box from '@material-ui/core/Box';
 import { Serie } from '@nivo/line';
 
 import LineGraph from '../../../../common/graphs/line';
-import Brew from '../../../../../types/Brew';
-import useTemperature from '../../../../../hooks/useTemperature';
+
 import './styles.scss';
+import Temperature from '../../../../../types/Temperature';
 
 type LongTermTempGraphProps = {
-  activeBrew: Brew;
+  temperatures?: Temperature[];
 };
 
-const LongTermTemperatureGraph: FC<LongTermTempGraphProps> = ({ activeBrew }) => {
-  const { temperatures, fetchTemperatures } = useTemperature();
-
-  useEffect(() => {
-    if (activeBrew?.id) {
-      fetchTemperatures(activeBrew?.id);
-    }
-  }, [activeBrew]);
-
+const LongTermTemperatureGraph: FC<LongTermTempGraphProps> = ({ temperatures }) => {
   if (!temperatures) {
-    return <Box className="longTermTemperatureGraph"></Box>
+    return <Box className="longTermTemperatureGraph"></Box>;
   }
 
   const longtermTemperatures = temperatures.filter((t) => t.longTermValue !== 0);

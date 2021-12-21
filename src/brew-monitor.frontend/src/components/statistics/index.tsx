@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 
 import Status from './components/status';
@@ -11,17 +11,31 @@ import ShortTermAirlockGraph from './components/airlock/shortTermAirlock';
 import LongTermAirlockGraph from './components/airlock/longTermAirlock';
 import GravityGraph from './components/gravity';
 import Brew from '../../types/Brew';
-import Ingredients from '../../types/Ingredients';
 import './styles.scss';
-import Gravity from '../../types/Gravity';
+import useIngredients from '../../hooks/useIngredients';
+import useGravity from '../../hooks/useGravity';
+import useTemperature from '../../hooks/useTemperature';
+import useAirlock from '../../hooks/useAirlock';
 
 type StatisticsProps = {
   activeBrew: Brew;
-  ingredients: Ingredients;
-  gravity?: Gravity;
 };
 
-const Statistics: FC<StatisticsProps> = ({ activeBrew, gravity, ingredients }) => {
+const Statistics: FC<StatisticsProps> = ({ activeBrew }) => {
+  const { ingredients, fetchIngredients } = useIngredients();
+  const { gravity, fetchGravity } = useGravity();
+  const { temperatures, fetchTemperatures } = useTemperature();
+  const { airlocks, fetchAirlocks } = useAirlock();
+
+  useEffect(() => {
+    if (activeBrew?.id) {
+      fetchIngredients(activeBrew?.id);
+      fetchGravity(activeBrew?.id);
+      fetchTemperatures(activeBrew?.id);
+      fetchAirlocks(activeBrew?.id);
+    }
+  }, [activeBrew]);
+
   return (
     <Box className="statistics">
       <Box className="stat-container">
@@ -29,22 +43,22 @@ const Statistics: FC<StatisticsProps> = ({ activeBrew, gravity, ingredients }) =
           <Status activeBrew={activeBrew} />
           <DetailsTable activeBrew={activeBrew} />
         </Box>
-        <ShortTermAirlockGraph activeBrew={activeBrew} />
+        <ShortTermAirlockGraph airlocks={airlocks} />
       </Box>
 
       <Box className="stat-container">
         <BarleyGraph barleyData={ingredients.barley} />
-        <LongTermAirlockGraph activeBrew={activeBrew} />
+        <LongTermAirlockGraph airlocks={airlocks} />
       </Box>
 
       <Box className="stat-container">
         <HopsGraph hopsData={ingredients.hops} />
-        <LongTermTemperatureGraph activeBrew={activeBrew} />
+        <LongTermTemperatureGraph temperatures={temperatures} />
       </Box>
 
       <Box className="stat-container">
         <GravityGraph gravity={gravity} />
-        <ShortTermTemperatureGraph activeBrew={activeBrew} />
+        <ShortTermTemperatureGraph temperatures={temperatures} />
       </Box>
     </Box>
   );

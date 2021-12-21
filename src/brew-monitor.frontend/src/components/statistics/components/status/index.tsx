@@ -29,21 +29,19 @@ const Status: FC<StatusProps> = ({ activeBrew }) => {
   };
 
   const calculateProgressDays = () => {
-    const brewDate = new Date(activeBrew?.createdAt);
-    const diff = Math.floor((+Date.now() - +brewDate) / (1000 * 60 * 60 * 24));
-    const result = diff / activeBrew?.fermentationTime;
-    if (result >= activeBrew?.fermentationTime) {
+    const diff = Math.abs(new Date(activeBrew?.createdAt).getTime() - new Date(Date.now()).getTime());
+    var diffDays = Math.ceil(diff / (1000 * 3600 * 24));
+    if (diffDays >= activeBrew?.fermentationTime) {
       return activeBrew?.fermentationTime;
     }
-    return Math.round(result);
+    return Math.round(diffDays);
   };
-  
+
   return (
     <Box className="status">
-      <h3>Fermentation progress</h3>
-      <h3>
-        {calculateProgressDays()}/{activeBrew?.fermentationTime} days
-      </h3>
+      <h4>
+        Fermentation day {calculateProgressDays()}/{activeBrew?.fermentationTime}
+      </h4>
       {activeBrew && (
         <LinearProgress
           variant="determinate"

@@ -7,8 +7,7 @@ import Statistics from '../../components/statistics';
 import Navbar from '../../components/common/navbar';
 import BrewSelector from '../../components/common/brewSelctor';
 import useBrew from '../../hooks/useBrew';
-import useIngredients from '../../hooks/useIngredients';
-import useGravity from '../../hooks/useGravity';
+
 import './styles.scss';
 
 type DashBoardParams = {
@@ -31,14 +30,10 @@ const DashboardScreen: FC = () => {
   const history = useHistory();
   const { brewId } = useParams<DashBoardParams>();
   const { brew, brews, fetchBrew } = useBrew();
-  const { ingredients, fetchIngredients } = useIngredients();
-  const { fetchGravity, gravity } = useGravity();
 
   useEffect(() => {
     if (brewId) {
-      fetchIngredients(brewId);
       fetchBrew(brewId);
-      fetchGravity(brewId);
     }
   }, [brewId]);
 
@@ -60,7 +55,7 @@ const DashboardScreen: FC = () => {
             {brew?.name}
           </Typography>
         </Box>
-        <Statistics activeBrew={brew} ingredients={ingredients} gravity={gravity} />
+        <Statistics activeBrew={brew} />
       </Box>
     </Fragment>
   );
