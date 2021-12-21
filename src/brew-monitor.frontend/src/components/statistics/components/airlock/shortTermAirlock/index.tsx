@@ -1,28 +1,19 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Serie } from '@nivo/line';
 import Box from '@material-ui/core/Box';
 
 import LineGraph from '../../../../common/graphs/line';
 import Respirator from '../../respirator';
-import useAirlock from '../../../../../hooks/useAirlock';
-import Brew from '../../../../../types/Brew';
 import './styles.scss';
+import Airlock from '../../../../../types/Airlock';
 
 type ShortTermAirlockProps = {
-  activeBrew: Brew;
+  airlocks?: Airlock[];
 };
 
-const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ activeBrew }) => {
-  const { airlocks, fetchAirlocks } = useAirlock();
-
-  useEffect(() => {
-    if (activeBrew?.id) {
-      fetchAirlocks(activeBrew?.id);
-    }
-  }, [activeBrew]);
-
+const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ airlocks }) => {
   if (airlocks === undefined) {
-    return <Box className="shortTermAirlockGraph"></Box>
+    return <Box className="shortTermAirlockGraph"></Box>;
   }
 
   const recentAirlocks = airlocks.slice(Math.max(airlocks.length - 12, 1));

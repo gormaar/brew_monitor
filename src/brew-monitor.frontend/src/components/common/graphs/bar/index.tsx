@@ -21,7 +21,7 @@ const BarGraph: FC<BarGraphProps> = ({ data, xLegend, yLegend, keys, indexBy }) 
       padding={0.5}
       valueScale={{ type: 'linear' }}
       indexScale={{ type: 'band', round: true }}
-      colors={{ scheme: 'nivo' }}
+      colors={{ scheme: 'accent' }}
       layout="vertical"
       theme={{
         axis: {

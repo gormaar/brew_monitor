@@ -1,5 +1,5 @@
 import React, { FC, Fragment } from 'react';
-import { Box, Typography, Tabs, Tab } from '@material-ui/core';
+import { Box, Typography, Tab } from '@material-ui/core';
 
 import Navbar from '../../components/common/navbar';
 import './styles.scss';

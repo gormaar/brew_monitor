@@ -16,7 +16,6 @@ const DetailsTable: FC<DetailTableProps> = ({ activeBrew }) => {
     new Date(Date.now()).getDate() >= new Date(activeBrew?.createdAt).getDate() + activeBrew?.fermentationTime &&
     activeBrew?.status === 'Active'
   ) {
-    console.log('yo', activeBrew?.status);
     activeBrew.status = 'Inactive';
     updateBrew(activeBrew);
   }
@@ -45,7 +44,7 @@ const DetailsTable: FC<DetailTableProps> = ({ activeBrew }) => {
         <TableHead>
           <TableRow>
             <TableCell>Brew date</TableCell>
-            {createdAt !== "Invalid Date" && <TableCell align="right">{createdAt}</TableCell>}
+            {createdAt !== 'Invalid Date' && <TableCell align="right">{createdAt}</TableCell>}
           </TableRow>
         </TableHead>
         <TableHead>
@@ -57,7 +56,9 @@ const DetailsTable: FC<DetailTableProps> = ({ activeBrew }) => {
         <TableHead>
           <TableRow>
             <TableCell>Estimated volume</TableCell>
-            {activeBrew?.estimatedAmount ? <TableCell align="right">{activeBrew.estimatedAmount} liters</TableCell> : null}
+            {activeBrew?.estimatedAmount ? (
+              <TableCell align="right">{activeBrew.estimatedAmount} liters</TableCell>
+            ) : null}
           </TableRow>
         </TableHead>
       </Table>
