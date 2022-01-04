@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { Table, TableRow, TableHead, TableCell, TableContainer } from '@material-ui/core';
-import Brew from '../../../types/Brew';
-import useBrew from '../../../hooks/useBrew';
+
+import { Brew } from '../../../types';
+import { useBrew } from '../../../hooks';
 import './styles.scss';
 
 type DetailTableProps = {

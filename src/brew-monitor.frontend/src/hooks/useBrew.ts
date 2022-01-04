@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
-import { getBackendBaseUri } from '../constants'
-import Brew from '../types/Brew';
+import { getBackendBaseUri } from '../constants';
+import { Brew } from '../types';
 
 const header = {
   'Content-type': 'application/json',
 };
 
-const useBrew = () => {
+export const useBrew = () => {
   const [brews, setBrews] = useState<Brew[]>([]);
   const [brew, setBrew] = useState<Brew>(brews[0]);
   const apiBaseUrl = getBackendBaseUri();
 
   useEffect(() => {
-      fetchBrews();
+    fetchBrews();
   }, []);
 
   const fetchBrews = async (): Promise<void> => {
@@ -45,7 +45,7 @@ const useBrew = () => {
     } catch (e) {
       console.log(`Error while fetching brewId ${brewId}: ${e}`);
     }
-  }; 
+  };
 
   const updateBrew = async (brew: Brew): Promise<void> => {
     const options = { method: 'PUT', headers: header, body: JSON.stringify(brew) };
@@ -69,5 +69,3 @@ const useBrew = () => {
     updateBrew,
   };
 };
-
-export default useBrew;

@@ -1,4 +1,4 @@
-type Temperature = {
+export type Temperature = {
   id: string;
   value: number;
   longTermValue: number;
@@ -6,5 +6,3 @@ type Temperature = {
   createdAt: Date;
   updatedAt: Date;
 };
-
-export default Temperature;

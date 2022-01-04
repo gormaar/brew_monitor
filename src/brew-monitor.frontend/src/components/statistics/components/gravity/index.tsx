@@ -1,15 +1,14 @@
 import React, { FC } from 'react';
 import { Box } from '@material-ui/core';
 import BarGraph from '../../../common/graphs/bar';
-import Gravity from '../../../../types/Gravity';
+import { Gravity } from '../../../../types';
 import './styles.scss';
 
 type GravityGraphProps = {
   gravity?: Gravity;
 };
 
-const GravityGraph: FC<GravityGraphProps> = ({ gravity }) => {
-
+export const GravityGraph: FC<GravityGraphProps> = ({ gravity }) => {
   const gravityData = [
     {
       gravity: 'SG',
@@ -39,16 +38,15 @@ const GravityGraph: FC<GravityGraphProps> = ({ gravity }) => {
 
   return (
     <Box className="gravityGraph">
-      {gravity && 
-      <BarGraph
-        data={gravityData}
-        xLegend="Value"
-        yLegend="Gravity"
-        keys={['SG', 'TargetSG', 'OG', 'TargetOG', 'FG', 'TargetFG']}
-        indexBy="gravity"
-      />}
+      {gravity && (
+        <BarGraph
+          data={gravityData}
+          xLegend="Value"
+          yLegend="Gravity"
+          keys={['SG', 'TargetSG', 'OG', 'TargetOG', 'FG', 'TargetFG']}
+          indexBy="gravity"
+        />
+      )}
     </Box>
   );
 };
-
-export default GravityGraph;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { getBackendBaseUri } from '../constants'
-import Ingredients from '../types/Ingredients';
+import { getBackendBaseUri } from '../constants';
+import { Ingredients } from '../types';
 
 const header = {
   headers: {
@@ -8,7 +8,7 @@ const header = {
   },
 };
 
-const useIngredients = () => {
+export const useIngredients = () => {
   const [ingredients, setIngredients] = useState<Ingredients>({} as Ingredients);
   const apiBaseUrl = getBackendBaseUri();
 
@@ -32,5 +32,3 @@ const useIngredients = () => {
     fetchIngredients,
   };
 };
-
-export default useIngredients;

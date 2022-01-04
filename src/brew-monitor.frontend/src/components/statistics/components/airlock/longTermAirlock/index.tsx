@@ -3,15 +3,14 @@ import Box from '@material-ui/core/Box';
 import { Serie } from '@nivo/line';
 
 import LineGraph from '../../../../common/graphs/line';
-
+import { Airlock } from '../../../../../types';
 import './styles.scss';
-import Airlock from '../../../../../types/Airlock';
 
 type LongTermAirlockGraphProps = {
   airlocks?: Airlock[];
 };
 
-const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ airlocks }) => {
+export const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ airlocks }) => {
   if (airlocks === undefined) {
     return <Box className="longTermAirlockGraph"></Box>;
   }
@@ -40,5 +39,3 @@ const LongTermAirlockGraph: FC<LongTermAirlockGraphProps> = ({ airlocks }) => {
     </Box>
   );
 };
-
-export default LongTermAirlockGraph;

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { getBackendBaseUri } from '../constants'
-import Airlock from '../types/Airlock';
+import { getBackendBaseUri } from '../constants';
+import { Airlock } from '../types';
 
 const options = {
   method: 'GET',
@@ -9,7 +9,7 @@ const options = {
   },
 };
 
-const useAirlock = () => {
+export const useAirlock = () => {
   const [airlocks, setAirlocks] = useState<Airlock[]>();
   const apiBaseUrl = getBackendBaseUri();
 
@@ -33,5 +33,3 @@ const useAirlock = () => {
     fetchAirlocks,
   };
 };
-
-export default useAirlock;

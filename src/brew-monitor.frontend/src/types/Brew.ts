@@ -1,4 +1,4 @@
-type Brew = {
+export type Brew = {
   id: string;
   name: string;
   type: string;
@@ -8,5 +8,3 @@ type Brew = {
   createdAt: Date;
   updatedAt: Date;
 };
-
-export default Brew;

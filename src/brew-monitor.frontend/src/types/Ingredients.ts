@@ -1,11 +1,9 @@
-import Barley from './Barley';
-import Hops from './Hops';
+import { Barley } from './Barley';
+import { Hops } from './Hops';
 
-type Ingredients = {
+export type Ingredients = {
   id: string;
   barley: Barley[];
   hops: Hops[];
   brewId: string;
 };
-
-export default Ingredients;

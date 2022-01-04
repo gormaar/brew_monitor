@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { getBackendBaseUri } from '../constants'
-import Temperature from '../types/Temperature';
+import { getBackendBaseUri } from '../constants';
+import { Temperature } from '../types';
 
 const header = {
   headers: {
@@ -8,7 +8,7 @@ const header = {
   },
 };
 
-const useTemperature = () => {
+export const useTemperature = () => {
   const [temperatures, setTemperatures] = useState<Temperature[]>();
   const apiBaseUrl = getBackendBaseUri();
 
@@ -32,5 +32,3 @@ const useTemperature = () => {
     fetchTemperatures,
   };
 };
-
-export default useTemperature;

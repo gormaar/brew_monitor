@@ -17,7 +17,7 @@ const BarGraph: FC<BarGraphProps> = ({ data, xLegend, yLegend, keys, indexBy }) 
       data={data}
       keys={keys}
       indexBy={indexBy}
-      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      margin={{ top: 50, right: 20, bottom: 50, left: 60 }}
       padding={0.5}
       valueScale={{ type: 'linear' }}
       indexScale={{ type: 'band', round: true }}
@@ -82,31 +82,6 @@ const BarGraph: FC<BarGraphProps> = ({ data, xLegend, yLegend, keys, indexBy }) 
       labelSkipWidth={12}
       labelSkipHeight={12}
       labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
-      legends={[
-        {
-          dataFrom: 'keys',
-          anchor: 'bottom-right',
-          direction: 'column',
-          justify: false,
-          translateX: 120,
-          translateY: 0,
-          itemsSpacing: 2,
-          itemWidth: 100,
-          itemTextColor: 'rgb(226, 224, 224)',
-          itemHeight: 20,
-          itemDirection: 'left-to-right',
-          itemOpacity: 1,
-          symbolSize: 20,
-          effects: [
-            {
-              on: 'hover',
-              style: {
-                itemOpacity: 1,
-              },
-            },
-          ],
-        },
-      ]}
     />
   );
 };

@@ -3,14 +3,14 @@ import Box from '@material-ui/core/Box';
 import { Serie } from '@nivo/line';
 
 import LineGraph from '../../../../common/graphs/line';
+import { Temperature } from '../../../../../types';
 import './styles.scss';
-import Temperature from '../../../../../types/Temperature';
 
 type ShortTermTempGraphProps = {
   temperatures?: Temperature[];
 };
 
-const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ temperatures }) => {
+export const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ temperatures }) => {
   if (!temperatures) {
     return <Box className="shortTermTemperatureGraph"></Box>;
   }
@@ -33,5 +33,3 @@ const ShortTermTemperatureGraph: FC<ShortTermTempGraphProps> = ({ temperatures }
     </Box>
   );
 };
-
-export default ShortTermTemperatureGraph;

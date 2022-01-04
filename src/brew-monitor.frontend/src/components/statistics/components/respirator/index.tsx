@@ -1,12 +1,13 @@
 import React, { FC, Fragment, useState, useEffect } from 'react';
 import Box from '@material-ui/core/Box';
+
 import './styles.scss';
 
 type RespiratorProps = {
   frequency: number | undefined;
 };
 
-const Respirator: FC<RespiratorProps> = ({ frequency }) => {
+export const Respirator: FC<RespiratorProps> = ({ frequency }) => {
   const [blink, setBlink] = useState<boolean>(false);
 
   const sleep = (milliseconds: number) => {
@@ -30,5 +31,3 @@ const Respirator: FC<RespiratorProps> = ({ frequency }) => {
 
   return <Fragment>{blink ? <Box className="respirator" /> : <Box className="respirator--blink" />}</Fragment>;
 };
-
-export default Respirator;
