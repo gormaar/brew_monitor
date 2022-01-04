@@ -3,15 +3,14 @@ import Box from '@material-ui/core/Box';
 import { Serie } from '@nivo/line';
 
 import LineGraph from '../../../../common/graphs/line';
-
+import { Temperature } from '../../../../../types';
 import './styles.scss';
-import Temperature from '../../../../../types/Temperature';
 
 type LongTermTempGraphProps = {
   temperatures?: Temperature[];
 };
 
-const LongTermTemperatureGraph: FC<LongTermTempGraphProps> = ({ temperatures }) => {
+export const LongTermTemperatureGraph: FC<LongTermTempGraphProps> = ({ temperatures }) => {
   if (!temperatures) {
     return <Box className="longTermTemperatureGraph"></Box>;
   }
@@ -40,5 +39,3 @@ const LongTermTemperatureGraph: FC<LongTermTempGraphProps> = ({ temperatures }) 
     </Box>
   );
 };
-
-export default LongTermTemperatureGraph;

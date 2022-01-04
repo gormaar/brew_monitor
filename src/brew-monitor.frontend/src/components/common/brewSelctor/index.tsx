@@ -1,10 +1,10 @@
 import React, { FC, Fragment } from 'react';
 import { FormControl, MenuItem, InputLabel, makeStyles, Input } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
-
-import './styles.scss';
-import Brew from '../../../types/Brew';
 import { useHistory } from 'react-router-dom';
+
+import { Brew } from '../../../types';
+import './styles.scss';
 
 type BrewSelectorProps = {
   activeBrew: Brew;
@@ -32,7 +32,7 @@ const BrewSelector: FC<BrewSelectorProps> = ({ activeBrew, brews }) => {
       history.push(`/brew/${selectBrew?.id}`);
     }
   };
-  
+
   return (
     <Fragment>
       <FormControl>

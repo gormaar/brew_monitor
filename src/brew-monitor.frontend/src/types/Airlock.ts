@@ -1,4 +1,4 @@
-type Airlock = {
+export type Airlock = {
   id: string;
   activity: number;
   activityLongterm: number;
@@ -6,5 +6,3 @@ type Airlock = {
   updatedAt: Date;
   brewId: string;
 };
-
-export default Airlock;

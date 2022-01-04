@@ -3,15 +3,15 @@ import { Serie } from '@nivo/line';
 import Box from '@material-ui/core/Box';
 
 import LineGraph from '../../../../common/graphs/line';
-import Respirator from '../../respirator';
+import { Respirator } from '../../respirator';
+import { Airlock } from '../../../../../types';
 import './styles.scss';
-import Airlock from '../../../../../types/Airlock';
 
 type ShortTermAirlockProps = {
   airlocks?: Airlock[];
 };
 
-const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ airlocks }) => {
+export const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ airlocks }) => {
   if (airlocks === undefined) {
     return <Box className="shortTermAirlockGraph"></Box>;
   }
@@ -35,5 +35,3 @@ const ShortTermAirlockGraph: FC<ShortTermAirlockProps> = ({ airlocks }) => {
     </Box>
   );
 };
-
-export default ShortTermAirlockGraph;

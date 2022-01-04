@@ -42,7 +42,7 @@ const PieGraph: FC<PieGraphProps> = ({ data }) => {
   return (
     <ResponsivePie
       {...commonProperties}
-      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+      margin={{ top: 40, right: 90, bottom: 80, left: 80 }}
       colors={{ scheme: 'accent' }}
       innerRadius={0.5}
       padAngle={0.5}

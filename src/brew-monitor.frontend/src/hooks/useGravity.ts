@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { getBackendBaseUri } from '../constants'
-import Gravity from '../types/Gravity';
+import { getBackendBaseUri } from '../constants';
+import { Gravity } from '../types';
 
-const useGravity = () => {
+export const useGravity = () => {
   const [gravity, setGravity] = useState<Gravity>();
   const apiBaseUrl = getBackendBaseUri();
 
@@ -23,5 +23,3 @@ const useGravity = () => {
   };
   return { gravity, fetchGravity };
 };
-
-export default useGravity;

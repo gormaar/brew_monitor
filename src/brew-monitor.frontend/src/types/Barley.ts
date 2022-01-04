@@ -1,4 +1,4 @@
-type Barley = {
+export type Barley = {
   id: number;
   type: string;
   amount: number;
@@ -6,5 +6,3 @@ type Barley = {
   createdAt: Date;
   updatedAt: Date;
 };
-
-export default Barley;

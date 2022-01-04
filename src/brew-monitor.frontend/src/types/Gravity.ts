@@ -1,4 +1,4 @@
-type Gravity = {
+export type Gravity = {
   id: number;
   realTimeValue: number;
   originalGravity: number;
@@ -11,5 +11,3 @@ type Gravity = {
   updatedAt: Date;
   brewId: string;
 };
-
-export default Gravity;

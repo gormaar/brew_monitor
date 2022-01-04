@@ -1,4 +1,4 @@
-type Hops = {
+export type Hops = {
   id: number;
   type: string;
   amount: number;
@@ -6,5 +6,3 @@ type Hops = {
   createdAt: Date;
   updatedAt: Date;
 };
-
-export default Hops;

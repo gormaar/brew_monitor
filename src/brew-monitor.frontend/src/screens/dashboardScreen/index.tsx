@@ -2,11 +2,12 @@ import React, { FC, Fragment, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Box, Typography, makeStyles } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { Mobile, Desktop } from '../../components/common/responsive';
 
-import Statistics from '../../components/statistics';
+import Statistics from '../../components/statistics/';
 import Navbar from '../../components/common/navbar';
 import BrewSelector from '../../components/common/brewSelctor';
-import useBrew from '../../hooks/useBrew';
+import { useBrew } from '../../hooks';
 
 import './styles.scss';
 
@@ -24,6 +25,21 @@ const useStyles = makeStyles({
     },
   },
 });
+
+const DashboardScreenContainer: FC = () => (
+  <Fragment>
+    <Desktop>
+      <div>
+        <DashboardScreen />
+      </div>
+    </Desktop>
+    <Mobile>
+      <div>
+        <DashboardScreen />
+      </div>
+    </Mobile>
+  </Fragment>
+);
 
 const DashboardScreen: FC = () => {
   const classes = useStyles();
@@ -61,4 +77,4 @@ const DashboardScreen: FC = () => {
   );
 };
 
-export default DashboardScreen;
+export default DashboardScreenContainer;

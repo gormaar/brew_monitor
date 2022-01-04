@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Box, makeStyles } from '@material-ui/core';
 
-import Brew from '../../../../types/Brew';
+import { Brew } from '../../../../types';
 import './styles.scss';
 
 type StatusProps = {
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Status: FC<StatusProps> = ({ activeBrew }) => {
+export const Status: FC<StatusProps> = ({ activeBrew }) => {
   const classes = useStyles();
 
   const calculateProgress = (): number => {
@@ -54,5 +54,3 @@ const Status: FC<StatusProps> = ({ activeBrew }) => {
     </Box>
   );
 };
-
-export default Status;

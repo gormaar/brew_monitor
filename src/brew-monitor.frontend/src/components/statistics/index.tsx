@@ -1,21 +1,9 @@
-import React, { FC, useEffect } from 'react';
-import Box from '@material-ui/core/Box';
+import React, { FC, Fragment, useEffect } from 'react';
 
-import Status from './components/status';
-import BarleyGraph from '../ingredients/barleyGraph';
-import HopsGraph from '../ingredients/hopsGraph';
-import ShortTermTemperatureGraph from './components/temperature/shortTermTemperature';
-import LongTermTemperatureGraph from './components/temperature/longTermTemperature';
-import DetailsTable from '../details/detailsTable';
-import ShortTermAirlockGraph from './components/airlock/shortTermAirlock';
-import LongTermAirlockGraph from './components/airlock/longTermAirlock';
-import GravityGraph from './components/gravity';
-import Brew from '../../types/Brew';
+import { Brew } from '../../types';
+import { useAirlock, useTemperature, useGravity, useIngredients } from '../../hooks';
+import { StatisticsDesktop, StatisticsMobile } from './responsiveStatistics';
 import './styles.scss';
-import useIngredients from '../../hooks/useIngredients';
-import useGravity from '../../hooks/useGravity';
-import useTemperature from '../../hooks/useTemperature';
-import useAirlock from '../../hooks/useAirlock';
 
 type StatisticsProps = {
   activeBrew: Brew;
@@ -37,30 +25,23 @@ const Statistics: FC<StatisticsProps> = ({ activeBrew }) => {
   }, [activeBrew]);
 
   return (
-    <Box className="statistics">
-      <Box className="stat-container">
-        <Box className="description">
-          <Status activeBrew={activeBrew} />
-          <DetailsTable activeBrew={activeBrew} />
-        </Box>
-        <ShortTermAirlockGraph airlocks={airlocks} />
-      </Box>
+    <Fragment>
+      <StatisticsMobile
+        activeBrew={activeBrew}
+        airlocks={airlocks}
+        gravity={gravity}
+        ingredients={ingredients}
+        temperatures={temperatures}
+      />
 
-      <Box className="stat-container">
-        <BarleyGraph barleyData={ingredients.barley} />
-        <LongTermAirlockGraph airlocks={airlocks} />
-      </Box>
-
-      <Box className="stat-container">
-        <HopsGraph hopsData={ingredients.hops} />
-        <LongTermTemperatureGraph temperatures={temperatures} />
-      </Box>
-
-      <Box className="stat-container">
-        <GravityGraph gravity={gravity} />
-        <ShortTermTemperatureGraph temperatures={temperatures} />
-      </Box>
-    </Box>
+      <StatisticsDesktop
+        activeBrew={activeBrew}
+        airlocks={airlocks}
+        gravity={gravity}
+        ingredients={ingredients}
+        temperatures={temperatures}
+      />
+    </Fragment>
   );
 };
 
