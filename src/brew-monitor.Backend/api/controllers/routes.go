@@ -28,7 +28,4 @@ func (server *Server) initializeRoutes() {
 
 	//Routes for gravity
 	server.Router.HandleFunc("/gravity/{brew_id}", server.GetGravity).Methods("GET", "OPTIONS")
-
-	//Redeploy application
-	server.Router.HandleFunc("/redeploy", server.Redeploy).Methods("GET", "OPTIONS")
 }
